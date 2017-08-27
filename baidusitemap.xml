@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/08/24/hello-world/</loc>
-    <lastmod>2017-08-27T09:15:32.743Z</lastmod>
+    <lastmod>2017-08-27T11:37:25.406Z</lastmod>
     <data>
         <display>
         <title>Hello World</title>
@@ -16,7 +16,29 @@
          
            
              
-              <breadCrumb title="hexo" url="http://yoursite.com/categories/hexo/"/>
+              <breadCrumb title="Hexo" url="http://yoursite.com/categories/Hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/23/My-New-Post/</loc>
+    <lastmod>2017-08-27T09:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Welcome to my blog</title>
+        <pubTime>2017-08-23T04:52:25.000Z</pubTime>
+        
+        <tag>code</tag>
+         
+        <tag>C++</tag>
+         
+         
+           
+             
+              <breadCrumb title="C++" url="http://yoursite.com/categories/C/"/>
           
         </display>
     </data>

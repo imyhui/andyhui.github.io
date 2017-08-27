@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Markdown 基本语法]]></title>
     <url>%2F2017%2F08%2F25%2Ffirst-try%2F</url>
-    <content type="text"><![CDATA[Markdown基础用法与规则： 标题使用”#”加空格在首行来创建标题如: 一级标题二级标题三级标题加粗功能使用一组星号”“或一组下划线”__”来加粗一段文字如:这是加粗的文字**这也是加粗的文字 居中使用一对中括号”[文字]”来居中一段文字，也可以和标题叠加使用如:[### 这是一个居中的标题] 引用使用”&gt;”在段首来引用一段文字如: 这是一段引用这是一段引用 无序列表使用”-“、”“或”+”加空格来创建无序列表如-这是一个无序列表+这是一个无序列表 这是一个无序列表 有序列表使用数字圆点加空格如”1.”、”2.”来创建有序列表如:1.这是一个有序列表2.这是一个有序列表3.这是一个有序列表以上来源锤子便签 贴代码用一对重音符”\\```"引起来，可以在```后表明语言123456789如:``` cpp#include&lt;iostream&gt;using namespace std;int main()&#123; cout&lt;&lt;&quot;Hello World!&quot;&lt;&lt;endl; return 0;&#125; 也可以用4个空格(Tab)缩进再贴上代码实现相同的效果 #include&lt;iostream&gt; using namespace std; int main() { cout&lt;&lt;&quot;Hello World!&quot;&lt;&lt;endl; return 0; } 强调标记用两个重音符”`强调内容`“这是一个强调标记]]></content>
+    <content type="text"><![CDATA[Markdown基础用法与规则： 标题使用”#”加空格在首行来创建标题如: 一级标题二级标题三级标题 加粗功能使用一组星号”**“或一组下划线”__“来加粗一段文字，用转义符”\“来打出”*“如:这是加粗的文字这也是加粗的文字 引用使用”&gt;”在段首来引用一段文字，要在引用前后加入空白行声明开始和结束引用如: 这是一段引用这是一段引用 无序列表使用”-“、”*”或”+”加空格来创建无序列表如: 这是一个无序列表 这是一个无序列表 这是一个无序列表 有序列表使用数字圆点加空格如”1.”、”2.”来创建有序列表如: 这是一个有序列表 这是一个有序列表 这是一个有序列表 以上来源锤子便签 贴代码用一对重音符”``` code ```“引起来，可以在```后表明语言如: 1234567#include&lt;iostream&gt;using namespace std;int main()&#123; cout&lt;&lt;"Hello World!"&lt;&lt;endl; return 0;&#125; 也可以用4个空格(Tab)缩进再贴上代码实现相同的效果 #include&lt;iostream&gt; using namespace std; int main() { cout&lt;&lt;&quot;Hello World!&quot;&lt;&lt;endl; return 0; } 强调标记用两个重音符”`强调内容`“这是一个强调标记 未完待续]]></content>
       <categories>
         <category>Markdown</category>
       </categories>
@@ -17,10 +17,22 @@
     <url>%2F2017%2F08%2F24%2Fhello-world%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
       <categories>
-        <category>hexo</category>
+        <category>Hexo</category>
       </categories>
       <tags>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <url>%2F2017%2F08%2F23%2FMy-New-Post%2F</url>
+    <content type="text"><![CDATA[1234567#include&lt;bits/stdc++.h&gt;using namespace std;int main()&#123; cout&lt;&lt;"Hello，Welcome to andyhui's blog"&lt;&lt;endl; return 0;&#125;]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
 </search>
