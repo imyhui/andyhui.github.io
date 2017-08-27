@@ -3,6 +3,21 @@
 
 
     
+  <url>
+    <loc>http://yoursite.com/2017/08/26/hello-world/</loc>
+    <lastmod>2017-08-27T03:27:21.101Z</lastmod>
+    <data>
+        <display>
+        <title>Hello World</title>
+        <pubTime>2017-08-26T03:34:53.585Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
     
     
     
@@ -39,21 +54,6 @@
         <display>
         <title>My New Post</title>
         <pubTime>2017-08-23T04:52:25.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/08/26/hello-world/</loc>
-    <lastmod>2017-08-23T00:34:37.000Z</lastmod>
-    <data>
-        <display>
-        <title>Hello World</title>
-        <pubTime>2017-08-26T03:34:53.585Z</pubTime>
         
          
            

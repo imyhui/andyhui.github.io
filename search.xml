@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2017%2F08%2F26%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[first try]]></title>
+    <url>%2F2017%2F08%2F25%2Ffirst-try%2F</url>
+    <content type="text"><![CDATA[学习MarkDown常用语法标题1This is a codeblock 1.第一有序列描述代码块2.第二有序列描述代码块 有强制换行，要在每行最前面加 &gt; 段落，只需要在每段最前面加一个 &gt;(*号和-号左右一致) 在行末尾敲入一个及以上回车，此句便为段落 在行末敲入两个或以上空格再回车，可将此句强制换行这是强制换行的下一行 这是一个强调标记]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Markdown</tag>
+        <tag>node.js</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[My New Post]]></title>
+    <url>%2F2017%2F08%2F23%2FMy-New-Post%2F</url>
+    <content type="text"><![CDATA[1234567#include&lt;bits/stdc++.h&gt;using namespace std;int main()&#123; cout&lt;&lt;"first"&lt;&lt;endl; return 0;&#125;]]></content>
+  </entry>
+</search>
