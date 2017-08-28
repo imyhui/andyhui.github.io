@@ -23,12 +23,17 @@
     <updated>2017-08-27T09:00:00.000Z</updated>
     
     <content type="html"><![CDATA[<p>Markdown基础用法与规则：</p>
-<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>使用”#”加空格在首行来创建标题<br>如:<br>    # 一级标题<br>    ## 二级标题<br>    ### 三级标题<br><img src="http://ov8i0dn6x.bkt.clouddn.com/markdown%E6%A0%87%E9%A2%98.png" alt=""><br><a id="more"></a></p>
-<h3 id="加粗功能"><a href="#加粗功能" class="headerlink" title="加粗功能"></a>加粗功能</h3><p>使用一组星号”**“或一组下划线”__“来加粗一段文字，用转义符”\“来打出”*“<br>如:<br>    这是<strong>加粗的文字</strong><br>    这也是<strong>加粗的文字</strong></p>
+<hr>
+<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>使用”#”加空格在首行来创建标题<br>如:<br>&emsp;&emsp; # 一级标题<br>&emsp;&emsp; ## 二级标题<br>&emsp;&emsp; ### 三级标题<br><img src="http://ov8i0dn6x.bkt.clouddn.com/markdown%E6%A0%87%E9%A2%98.png" alt=""></p>
+<hr>
+<a id="more"></a>
+<h3 id="加粗功能"><a href="#加粗功能" class="headerlink" title="加粗功能"></a>加粗功能</h3><p>使用一组星号”**“或一组下划线”__“来加粗一段文字，用转义符”\“来打出”*“<br>如:<br>&emsp;&emsp; 这是<strong>加粗的文字</strong><br>&emsp;&emsp; 这也是<strong>加粗的文字</strong></p>
+<hr>
 <h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>使用”&gt;”在段首来引用一段文字，要在引用前后加入空白行声明开始和结束引用<br>如:</p>
 <blockquote>
 <p>这是一段引用<br>这是一段引用</p>
 </blockquote>
+<hr>
 <h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>使用”-“、”*”或”+”加空格来创建无序列表<br>如:</p>
 <ul>
 <li>这是一个无序列表</li>
@@ -39,13 +44,16 @@
 <ul>
 <li>这是一个无序列表</li>
 </ul>
+<hr>
 <h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>使用数字圆点加空格如”1.”、”2.”来创建有序列表<br>如:</p>
 <ol>
 <li>这是一个有序列表</li>
 <li>这是一个有序列表</li>
 <li>这是一个有序列表</li>
 </ol>
-<p>以上来源<a href="https:\\cloud.smartisan.com\apps\note\md.html" target="_blank" rel="external">锤子便签</a></p>
+<hr>
+<p>以上来源<a href="https:\\cloud.smartisan.com\apps\note\md.html" target="_blank" rel="external"><strong>锤子便签</strong></a></p>
+<hr>
 <h3 id="贴代码"><a href="#贴代码" class="headerlink" title="贴代码"></a>贴代码</h3><p>用一对重音符”``` code ```“引起来，可以在```后表明语言<br>如:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"Hello World!"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>也可以用4个空格(Tab)缩进再贴上代码实现相同的效果</p>
@@ -56,13 +64,17 @@ int main()
     cout&lt;&lt;&quot;Hello World!&quot;&lt;&lt;endl;
     return 0;
 }
-</code></pre><h3 id="强调标记"><a href="#强调标记" class="headerlink" title="强调标记"></a>强调标记</h3><p>用两个重音符”`强调内容`“<br>这是一个<code>强调标记</code></p>
+</code></pre><hr>
+<h3 id="强调标记"><a href="#强调标记" class="headerlink" title="强调标记"></a>强调标记</h3><p>用两个重音符”`强调内容`“<br>这是一个<code>强调标记</code></p>
+<hr>
 <h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h3>]]></content>
     
     <summary type="html">
     
       &lt;p&gt;Markdown基础用法与规则：&lt;/p&gt;
-&lt;h3 id=&quot;标题&quot;&gt;&lt;a href=&quot;#标题&quot; class=&quot;headerlink&quot; title=&quot;标题&quot;&gt;&lt;/a&gt;标题&lt;/h3&gt;&lt;p&gt;使用”#”加空格在首行来创建标题&lt;br&gt;如:&lt;br&gt;    # 一级标题&lt;br&gt;    ## 二级标题&lt;br&gt;    ### 三级标题&lt;br&gt;&lt;img src=&quot;http://ov8i0dn6x.bkt.clouddn.com/markdown%E6%A0%87%E9%A2%98.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;标题&quot;&gt;&lt;a href=&quot;#标题&quot; class=&quot;headerlink&quot; title=&quot;标题&quot;&gt;&lt;/a&gt;标题&lt;/h3&gt;&lt;p&gt;使用”#”加空格在首行来创建标题&lt;br&gt;如:&lt;br&gt;&amp;emsp;&amp;emsp; # 一级标题&lt;br&gt;&amp;emsp;&amp;emsp; ## 二级标题&lt;br&gt;&amp;emsp;&amp;emsp; ### 三级标题&lt;br&gt;&lt;img src=&quot;http://ov8i0dn6x.bkt.clouddn.com/markdown%E6%A0%87%E9%A2%98.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;hr&gt;
     
     </summary>
     
