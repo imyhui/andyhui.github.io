@@ -17,8 +17,8 @@
   
   <entry>
     <title>Markdown 基本语法</title>
-    <link href="http://yoursite.com/2017/08/25/first-try/"/>
-    <id>http://yoursite.com/2017/08/25/first-try/</id>
+    <link href="http://yoursite.com/2017/08/25/Markdown_%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"/>
+    <id>http://yoursite.com/2017/08/25/Markdown_基本语法/</id>
     <published>2017-08-25T00:19:08.000Z</published>
     <updated>2017-08-27T09:00:00.000Z</updated>
     
@@ -122,8 +122,8 @@ int main()
   
   <entry>
     <title>Welcome to my blog</title>
-    <link href="http://yoursite.com/2017/08/23/My-New-Post/"/>
-    <id>http://yoursite.com/2017/08/23/My-New-Post/</id>
+    <link href="http://yoursite.com/2017/08/23/Welcome/"/>
+    <id>http://yoursite.com/2017/08/23/Welcome/</id>
     <published>2017-08-23T04:52:25.000Z</published>
     <updated>2017-08-27T09:00:00.000Z</updated>
     
