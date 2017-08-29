@@ -1,131 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-    
-    <entry>
-      <title><![CDATA[Markdown 基本语法]]></title>
-      <url>/2017/08/25/Markdown_%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</url>
-      <content type="html"><![CDATA[<p>Markdown基础用法与规则：</p>
-<hr>
-<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>使用”#”加空格在首行来创建标题<br>如:<br>&emsp;&emsp; # 一级标题<br>&emsp;&emsp; ## 二级标题<br>&emsp;&emsp; ### 三级标题<br><img src="http://ov8i0dn6x.bkt.clouddn.com/markdown%E6%A0%87%E9%A2%98.png" alt=""></p>
-<hr>
-<a id="more"></a>
-<h3 id="加粗功能"><a href="#加粗功能" class="headerlink" title="加粗功能"></a>加粗功能</h3><p>使用一组星号”**“或一组下划线”__“来加粗一段文字，用转义符”\“来打出”*“<br>如:<br>&emsp;&emsp; 这是<strong>加粗的文字</strong><br>&emsp;&emsp; 这也是<strong>加粗的文字</strong></p>
-<hr>
-<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>使用”&gt;”在段首来引用一段文字，要在引用前后加入空白行声明开始和结束引用<br>如:</p>
-<blockquote>
-<p>这是一段引用<br>这是一段引用</p>
-</blockquote>
-<hr>
-<h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>使用”-“、”*”或”+”加空格来创建无序列表<br>如:</p>
-<ul>
-<li>这是一个无序列表</li>
-</ul>
-<ul>
-<li>这是一个无序列表</li>
-</ul>
-<ul>
-<li>这是一个无序列表</li>
-</ul>
-<hr>
-<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>使用数字圆点加空格如”1.”、”2.”来创建有序列表<br>如:</p>
-<ol>
-<li>这是一个有序列表</li>
-<li>这是一个有序列表</li>
-<li>这是一个有序列表</li>
-</ol>
-<hr>
-<p>以上来源<a href="https:\\cloud.smartisan.com\apps\note\md.html" target="_blank" rel="external"><strong>锤子便签</strong></a></p>
-<hr>
-<h3 id="贴代码"><a href="#贴代码" class="headerlink" title="贴代码"></a>贴代码</h3><p>用一对重音符”``` code ```“引起来，可以在```后表明语言<br>如:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"Hello World!"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>也可以用4个空格(Tab)缩进再贴上代码实现相同的效果</p>
-<pre><code>#include&lt;iostream&gt;
-using namespace std;
-int main()
-{
-    cout&lt;&lt;&quot;Hello World!&quot;&lt;&lt;endl;
-    return 0;
-}
-</code></pre><hr>
-<h3 id="强调标记"><a href="#强调标记" class="headerlink" title="强调标记"></a>强调标记</h3><p>用两个重音符”`强调内容`“<br>这是一个<code>强调标记</code></p>
-<hr>
-<h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h3>]]></content>
-      
-        <categories>
-            
-            <category> Markdown </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Hexo </tag>
-            
-            <tag> Markdown </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>/2017/08/24/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Hexo </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Hexo </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Welcome to my blog]]></title>
-      <url>/2017/08/23/Welcome/</url>
-      <content type="html"><![CDATA[<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//C</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"Hello,my friend\n"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//c++</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"Welcome to andyhui's blog!"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Java</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"There are some blog posts here."</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Python</span></div><div class="line">print(<span class="string">"Hope it helps you!"</span>)</div></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> C++ </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> code </tag>
-            
-            <tag> C++ </tag>
-            
-        </tags>
-        
-    </entry>
-    
-  
-  
+<search>
+  <entry>
+    <title><![CDATA[oj信息爬取]]></title>
+    <url>%2F2017%2F08%2F29%2Fojrankscan%2F</url>
+    <content type="text"><![CDATA[假期俱乐部举办了编程训练营，每个人负责管理15人的营，每天作业会在oj的一个总榜上关于各营营长每天统计很麻烦，所以我写了一个简单的爬虫来节省一部分工作 代码改变世界，使人更高效的完成自己的工作 基本环境 Windows 10 + python 3.6.2 + requests 库 requests 库安装1pip install requests 分析需求 首先需要统计的 Contest 有3周的作业 加 最后的结课测试 每个榜单结构都是一致的，我只需要统计自己营里的昵称和总解决数目就好 url 是 “http://oj.acmclub.cn/contestrank.php?cid=“ + contestID 右键查看网页源代码 两个a标签中刚好有我们的数据，用简单正则表达式匹配下就好 构造request爬取网页 首先拿出一个榜单来处理，由于不需要登陆就可以查看榜单所以我直接抓取榜单html页面 12345678910111213141516import requestsdef getHTMLText(url): try: r = requests.get(url, timeout=30) r.raise_for_status() r.encoding = r.apparent_encoding return r.text except: return ""def main(): for no in range(1166,1169): url = 'http://oj.acmclub.cn/contestrank.php?cid='+str(no) html = getHTMLText(url) print(html)main() 这算一个基本框架了，通过request得到网页源码，中间_r.raise_forstatus()是错误检查，后面是根据推断的编码类型设置字符编码 对html源码处理 首先看网页源码 这里可以用正则表达式库 re 来进行字符匹配，如果昵称符合规范xx营xx号_Nickname_name就很容易处理了，匹配两个a标签之间的内容1rege = r'&lt;a href=.*?&gt;(0&#123;0,1&#125;'+str(num)+'营.*?)&lt;/a&gt;&lt;td&gt;&lt;a href=.*?&gt;([0-9]&#123;1,2&#125;)&lt;/a&gt;' 对html的处理函数也就是很容易写了 1234567891011121314151617181920import requestsimport redef getHTMLText(url): #省略def fillscoreList(slist, html, num): rege = r'&lt;a href=.*?&gt;(0&#123;0,1&#125;'+str(num)+'营.*?)&lt;/a&gt;&lt;td&gt;&lt;a href=.*?&gt;([0-9]&#123;1,2&#125;)&lt;/a&gt;' score = re.findall(rege,html) for x in score: slist.append(x)def main(): num = int(input("请输入营号:")) for no in range(1166,1169): sinfo = [] url = 'http://oj.acmclub.cn/contestrank.php?cid='+str(no) html = getHTMLText(url) fillscoreList(sinfo, html, num) for (name,solve) in sinfo: print(name,solve)main() 这样得到的sinfo就是包含(name,solve)的列表，程序到这阶段基本算是完工了，但是输出的样式也并不尽人意，比如没有对齐，看起来很乱，接下来我们就对这个程序进行优化 未完待续]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>爬虫</tag>
+        <tag>oj</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Markdown 基本语法]]></title>
+    <url>%2F2017%2F08%2F25%2FMarkdown_%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[近几天刚刚搭建了博客，用的是Hexo+Next主题，托管在github和codding上，写博文是需要Markdown，所以先学习下Markdown的基本语法，也算是为博客增加一篇博文吧。 Markdown基础用法与规则： 标题使用”#”加空格在首行来创建标题如:&emsp;&emsp; # 一级标题&emsp;&emsp; ## 二级标题&emsp;&emsp; ### 三级标题 加粗功能使用一组星号”**“或一组下划线”__“来加粗一段文字，用转义符”\“来打出”*“如:&emsp;&emsp; 这是加粗的文字&emsp;&emsp; 这也是加粗的文字 引用使用”&gt;”在段首来引用一段文字，要在引用前后加入空白行声明开始和结束引用如: 这是一段引用这是一段引用 无序列表使用”-“、”*”或”+”加空格来创建无序列表如: 这是一个无序列表 这是一个无序列表 这是一个无序列表 有序列表使用数字圆点加空格如”1.”、”2.”来创建有序列表如: 这是一个有序列表 这是一个有序列表 这是一个有序列表 以上来源锤子便签 贴代码用一对重音符”``` code ```“引起来，可以在```后表明语言如: 1234567#include&lt;iostream&gt;using namespace std;int main()&#123; cout&lt;&lt;"Hello World!"&lt;&lt;endl; return 0;&#125; 也可以用4个空格(Tab)缩进再贴上代码实现相同的效果 #include&lt;iostream&gt; using namespace std; int main() { cout&lt;&lt;&quot;Hello World!&quot;&lt;&lt;endl; return 0; } 强调标记用两个重音符”`强调内容`“这是一个强调标记 未完待续]]></content>
+      <categories>
+        <category>Markdown</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2017%2F08%2F24%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <url>%2F2017%2F08%2F23%2FWelcome%2F</url>
+    <content type="text"><![CDATA[123456//C#include&lt;stdio.h&gt;int main(void)&#123; printf("Hello,my friend\n"); return 0;&#125; 12345678//c++#include&lt;iostream&gt;using namespace std;int main()&#123; cout&lt;&lt;"Welcome to andyhui's blog!"&lt;&lt;endl; return 0;&#125; 123456//Javapublic class Main &#123; public static void main(String[] args)&#123; System.out.println("There are some blog posts here."); &#125;&#125; 12#Pythonprint("Hope it helps you!")]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
 </search>

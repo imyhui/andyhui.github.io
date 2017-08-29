@@ -4,8 +4,32 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/08/29/ojrankscan/</loc>
+    <lastmod>2017-08-29T14:20:18.222Z</lastmod>
+    <data>
+        <display>
+        <title>oj信息爬取</title>
+        <pubTime>2017-08-29T07:04:51.000Z</pubTime>
+        
+        <tag>爬虫</tag>
+         
+        <tag>oj</tag>
+         
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://yoursite.com/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/08/24/hello-world/</loc>
-    <lastmod>2017-08-27T11:37:25.406Z</lastmod>
+    <lastmod>2017-08-29T13:46:51.735Z</lastmod>
     <data>
         <display>
         <title>Hello World</title>
@@ -53,9 +77,9 @@
         <title>Markdown 基本语法</title>
         <pubTime>2017-08-25T00:19:08.000Z</pubTime>
         
-        <tag>Hexo</tag>
-         
         <tag>Markdown</tag>
+         
+        <tag>Hexo</tag>
          
          
            
