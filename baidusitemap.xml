@@ -4,8 +4,39 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/09/02/qsbkspider/</loc>
+    <lastmod>2017-09-08T17:13:31.793Z</lastmod>
+    <data>
+        <display>
+        <title>糗事百科爬虫</title>
+        <pubTime>2017-09-02T05:57:19.000Z</pubTime>
+        
+        <tag>爬虫</tag>
+         
+        <tag>python</tag>
+         
+        <tag>requests</tag>
+         
+        <tag>linux</tag>
+         
+        <tag>BeautifulSoup</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://yoursite.com/categories/python/"/>
+          
+             
+              <breadCrumb title="linux" url="http://yoursite.com/categories/python/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/08/29/ojrankscan/</loc>
-    <lastmod>2017-08-30T07:16:33.664Z</lastmod>
+    <lastmod>2017-09-02T08:12:21.884Z</lastmod>
     <data>
         <display>
         <title>oj信息爬取</title>
@@ -16,6 +47,8 @@
         <tag>oj</tag>
          
         <tag>python</tag>
+         
+        <tag>requests</tag>
          
          
            
