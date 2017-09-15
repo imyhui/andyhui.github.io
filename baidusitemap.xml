@@ -81,28 +81,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/08/23/Welcome/</loc>
-    <lastmod>2017-08-27T09:00:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>Welcome to my blog</title>
-        <pubTime>2017-08-23T04:52:25.000Z</pubTime>
-        
-        <tag>code</tag>
-         
-        <tag>C++</tag>
-         
-         
-           
-             
-              <breadCrumb title="C++" url="http://yoursite.com/categories/C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/08/25/Markdown_%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</loc>
     <lastmod>2017-08-27T09:00:00.000Z</lastmod>
     <data>
@@ -118,6 +96,28 @@
            
              
               <breadCrumb title="Markdown" url="http://yoursite.com/categories/Markdown/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/23/Welcome/</loc>
+    <lastmod>2017-08-27T09:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Welcome to my blog</title>
+        <pubTime>2017-08-23T04:52:25.000Z</pubTime>
+        
+        <tag>code</tag>
+         
+        <tag>C++</tag>
+         
+         
+           
+             
+              <breadCrumb title="C++" url="http://yoursite.com/categories/C/"/>
           
         </display>
     </data>
