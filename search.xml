@@ -3,10 +3,9 @@
   <entry>
     <title><![CDATA[糗事百科爬虫]]></title>
     <url>%2F2017%2F09%2F02%2Fqsbkspider%2F</url>
-    <content type="text"><![CDATA[一周前买了阿里云服务器，简单部署了一个JudgeService，感觉闲着也是闲着，决定在上面部署一个爬虫，打算每隔一段时间爬取糗事百科前几页的文本段子并以邮件的形式发送到qq邮箱中。 基本环境 requests + smtplib + bs4都可以用pip install 来安装 分析需求基本目的是爬取糗事百科文本部分前几页内容保存后续操作有通过邮件发送到邮箱，之后是挂载到云服务器上每隔一段时间自动爬取并发送邮件 首先分析网页源码]]></content>
+    <content type="text"><![CDATA[一周前买了阿里云服务器，简单部署了一个JudgeService，感觉闲着也是闲着，决定在上面部署一个爬虫，打算每隔一段时间爬取糗事百科前几页的文本段子并以邮件的形式发送到qq邮箱中。 基本环境 requests + smtplib + bs4都可以用pip install 来安装 分析需求 基本目的是爬取糗事百科文本部分前几页内容保存后续操作有通过邮件发送到邮箱，之后是挂载到云服务器上每隔一段时间自动爬取并发送邮件 首先分析网页源码]]></content>
       <categories>
         <category>python</category>
-        <category>linux</category>
       </categories>
       <tags>
         <tag>爬虫</tag>

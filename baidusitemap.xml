@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/09/02/qsbkspider/</loc>
-    <lastmod>2017-09-08T17:13:31.793Z</lastmod>
+    <lastmod>2017-09-15T18:40:28.046Z</lastmod>
     <data>
         <display>
         <title>糗事百科爬虫</title>
@@ -25,9 +25,6 @@
            
              
               <breadCrumb title="python" url="http://yoursite.com/categories/python/"/>
-          
-             
-              <breadCrumb title="linux" url="http://yoursite.com/categories/python/linux/"/>
           
         </display>
     </data>
@@ -81,28 +78,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/08/25/Markdown_%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</loc>
-    <lastmod>2017-08-27T09:00:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>Markdown 基本语法</title>
-        <pubTime>2017-08-25T00:19:08.000Z</pubTime>
-        
-        <tag>Hexo</tag>
-         
-        <tag>Markdown</tag>
-         
-         
-           
-             
-              <breadCrumb title="Markdown" url="http://yoursite.com/categories/Markdown/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/08/23/Welcome/</loc>
     <lastmod>2017-08-27T09:00:00.000Z</lastmod>
     <data>
@@ -118,6 +93,28 @@
            
              
               <breadCrumb title="C++" url="http://yoursite.com/categories/C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/25/Markdown_%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</loc>
+    <lastmod>2017-08-27T09:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Markdown 基本语法</title>
+        <pubTime>2017-08-25T00:19:08.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+        <tag>Markdown</tag>
+         
+         
+           
+             
+              <breadCrumb title="Markdown" url="http://yoursite.com/categories/Markdown/"/>
           
         </display>
     </data>
