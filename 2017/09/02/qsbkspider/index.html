@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="andyhui&#39;s blog">
 <meta property="og:description" content="一周前买了阿里云服务器，简单部署了一个JudgeService，感觉闲着也是闲着，决定在上面部署一个爬虫，打算每隔一段时间爬取糗事百科前几页的文本段子并以邮件的形式发送到qq邮箱中。   基本环境 requests + smtplib + bs4都可以用pip install 来安装">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-15T18:40:28.046Z">
+<meta property="og:updated_time" content="2017-09-16T01:59:57.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="糗事百科爬虫">
 <meta name="twitter:description" content="一周前买了阿里云服务器，简单部署了一个JudgeService，感觉闲着也是闲着，决定在上面部署一个爬虫，打算每隔一段时间爬取糗事百科前几页的文本段子并以邮件的形式发送到qq邮箱中。   基本环境 requests + smtplib + bs4都可以用pip install 来安装">
@@ -412,7 +412,21 @@
 <h3 id="分析需求"><a href="#分析需求" class="headerlink" title="分析需求"></a>分析需求</h3><blockquote>
 <p>基本目的是爬取糗事百科文本部分前几页内容保存<br>后续操作有通过邮件发送到邮箱，之后是挂载到云服务器上每隔一段时间自动爬取并发送邮件</p>
 </blockquote>
-<h4 id="首先分析网页源码"><a href="#首先分析网页源码" class="headerlink" title="首先分析网页源码"></a>首先分析网页源码</h4><p><img src="" alt=""></p>
+<h4 id="分析url"><a href="#分析url" class="headerlink" title="分析url"></a>分析url</h4><blockquote>
+<p>我们这次只爬取文字内容，所以这次爬取的url是 <strong>‘<a href="https://www.qiushibaike.com/text/" target="_blank" rel="external">https://www.qiushibaike.com/text/</a>‘</strong><br>点开第二页会发现 url变为 <strong>‘<a href="https://www.qiushibaike.com/text/page/2/" target="_blank" rel="external">https://www.qiushibaike.com/text/page/2/</a>‘</strong><br>很清晰的知道 第i页的url也就是 url = <strong>‘<a href="https://www.qiushibaike.com/text/page/%s/&#39;%str(i" target="_blank" rel="external">https://www.qiushibaike.com/text/page/%s/&#39;%str(i</a>)</strong><br>我们要爬前多少页也就是一个for循环的事</p>
+</blockquote>
+<h4 id="分析网页源码"><a href="#分析网页源码" class="headerlink" title="分析网页源码"></a>分析网页源码</h4><blockquote>
+<p>首先来看下网页的基本内容<br><img src="" alt=""></p>
+<p>我们要做的是提取这一个个文本，然后保存下来</p>
+<p>根据网页源码很容易看出 内容是在 class=”content”的div标签下，可以直接套用正则表达式，我们这使用BeautifulSoup库的find_all函数就可以搞定<br><img src="" alt=""></p>
+</blockquote>
+<h3 id="构造request请求"><a href="#构造request请求" class="headerlink" title="构造request请求"></a>构造request请求</h3><blockquote>
+<p>首先就是通过requests库得到网页源码 <em>html = requests.get(url)</em></p>
+<p>这里我们加一个小的异常处理，也就是如果爬取不到我们将错误信息写入一个文件，文件名为<strong>Http error on time.ctime()</strong> 这里的<strong><a href="http://www.runoob.com/python/att-time-ctime.html" target="_blank" rel="external">time.ctime()</a></strong>是包含在time里面的一个函数，返回当前时间。</p>
+<p>然后用BeautifulSoup做成一锅汤<strong>soup = BeautifulSoup(html.text, ‘lxml’)</strong><br>这里我们用lxml HTML 解析器，因为它的优势是速度快，文档容错能力强，(更多关于BeautifulSoup)[<a href="http://cuiqingcai.com/1319.html" target="_blank" rel="external">http://cuiqingcai.com/1319.html</a>]</p>
+</blockquote>
+<p>之后我们用_find<em>all</em>找到每一个笑话，之后呢，把换行标签替换掉，然后加到data_list 中去</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> lxml</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getcontent</span><span class="params">(url)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        html = requests.get(url)</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="keyword">with</span> open(<span class="string">"log.log"</span>,<span class="string">"a"</span>) <span class="keyword">as</span> file:</div><div class="line">            file.write(<span class="string">"Http error on "</span> + time.ctime())</div><div class="line">        time.sleep(<span class="number">60</span>)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line">    soup = BeautifulSoup(html.text, <span class="string">'lxml'</span>)</div><div class="line">    data_list = []</div><div class="line">    <span class="keyword">for</span> cont <span class="keyword">in</span> soup.find_all(<span class="string">"div"</span>, &#123;<span class="string">"class"</span>:<span class="string">"content"</span>&#125;):</div><div class="line">        raw_data = cont.get_text()</div><div class="line">        data = raw_data.replace(<span class="string">"\n"</span>,<span class="string">""</span>)</div><div class="line">        data_list.append(data)</div><div class="line">    <span class="keyword">return</span> data_list</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    data_list = []</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">2</span>):</div><div class="line">        url = <span class="string">'https://www.qiushibaike.com/text/page/%s/'</span>%str(i)</div><div class="line">        temp_data = getcontent(url)</div><div class="line">        data_list.extend(temp_data)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data_list:</div><div class="line">        print(i)</div><div class="line">        print(<span class="string">'\n\n'</span>)</div><div class="line">main()</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -637,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本环境"><span class="nav-number">1.</span> <span class="nav-text">基本环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析需求"><span class="nav-number">2.</span> <span class="nav-text">分析需求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先分析网页源码"><span class="nav-number">2.1.</span> <span class="nav-text">首先分析网页源码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本环境"><span class="nav-number">1.</span> <span class="nav-text">基本环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析需求"><span class="nav-number">2.</span> <span class="nav-text">分析需求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分析url"><span class="nav-number">2.1.</span> <span class="nav-text">分析url</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析网页源码"><span class="nav-number">2.2.</span> <span class="nav-text">分析网页源码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造request请求"><span class="nav-number">3.</span> <span class="nav-text">构造request请求</span></a></li></ol></div>
             
 
           </div>
