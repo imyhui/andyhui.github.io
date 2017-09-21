@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-09-21T17:14:56.339Z</updated>
+  <updated>2017-09-21T17:26:19.518Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,12 +20,13 @@
     <link href="http://yoursite.com/2017/09/20/gitfirstuse/"/>
     <id>http://yoursite.com/2017/09/20/gitfirstuse/</id>
     <published>2017-09-20T11:35:10.000Z</published>
-    <updated>2017-09-21T17:14:56.339Z</updated>
+    <updated>2017-09-21T17:26:19.518Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="什么是-Git"><a href="#什么是-Git" class="headerlink" title="什么是 Git"></a>什么是 Git</h3><blockquote>
-<p><strong>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</strong> 项目加上Git后能能更好的追踪代码修改，进行版本回溯等操作。当今时代，多人协作开发是公司合作的基本模式，在多人协作的开发过程中Git变得必不可少，接下来大致介绍下Git的基本命令以及GitHub的基本使用。<br><a id="more"></a></p>
-<h3 id="为什么用Git"><a href="#为什么用Git" class="headerlink" title="为什么用Git"></a>为什么用Git</h3></blockquote>
-<h4 id="提高开发效率"><a href="#提高开发效率" class="headerlink" title="提高开发效率!"></a>提高开发效率!</h4><blockquote>
+<p><strong>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</strong> 项目加上Git后能能更好的追踪代码修改，进行版本回溯等操作。当今时代，多人协作开发是公司合作的基本模式，在多人协作的开发过程中Git变得必不可少，接下来大致介绍下Git的基本命令以及GitHub的基本使用。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="为什么用Git"><a href="#为什么用Git" class="headerlink" title="为什么用Git"></a>为什么用Git</h3><h4 id="提高开发效率"><a href="#提高开发效率" class="headerlink" title="提高开发效率!"></a>提高开发效率!</h4><blockquote>
 <p>git不仅仅是一个代码版本管理工具，也是一个文档管理工具，在git上很容易维护一个文档</p>
 </blockquote>
 <h4 id="git可以提高开发效率，主要表现在"><a href="#git可以提高开发效率，主要表现在" class="headerlink" title="git可以提高开发效率，主要表现在:"></a>git可以提高开发效率，主要表现在:</h4><ul>
@@ -50,31 +51,16 @@
 <h3 id="Git基本设置"><a href="#Git基本设置" class="headerlink" title="Git基本设置"></a>Git基本设置</h3><p>在桌面上右键<code>Git Bash here</code> 启动git bush命令行界面<br>当然也可以从终端打开</p>
 <p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E5%90%AF%E5%8A%A8.png" alt="启动"></p>
 <p>首先我们对 <code>Git</code> 进行全局用户名和邮箱进行设置，请参照下面格式，<code>Your Name</code> 替换为你的名字， <code>you@example.com</code> 替换为你的邮箱<br>这里个人信息设置的作用，是为你在代码提交时自动署名标记，方便查看提交日志时区分作者。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;Your Name&quot;</div><div class="line">$ git config --global user.email you@example.com</div></pre></td></tr></table></figure></p>
-<p>接下来进行Git推送分支相关设置<br>此设置是命令 <code>Git</code>，当我们执行 <code>git push</code> 没有指定分支时，自动使用当前分支，而不是报错。<a href="http://blog.csdn.net/daijingxin/article/details/51326715" target="_blank" rel="external">更多关于push.default</a></p>
+<p>接下来进行Git推送分支相关设置<br>这个是命令 <code>Git</code>当我们执行 <code>git push</code> 没有指定分支时，自动使用当前分支，而不是报错。<a href="http://blog.csdn.net/daijingxin/article/details/51326715" target="_blank" rel="external">更多关于push.default</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git config --global push.default simple</div></pre></td></tr></table></figure>
 <h3 id="Git基本操作"><a href="#Git基本操作" class="headerlink" title="Git基本操作"></a>Git基本操作</h3><p>对于有经验的开发者来说，在他每次新建完开发项目的时候，首先要做的第一件事就是将自己的项目纳入到 <code>Git</code> 代码版本管理中，完成这个操作一般需要以下这几个步骤：</p>
-<ol>
-<li>对Git进行初始化</li>
-</ol>
-<p>我们要在对应的项目文件夹(文件夹内)对git初始化，<br>windows下可直接在对应文件夹下右键 <code>Git Bush here</code><br>也可以用命令行找到对应文件夹，<br>这里我们用命令行示范下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd D:/andyhui/DataStructure</div><div class="line">$ git init</div></pre></td></tr></table></figure></p>
+<h4 id="对Git进行初始化"><a href="#对Git进行初始化" class="headerlink" title="对Git进行初始化"></a>对Git进行初始化</h4><p>我们要在对应的项目文件夹(文件夹内)对git初始化，<br>windows下可直接在对应文件夹下右键 <code>Git Bush here</code><br>也可以用命令行找到对应文件夹，<br>这里我们用命令行示范下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd D:/andyhui/DataStructure</div><div class="line">$ git init</div></pre></td></tr></table></figure></p>
 <p><code>D:/andyhui/DataStructure</code>这个是我自己的文件目录，替换成你项目的文件目录即可,如果没有就自己创建一个，在里面随意放一个文件即可，比如 一个说明<code>what.md</code>或 代码文件 <code>HelloWorld.cpp</code></p>
-<ol>
-<li>将项目所有文件纳入到Git暂存区中</li>
-</ol>
-<p>这些文件并未真正提交到Git上<br>这里<code>-A</code> 是all的意思，我们也可以指定一个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git add -A</div></pre></td></tr></table></figure></p>
+<h4 id="将项目所有文件纳入到Git暂存区中"><a href="#将项目所有文件纳入到Git暂存区中" class="headerlink" title="将项目所有文件纳入到Git暂存区中"></a>将项目所有文件纳入到Git暂存区中</h4><p>这些文件并未真正提交到Git上<br>这里<code>-A</code> 是all的意思，我们也可以指定一个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git add -A</div></pre></td></tr></table></figure></p>
 <p> 这里的所有文件指的是没在 <code>.gitignore</code> 中被忽略的文件。在Git工作区的根目录下创建一个特殊的<code>.gitignore</code>文件，然后把要忽略的文件名填进去，Git就会来选择忽略掉一些我们不想纳入到 Git 版本管理中的文件（如缓存文件）。<a href="http://bdxnote.blog.163.com/blog/static/844423520124153051409/" target="_blank" rel="external">git忽略文件设置</a>以及<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013758404317281e54b6f5375640abbb11e67be4cd49e0000" target="_blank" rel="external">了解更多.gitignore</a>。</p>
-<ol>
-<li>检查 Git 状态</li>
-</ol>
-<p>这条命令将会向你输出存放在 <code>Git</code> 暂存区的文件，这意味着这些文件还未真正提交到 Git 中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git status</div></pre></td></tr></table></figure></p>
-<ol>
-<li>保留改动并提交</li>
-</ol>
-<p>这行命令会将暂存区的文件都提交到 <code>Git</code>，-m 选项后面带的参数表示本次提交的简单描述。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ git commit -m &quot;Initial commit&quot;</div><div class="line">$ git log</div><div class="line">commit e7419d269d65021fa056b731e09f8bdeaac00d9d (HEAD -&gt; master, origin/master)</div><div class="line">Author: andyhui &lt;andyhui686666@gmail.com&gt;</div><div class="line">Date:   Thu Sep 21 09:24:53 2017 +0800</div><div class="line"></div><div class="line">    Initial commit</div></pre></td></tr></table></figure></p>
-<ol>
-<li>查看历史提交记录：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git log</div></pre></td></tr></table></figure>
-</li>
-</ol>
+<h4 id="检查-Git-状态"><a href="#检查-Git-状态" class="headerlink" title="检查 Git 状态"></a>检查 Git 状态</h4><p>这条命令将会向你输出存放在 <code>Git</code> 暂存区的文件，这意味着这些文件还未真正提交到 Git 中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git status</div></pre></td></tr></table></figure></p>
+<h4 id="保留改动并提交"><a href="#保留改动并提交" class="headerlink" title="保留改动并提交"></a>保留改动并提交</h4><p>这行命令会将暂存区的文件都提交到 <code>Git</code>，-m 选项后面带的参数表示本次提交的简单描述。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ git commit -m &quot;Initial commit&quot;</div><div class="line">$ git log</div><div class="line">commit e7419d269d65021fa056b731e09f8bdeaac00d9d (HEAD -&gt; master, origin/master)</div><div class="line">Author: andyhui &lt;andyhui686666@gmail.com&gt;</div><div class="line">Date:   Thu Sep 21 09:24:53 2017 +0800</div><div class="line"></div><div class="line">    Initial commit</div></pre></td></tr></table></figure></p>
+<h4 id="查看历史提交记录："><a href="#查看历史提交记录：" class="headerlink" title="查看历史提交记录："></a>查看历史提交记录：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git log</div></pre></td></tr></table></figure>
 <p>从输出信息中可以很清晰的看到每次提交的作者、日期、描述等信息。按 <code>q</code>可退出查看。</p>
 <p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/gitlog.png" alt="gitlog"></p>
 <p>git 基本提交操作到这就结束了，如果你想学习更多关于 <code>Git</code> 相关的知识，可以查阅<a href="https://git-scm.com/book/zh/v2" target="_blank" rel="external">《Pro Git》</a>一书进行学习。</p>
@@ -132,10 +118,15 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git checkout new_branch</div><div class="line">Switched to branch &apos;new_branch&apos;</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>2、3 步骤其实可以用一条命令搞定 <figure class="highlight plain"><figcaption><span>checkout -b new_branch ```，我习惯用下面这条,区别[参考这里](https://my.oschina.net/u/587974/blog/74341)</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">你可以将新建的 `static-pages` 理解为是对 `master` 分支的克隆，在上面做的所有修改都不会影响到 `master` 分支。本节后面会将 static-pages 分支合并到 `master` 分支上，合并成功之后，在 `new_branch` 分支上做的所有改动都会并入到 `master` 分支。另外，你也可以选择对一个分支进行删除操作，当一个分支被删除之后，在该分支之上的所有改动也都将被销毁，删除分支的操作不会影响到 `master` 分支。这便是 `Git` 工作流的强大之处。</div><div class="line"></div><div class="line">4. 合并分支操作是`git merge &lt;分支名称&gt;`将分支的操作合并到主分支上,注意，多人协作中当两条分支对同一个文件的同一个文本块进行了不同的修改，并试图合并时，Git不能自动合并的，称之为`冲突(conflict)`。解决冲突需要人工处理。，解决冲突看[这里](http://www.cnblogs.com/mengdd/p/3585038.html)，合并分支示例：</div></pre></td></tr></table></figure></p>
-<p>$ git checkout master<br>$ git merge new_branch<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">5. 从本地删除一个分支： `git branch -d &lt;分支名称&gt;`, 删除分支示例：</div></pre></td></tr></table></figure></p>
-<p>$ git branch -d new_branch<br>```</p>
+<p>2、3 步骤其实可以用一条命令搞定 <code>git checkout -b new_branch</code>，我习惯用这条,区别<a href="https://my.oschina.net/u/587974/blog/74341" target="_blank" rel="external">参考这里</a></p>
+<p>你可以将新建的 <code>static-pages</code> 理解为是对 <code>master</code> 分支的克隆，在上面做的所有修改都不会影响到 <code>master</code> 分支。本节后面会将 static-pages 分支合并到 <code>master</code> 分支上，合并成功之后，在 <code>new_branch</code> 分支上做的所有改动都会并入到 <code>master</code> 分支。另外，你也可以选择对一个分支进行删除操作，当一个分支被删除之后，在该分支之上的所有改动也都将被销毁，删除分支的操作不会影响到 <code>master</code> 分支。这便是 <code>Git</code> 工作流的强大之处。</p>
 <ol>
+<li><p>合并分支操作是<code>git merge &lt;分支名称&gt;</code>将分支的操作合并到主分支上,注意，多人协作中当两条分支对同一个文件的同一个文本块进行了不同的修改，并试图合并时，Git不能自动合并的，称之为<code>冲突(conflict)</code>。解决冲突需要人工处理。，解决冲突看<a href="http://www.cnblogs.com/mengdd/p/3585038.html" target="_blank" rel="external">这里</a>，合并分支示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git checkout master</div><div class="line">$ git merge new_branch</div></pre></td></tr></table></figure>
+</li>
+<li><p>从本地删除一个分支： <code>git branch -d &lt;分支名称&gt;</code>, 删除分支示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch -d new_branch</div></pre></td></tr></table></figure>
+</li>
 <li><p>将本地分支同步到GitHub上面： <code>git push &lt;本地仓库名&gt; &lt;新分支名&gt;</code></p>
 </li>
 <li><p>为你的分支加入一个新的远程端： <code>git remote add &lt;远程端名字&gt; &lt;地址&gt;</code></p>
@@ -156,7 +147,8 @@
     <summary type="html">
     
       &lt;h2 id=&quot;Git&quot;&gt;&lt;a href=&quot;#Git&quot; class=&quot;headerlink&quot; title=&quot;Git&quot;&gt;&lt;/a&gt;Git&lt;/h2&gt;&lt;h3 id=&quot;什么是-Git&quot;&gt;&lt;a href=&quot;#什么是-Git&quot; class=&quot;headerlink&quot; title=&quot;什么是 Git&quot;&gt;&lt;/a&gt;什么是 Git&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.&lt;/strong&gt; 项目加上Git后能能更好的追踪代码修改，进行版本回溯等操作。当今时代，多人协作开发是公司合作的基本模式，在多人协作的开发过程中Git变得必不可少，接下来大致介绍下Git的基本命令以及GitHub的基本使用。&lt;br&gt;
+&lt;p&gt;&lt;strong&gt;Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.&lt;/strong&gt; 项目加上Git后能能更好的追踪代码修改，进行版本回溯等操作。当今时代，多人协作开发是公司合作的基本模式，在多人协作的开发过程中Git变得必不可少，接下来大致介绍下Git的基本命令以及GitHub的基本使用。&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
@@ -219,11 +211,11 @@
     
       <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
-    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
       <category term="requests" scheme="http://yoursite.com/tags/requests/"/>
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
       <category term="BeautifulSoup" scheme="http://yoursite.com/tags/BeautifulSoup/"/>
     
@@ -303,11 +295,11 @@
     
       <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
     
+      <category term="oj" scheme="http://yoursite.com/tags/oj/"/>
+    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
       <category term="requests" scheme="http://yoursite.com/tags/requests/"/>
-    
-      <category term="oj" scheme="http://yoursite.com/tags/oj/"/>
     
   </entry>
   
