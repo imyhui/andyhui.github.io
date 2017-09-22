@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-09-22T00:06:35.444Z</updated>
+  <updated>2017-09-22T04:03:05.537Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/09/20/gitfirstuse/"/>
     <id>http://yoursite.com/2017/09/20/gitfirstuse/</id>
     <published>2017-09-20T11:35:10.000Z</published>
-    <updated>2017-09-22T00:06:35.444Z</updated>
+    <updated>2017-09-22T04:03:05.537Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="什么是-Git"><a href="#什么是-Git" class="headerlink" title="什么是 Git"></a>什么是 Git</h3><blockquote>
 <p><strong>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</strong> 项目加上Git后能能更好的追踪代码修改，进行版本回溯等操作。当今时代，多人协作开发是公司合作的基本模式，在多人协作的开发过程中Git变得必不可少，接下来大致介绍下Git的基本命令以及GitHub的基本使用。</p>
@@ -89,8 +89,7 @@
 <p>1、保存到暂存区,-A也可以换成指定文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git add -A</div></pre></td></tr></table></figure></p>
 <p>2、输入描述信息并提交到本地的 Git：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit -m &quot;Say something&quot;</div></pre></td></tr></table></figure></p>
 <p>3、将代码推送到 GitHub：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push</div></pre></td></tr></table></figure></p>
-<p>##Git 进阶操作</p>
-<h3 id="误删恢复"><a href="#误删恢复" class="headerlink" title="误删恢复"></a>误删恢复</h3><p>通过上面 <code>Git</code> 的基本讲解，你可能还无法真正体会到 <code>Git</code> 的强大。在平时开发中，我们有时候可能会因为手误或其它原因将某些重要文件删除。如果之前有将此文件纳入到 <code>Git</code> 中，这时便可以利用 <code>Git</code> 来对误删文件进行恢复。请看下面演示。</p>
+<h2 id="Git-进阶操作"><a href="#Git-进阶操作" class="headerlink" title="Git 进阶操作"></a>Git 进阶操作</h2><h3 id="误删恢复"><a href="#误删恢复" class="headerlink" title="误删恢复"></a>误删恢复</h3><p>通过上面 <code>Git</code> 的基本讲解，你可能还无法真正体会到 <code>Git</code> 的强大。在平时开发中，我们有时候可能会因为手误或其它原因将某些重要文件删除。如果之前有将此文件纳入到 <code>Git</code> 中，这时便可以利用 <code>Git</code> 来对误删文件进行恢复。请看下面演示。</p>
 <p>我们先假装不小心删除 <code>what.md</code> 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ rm what.md</div><div class="line">$ ll</div></pre></td></tr></table></figure></p>
 <p>使用 ll 打印出文件目录列表时，能看到 <code>what.md</code> 文件已被成功移除。</p>
 <p>查看 Git 状态：</p>
@@ -166,7 +165,7 @@
     <link href="http://yoursite.com/2017/09/02/qsbkspider/"/>
     <id>http://yoursite.com/2017/09/02/qsbkspider/</id>
     <published>2017-09-02T05:57:19.000Z</published>
-    <updated>2017-09-22T00:08:58.726Z</updated>
+    <updated>2017-09-22T00:10:54.939Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>一周前买了阿里云服务器，简单部署了一个JudgeService，感觉闲着也是闲着，决定在上面部署一个爬虫，打算每隔一段时间爬取糗事百科前几页的文本段子并以邮件的形式发送到qq邮箱中。</p>
@@ -213,11 +212,11 @@
     
       <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
     
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
       <category term="requests" scheme="http://yoursite.com/tags/requests/"/>
-    
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
       <category term="BeautifulSoup" scheme="http://yoursite.com/tags/BeautifulSoup/"/>
     
@@ -297,11 +296,11 @@
     
       <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="oj" scheme="http://yoursite.com/tags/oj/"/>
-    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
       <category term="requests" scheme="http://yoursite.com/tags/requests/"/>
+    
+      <category term="oj" scheme="http://yoursite.com/tags/oj/"/>
     
   </entry>
   
