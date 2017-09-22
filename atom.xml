@@ -166,15 +166,16 @@
     <link href="http://yoursite.com/2017/09/02/qsbkspider/"/>
     <id>http://yoursite.com/2017/09/02/qsbkspider/</id>
     <published>2017-09-02T05:57:19.000Z</published>
-    <updated>2017-09-16T02:17:45.787Z</updated>
+    <updated>2017-09-22T00:08:58.726Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>一周前买了阿里云服务器，简单部署了一个JudgeService，感觉闲着也是闲着，决定在上面部署一个爬虫，打算每隔一段时间爬取糗事百科前几页的文本段子并以邮件的形式发送到qq邮箱中。</p>
 </blockquote>
 <hr>
 <h3 id="基本环境"><a href="#基本环境" class="headerlink" title="基本环境"></a>基本环境</h3><blockquote>
-<p>requests + smtplib + bs4<br>都可以用pip install 来安装<br><a id="more"></a></p>
+<p>requests + smtplib + bs4<br>都可以用pip install 来安装</p>
 </blockquote>
+<a id="more"></a>
 <h3 id="分析需求"><a href="#分析需求" class="headerlink" title="分析需求"></a>分析需求</h3><blockquote>
 <p>基本目的是爬取糗事百科文本部分前几页内容保存<br>后续操作有通过邮件发送到邮箱，之后是挂载到云服务器上每隔一段时间自动爬取并发送邮件</p>
 </blockquote>
@@ -202,7 +203,8 @@
 &lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;h3 id=&quot;基本环境&quot;&gt;&lt;a href=&quot;#基本环境&quot; class=&quot;headerlink&quot; title=&quot;基本环境&quot;&gt;&lt;/a&gt;基本环境&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;requests + smtplib + bs4&lt;br&gt;都可以用pip install 来安装&lt;br&gt;
+&lt;p&gt;requests + smtplib + bs4&lt;br&gt;都可以用pip install 来安装&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
@@ -211,11 +213,11 @@
     
       <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
-    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
       <category term="requests" scheme="http://yoursite.com/tags/requests/"/>
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
       <category term="BeautifulSoup" scheme="http://yoursite.com/tags/BeautifulSoup/"/>
     
@@ -295,11 +297,11 @@
     
       <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
     
+      <category term="oj" scheme="http://yoursite.com/tags/oj/"/>
+    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
       <category term="requests" scheme="http://yoursite.com/tags/requests/"/>
-    
-      <category term="oj" scheme="http://yoursite.com/tags/oj/"/>
     
   </entry>
   
