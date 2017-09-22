@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-09-21T17:26:19.518Z</updated>
+  <updated>2017-09-22T00:06:35.444Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/09/20/gitfirstuse/"/>
     <id>http://yoursite.com/2017/09/20/gitfirstuse/</id>
     <published>2017-09-20T11:35:10.000Z</published>
-    <updated>2017-09-21T17:26:19.518Z</updated>
+    <updated>2017-09-22T00:06:35.444Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="什么是-Git"><a href="#什么是-Git" class="headerlink" title="什么是 Git"></a>什么是 Git</h3><blockquote>
 <p><strong>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</strong> 项目加上Git后能能更好的追踪代码修改，进行版本回溯等操作。当今时代，多人协作开发是公司合作的基本模式，在多人协作的开发过程中Git变得必不可少，接下来大致介绍下Git的基本命令以及GitHub的基本使用。</p>
@@ -119,7 +119,7 @@
 </li>
 </ol>
 <p>2、3 步骤其实可以用一条命令搞定 <code>git checkout -b new_branch</code>，我习惯用这条,区别<a href="https://my.oschina.net/u/587974/blog/74341" target="_blank" rel="external">参考这里</a></p>
-<p>你可以将新建的 <code>static-pages</code> 理解为是对 <code>master</code> 分支的克隆，在上面做的所有修改都不会影响到 <code>master</code> 分支。本节后面会将 static-pages 分支合并到 <code>master</code> 分支上，合并成功之后，在 <code>new_branch</code> 分支上做的所有改动都会并入到 <code>master</code> 分支。另外，你也可以选择对一个分支进行删除操作，当一个分支被删除之后，在该分支之上的所有改动也都将被销毁，删除分支的操作不会影响到 <code>master</code> 分支。这便是 <code>Git</code> 工作流的强大之处。</p>
+<p>你可以将新建的 <code>new_branch</code> 理解为是对 <code>master</code> 分支的克隆，在上面做的所有修改都不会影响到 <code>master</code> 分支。本节后面会将 <code>new_branch</code> 分支合并到 <code>master</code> 分支上，合并成功之后，在 <code>new_branch</code> 分支上做的所有改动都会并入到 <code>master</code> 分支。另外，你也可以选择对一个分支进行删除操作，当一个分支被删除之后，在该分支之上的所有改动也都将被销毁，删除分支的操作不会影响到 <code>master</code> 分支。这便是 <code>Git</code> 工作流的强大之处。</p>
 <ol>
 <li><p>合并分支操作是<code>git merge &lt;分支名称&gt;</code>将分支的操作合并到主分支上,注意，多人协作中当两条分支对同一个文件的同一个文本块进行了不同的修改，并试图合并时，Git不能自动合并的，称之为<code>冲突(conflict)</code>。解决冲突需要人工处理。，解决冲突看<a href="http://www.cnblogs.com/mengdd/p/3585038.html" target="_blank" rel="external">这里</a>，合并分支示例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git checkout master</div><div class="line">$ git merge new_branch</div></pre></td></tr></table></figure>
@@ -211,11 +211,11 @@
     
       <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
     
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
       <category term="requests" scheme="http://yoursite.com/tags/requests/"/>
-    
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
       <category term="BeautifulSoup" scheme="http://yoursite.com/tags/BeautifulSoup/"/>
     
@@ -295,11 +295,11 @@
     
       <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="oj" scheme="http://yoursite.com/tags/oj/"/>
-    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
       <category term="requests" scheme="http://yoursite.com/tags/requests/"/>
+    
+      <category term="oj" scheme="http://yoursite.com/tags/oj/"/>
     
   </entry>
   
