@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-09-22T11:19:39.021Z</updated>
+  <updated>2017-09-22T14:30:59.700Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/09/20/gitfirstuse/"/>
     <id>http://yoursite.com/2017/09/20/gitfirstuse/</id>
     <published>2017-09-20T11:35:10.000Z</published>
-    <updated>2017-09-22T11:19:39.021Z</updated>
+    <updated>2017-09-22T14:30:59.700Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="什么是-Git"><a href="#什么是-Git" class="headerlink" title="什么是 Git"></a>什么是 Git</h3><blockquote>
 <p><strong>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</strong> 项目加上Git后能能更好的追踪代码修改，进行版本回溯等操作。当今时代，多人协作开发是公司合作的基本模式，在多人协作的开发过程中Git变得必不可少，接下来大致介绍下Git的基本命令以及GitHub的基本使用。</p>
@@ -82,7 +82,7 @@
 <h4 id="提交代码到-Github"><a href="#提交代码到-Github" class="headerlink" title="提交代码到 Github"></a>提交代码到 Github</h4><p>在配置完 GitHub 账号之后，我们便可以开始在上面存放项目代码了。首先 <a href="https://github.com/new" target="_blank" rel="external">新建一个 GitHub 仓库</a>，取名为 <code>你项目的名字</code>，填上 <code>Description</code> 项目描述，<code>Initialize this repository with a README</code> 这一项是询问你是否需要生成一个默认的介绍。</p>
 <p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E6%96%B0%E4%BB%93%E5%BA%93.png" alt="新仓库"></p>
 <p>创建完成之后，使用以下命令将代码上传到 <code>GitHub</code> 上（将 <code>your_username</code> 替换为你自己的 <code>GitHub</code> 用户名，<code>your_projectname</code> 是你的项目名字，就是刚刚创建仓库的名字）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git remote add origin git@github.com:your_username/your_projectname.git</div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure></p>
-<p>至此，项目已成功托管到 GitHub 上。<br>(如果Git 提示fatal: remote origin already exists<a href="http://blog.csdn.net/top_code/article/details/50381432" target="_blank" rel="external">请看这里</a>)</p>
+<p>至此，项目已成功托管到 GitHub 上。<br>(如果Git 提示<code>fatal: remote origin already exists</code><a href="http://blog.csdn.net/top_code/article/details/50381432" target="_blank" rel="external">请看这里</a>)<br>(如果提示<code>error: src refspec master does not match any</code><a href="http://www.jianshu.com/p/8d26730386f3" target="_blank" rel="external">请看这里</a>))</p>
 <p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E6%88%90%E5%8A%9F.png" alt="代码提交成功"></p>
 <h4 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h4><p>后面我们如果对本地代码进行了改动，只需运行这 3 条命令即可将代码推送到安全可靠的 <code>GitHub</code> 上：</p>
 <p><code>注意：以下命令作为知识重温，不需要执行</code></p>
