@@ -372,9 +372,9 @@ int main()
       <category term="Markdown" scheme="http://yoursite.com/categories/Markdown/"/>
     
     
-      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
-    
       <category term="Markdown" scheme="http://yoursite.com/tags/Markdown/"/>
+    
+      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
     
   </entry>
   
