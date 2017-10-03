@@ -212,11 +212,11 @@
     
       <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
     
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
       <category term="requests" scheme="http://yoursite.com/tags/requests/"/>
-    
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
       <category term="BeautifulSoup" scheme="http://yoursite.com/tags/BeautifulSoup/"/>
     
@@ -296,11 +296,11 @@
     
       <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="oj" scheme="http://yoursite.com/tags/oj/"/>
-    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
       <category term="requests" scheme="http://yoursite.com/tags/requests/"/>
+    
+      <category term="oj" scheme="http://yoursite.com/tags/oj/"/>
     
   </entry>
   
@@ -372,9 +372,9 @@ int main()
       <category term="Markdown" scheme="http://yoursite.com/categories/Markdown/"/>
     
     
-      <category term="Markdown" scheme="http://yoursite.com/tags/Markdown/"/>
-    
       <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
+    
+      <category term="Markdown" scheme="http://yoursite.com/tags/Markdown/"/>
     
   </entry>
   
