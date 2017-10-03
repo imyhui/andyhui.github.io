@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-09-22T14:30:59.700Z</updated>
+  <updated>2017-10-03T09:12:12.904Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/09/20/gitfirstuse/"/>
     <id>http://yoursite.com/2017/09/20/gitfirstuse/</id>
     <published>2017-09-20T11:35:10.000Z</published>
-    <updated>2017-09-22T14:30:59.700Z</updated>
+    <updated>2017-10-03T09:12:12.904Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="什么是-Git"><a href="#什么是-Git" class="headerlink" title="什么是 Git"></a>什么是 Git</h3><blockquote>
 <p><strong>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</strong> 项目加上Git后能能更好的追踪代码修改，进行版本回溯等操作。当今时代，多人协作开发是公司合作的基本模式，在多人协作的开发过程中Git变得必不可少，接下来大致介绍下Git的基本命令以及GitHub的基本使用。</p>
@@ -212,11 +212,11 @@
     
       <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
-    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
       <category term="requests" scheme="http://yoursite.com/tags/requests/"/>
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
       <category term="BeautifulSoup" scheme="http://yoursite.com/tags/BeautifulSoup/"/>
     
@@ -296,11 +296,11 @@
     
       <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
     
+      <category term="oj" scheme="http://yoursite.com/tags/oj/"/>
+    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
       <category term="requests" scheme="http://yoursite.com/tags/requests/"/>
-    
-      <category term="oj" scheme="http://yoursite.com/tags/oj/"/>
     
   </entry>
   
