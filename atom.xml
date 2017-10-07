@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://andyhui.top/"/>
   <updated>2017-10-03T09:12:12.904Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://andyhui.top/</id>
   
   <author>
     <name>andyhui</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Git及GitHub使用</title>
-    <link href="http://yoursite.com/2017/09/20/gitfirstuse/"/>
-    <id>http://yoursite.com/2017/09/20/gitfirstuse/</id>
+    <link href="http://andyhui.top/2017/09/20/gitfirstuse/"/>
+    <id>http://andyhui.top/2017/09/20/gitfirstuse/</id>
     <published>2017-09-20T11:35:10.000Z</published>
     <updated>2017-10-03T09:12:12.904Z</updated>
     
@@ -151,21 +151,21 @@
     
     </summary>
     
-      <category term="git" scheme="http://yoursite.com/categories/git/"/>
+      <category term="git" scheme="http://andyhui.top/categories/git/"/>
     
     
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+      <category term="git" scheme="http://andyhui.top/tags/git/"/>
     
-      <category term="github" scheme="http://yoursite.com/tags/github/"/>
+      <category term="github" scheme="http://andyhui.top/tags/github/"/>
     
   </entry>
   
   <entry>
     <title>糗事百科爬虫</title>
-    <link href="http://yoursite.com/2017/09/02/qsbkspider/"/>
-    <id>http://yoursite.com/2017/09/02/qsbkspider/</id>
+    <link href="http://andyhui.top/2017/09/02/qsbkspider/"/>
+    <id>http://andyhui.top/2017/09/02/qsbkspider/</id>
     <published>2017-09-02T05:57:19.000Z</published>
-    <updated>2017-09-22T00:10:54.939Z</updated>
+    <updated>2017-10-03T09:14:17.346Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>一周前买了阿里云服务器，简单部署了一个JudgeService，感觉闲着也是闲着，决定在上面部署一个爬虫，打算每隔一段时间爬取糗事百科前几页的文本段子并以邮件的形式发送到qq邮箱中。</p>
@@ -207,25 +207,25 @@
     
     </summary>
     
-      <category term="python" scheme="http://yoursite.com/categories/python/"/>
+      <category term="python" scheme="http://andyhui.top/categories/python/"/>
     
     
-      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="http://andyhui.top/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+      <category term="python" scheme="http://andyhui.top/tags/python/"/>
     
-      <category term="requests" scheme="http://yoursite.com/tags/requests/"/>
+      <category term="requests" scheme="http://andyhui.top/tags/requests/"/>
     
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+      <category term="linux" scheme="http://andyhui.top/tags/linux/"/>
     
-      <category term="BeautifulSoup" scheme="http://yoursite.com/tags/BeautifulSoup/"/>
+      <category term="BeautifulSoup" scheme="http://andyhui.top/tags/BeautifulSoup/"/>
     
   </entry>
   
   <entry>
     <title>oj信息爬取</title>
-    <link href="http://yoursite.com/2017/08/29/ojrankscan/"/>
-    <id>http://yoursite.com/2017/08/29/ojrankscan/</id>
+    <link href="http://andyhui.top/2017/08/29/ojrankscan/"/>
+    <id>http://andyhui.top/2017/08/29/ojrankscan/</id>
     <published>2017-08-29T07:04:51.000Z</published>
     <updated>2017-09-16T01:58:26.189Z</updated>
     
@@ -291,23 +291,23 @@
     
     </summary>
     
-      <category term="python" scheme="http://yoursite.com/categories/python/"/>
+      <category term="python" scheme="http://andyhui.top/categories/python/"/>
     
     
-      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="http://andyhui.top/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="oj" scheme="http://yoursite.com/tags/oj/"/>
+      <category term="oj" scheme="http://andyhui.top/tags/oj/"/>
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+      <category term="python" scheme="http://andyhui.top/tags/python/"/>
     
-      <category term="requests" scheme="http://yoursite.com/tags/requests/"/>
+      <category term="requests" scheme="http://andyhui.top/tags/requests/"/>
     
   </entry>
   
   <entry>
     <title>Markdown 基本语法</title>
-    <link href="http://yoursite.com/2017/08/25/Markdown_%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"/>
-    <id>http://yoursite.com/2017/08/25/Markdown_基本语法/</id>
+    <link href="http://andyhui.top/2017/08/25/Markdown_%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"/>
+    <id>http://andyhui.top/2017/08/25/Markdown_基本语法/</id>
     <published>2017-08-25T00:19:08.000Z</published>
     <updated>2017-08-27T09:00:00.000Z</updated>
     
@@ -369,19 +369,19 @@ int main()
     
     </summary>
     
-      <category term="Markdown" scheme="http://yoursite.com/categories/Markdown/"/>
+      <category term="Markdown" scheme="http://andyhui.top/categories/Markdown/"/>
     
     
-      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
+      <category term="Markdown" scheme="http://andyhui.top/tags/Markdown/"/>
     
-      <category term="Markdown" scheme="http://yoursite.com/tags/Markdown/"/>
+      <category term="Hexo" scheme="http://andyhui.top/tags/Hexo/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2017/08/24/hello-world/"/>
-    <id>http://yoursite.com/2017/08/24/hello-world/</id>
+    <link href="http://andyhui.top/2017/08/24/hello-world/"/>
+    <id>http://andyhui.top/2017/08/24/hello-world/</id>
     <published>2017-08-24T04:52:25.000Z</published>
     <updated>2017-08-29T13:46:51.735Z</updated>
     
@@ -404,17 +404,17 @@ int main()
     
     </summary>
     
-      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
+      <category term="Hexo" scheme="http://andyhui.top/categories/Hexo/"/>
     
     
-      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
+      <category term="Hexo" scheme="http://andyhui.top/tags/Hexo/"/>
     
   </entry>
   
   <entry>
     <title>Welcome to my blog</title>
-    <link href="http://yoursite.com/2017/08/23/Welcome/"/>
-    <id>http://yoursite.com/2017/08/23/Welcome/</id>
+    <link href="http://andyhui.top/2017/08/23/Welcome/"/>
+    <id>http://andyhui.top/2017/08/23/Welcome/</id>
     <published>2017-08-23T04:52:25.000Z</published>
     <updated>2017-08-27T09:00:00.000Z</updated>
     
@@ -431,12 +431,12 @@ int main()
     
     </summary>
     
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+      <category term="C++" scheme="http://andyhui.top/categories/C/"/>
     
     
-      <category term="code" scheme="http://yoursite.com/tags/code/"/>
+      <category term="code" scheme="http://andyhui.top/tags/code/"/>
     
-      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+      <category term="C++" scheme="http://andyhui.top/tags/C/"/>
     
   </entry>
   
