@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://andyhui.top/"/>
-  <updated>2017-10-03T09:12:12.904Z</updated>
+  <updated>2017-11-04T14:22:43.834Z</updated>
   <id>http://andyhui.top/</id>
   
   <author>
@@ -16,11 +16,65 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>LearningPath</title>
+    <link href="http://andyhui.top/2017/11/04/learnpath/"/>
+    <id>http://andyhui.top/2017/11/04/learnpath/</id>
+    <published>2017-11-04T03:30:01.000Z</published>
+    <updated>2017-11-04T14:22:43.834Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>大一刷了一年算法 到省赛结束也算是圆满退役了，从暑假开始零零散散的学习web开发，到现到现在大二上过半了依旧很迷茫，还好接下来的时间不太忙碌，足够去弥补。前段时间在思考写博客的意义是什么，一方面，作为一个博客，是要记录自己的学习历程，另一方面，是留给后来者，能给别人以启迪，算是实现了写博客的意义吧。之前写的几篇，都是偏向教程向，写起来很累，基本是从0开始考虑的，后续我觉得还是以记录为主，但教程还是要继续写的，现在网络这么普及，网上教程五花八门，中间会有各种坑,而且连贯性很差，我希望留下点东西能给后来者。<br>接下是学长给的后端开发学习路线，顺便就拿过来了，接下来我会在学长的基础上完善这个教程，留作俱乐部的学习资料。</p>
+</blockquote>
+<p>&lt;– !more –&gt;</p>
+<h2 id="入门篇"><a href="#入门篇" class="headerlink" title="入门篇"></a>入门篇</h2><p>了解html是什么，以及网页运作的原理</p>
+<p>学习使用现代化的开发工具！——换一个好看又好用的文本编辑器吧</p>
+<p>前端认知：使用css和js为网页增添色彩</p>
+<p>后端认知：使用表单和服务端交互吧！——认识HTTP和PHP以及会话</p>
+<p>编程认知：面向对象和函数式编程</p>
+<p>linux入门，告别windows</p>
+<p>数据库认知：mysql入门</p>
+<p>web应用认知：搭建wordpress</p>
+<h2 id="工程篇"><a href="#工程篇" class="headerlink" title="工程篇"></a>工程篇</h2><p>学习使用库：使用bootstrap快速写出好看的页面</p>
+<p>学习代码管理：使用git实现代码同步，注册自己的github库，尝试使用多分支进行协作开<br>发</p>
+<p>学习包管理：使用composer，以现代的方式构建应用并获取扩展吧</p>
+<p>集成开发环境入门：给自己换个IDE吧!</p>
+<p>学习设计模式：用MVC的架构去编写应用</p>
+<p>使用框架吧：从最简单的框架(CodeIgniter)开始，了解如何使用框架开发应用</p>
+<h2 id="应用篇"><a href="#应用篇" class="headerlink" title="应用篇"></a>应用篇</h2><p>（这一章将会带大家从零构建一个完整的简易博客系统 ，了解一个项目的基本开发流程）</p>
+<p>需求分析</p>
+<p>原型设计</p>
+<p>数据层设计</p>
+<p>逻辑架构设计</p>
+<p>编写后端代码</p>
+<p>编写前端代码</p>
+<p>上线部署和调试</p>
+<p>高级话题：运维，web安全</p>
+<h2 id="进阶篇"><a href="#进阶篇" class="headerlink" title="进阶篇"></a>进阶篇</h2><p>前后端分离<br>前端的学习路径和技术栈<br>后端的学习路径和技术栈<br>一些简单的设计模式和架构<br>如何进一步学习</p>
+<p>作者：MarkyLumin<br><a href="http://www.jianshu.com/p/c8671328a375" target="_blank" rel="external">原帖地址</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;大一刷了一年算法 到省赛结束也算是圆满退役了，从暑假开始零零散散的学习web开发，到现到现在大二上过半了依旧很迷茫，还好接下来的时间不太忙碌，足够去弥补。前段时间在思考写博客的意义是什么，一方面，作为一个博客，是要记录自己的学习历程，另一方面，是留
+    
+    </summary>
+    
+      <category term="后端学习" scheme="http://andyhui.top/categories/%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="后端" scheme="http://andyhui.top/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="php" scheme="http://andyhui.top/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Git及GitHub使用</title>
     <link href="http://andyhui.top/2017/09/20/gitfirstuse/"/>
     <id>http://andyhui.top/2017/09/20/gitfirstuse/</id>
     <published>2017-09-20T11:35:10.000Z</published>
-    <updated>2017-10-03T09:12:12.904Z</updated>
+    <updated>2017-11-04T12:47:04.422Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="什么是-Git"><a href="#什么是-Git" class="headerlink" title="什么是 Git"></a>什么是 Git</h3><blockquote>
 <p><strong>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</strong> 项目加上Git后能能更好的追踪代码修改，进行版本回溯等操作。当今时代，多人协作开发是公司合作的基本模式，在多人协作的开发过程中Git变得必不可少，接下来大致介绍下Git的基本命令以及GitHub的基本使用。</p>
@@ -132,6 +186,62 @@
 </li>
 <li><p>查看当前仓库有几个分支: <code>git branch</code></p>
 </li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>经过以上配置后，之后新建仓库操作如下进行即可</p>
+<ol>
+<li>进入对应目录 <code>cd 你的仓库目录</code></li>
+<li>初始化git仓库 <code>git init</code></li>
+<li>添加提交的文件</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>文件数</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一个文件</td>
+<td><code>git add 文件名</code></td>
+</tr>
+<tr>
+<td>全部文件</td>
+<td><code>git add -A</code></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>提交修改提示 <code>git commit -m</code></li>
+<li>查看提交状态 <code>git status</code></li>
+<li>查看最近日志 <code>git log</code></li>
+<li>版本回退操作</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>回退次数</th>
+<th style="text-align:left">指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>回退一个</td>
+<td style="text-align:left"><code>git reset -hard HEAD^</code></td>
+</tr>
+<tr>
+<td>回退两个</td>
+<td style="text-align:left"><code>git reset -hard HEAD^^</code></td>
+</tr>
+<tr>
+<td>回退多个</td>
+<td style="text-align:left"><code>git reset -hard HEAD~100</code></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>(第一次连接)远程仓库提交 <code>git remote add origin 你复制的地址</code></li>
+<li>(第二次以后)远程仓库提交 <code>git push</code></li>
 </ol>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://try.github.io/" target="_blank" rel="external">github官方教程</a></p>
 <p><a href="https://fsdhub.com/books/laravel-essential-training-5.5" target="_blank" rel="external">Laravel 教程 - Web 开发实战入门 ( Laravel 5.5 ) </a></p>
@@ -372,9 +482,9 @@ int main()
       <category term="Markdown" scheme="http://andyhui.top/categories/Markdown/"/>
     
     
-      <category term="Markdown" scheme="http://andyhui.top/tags/Markdown/"/>
-    
       <category term="Hexo" scheme="http://andyhui.top/tags/Hexo/"/>
+    
+      <category term="Markdown" scheme="http://andyhui.top/tags/Markdown/"/>
     
   </entry>
   

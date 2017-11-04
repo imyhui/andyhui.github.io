@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>http://andyhui.top/2017/11/04/learnpath/</loc>
+    <lastmod>2017-11-04T14:22:43.834Z</lastmod>
+    <data>
+        <display>
+        <title>LearningPath</title>
+        <pubTime>2017-11-04T03:30:01.000Z</pubTime>
+        
+        <tag>后端</tag>
+         
+        <tag>php</tag>
+         
+         
+           
+             
+              <breadCrumb title="后端学习" url="http://andyhui.top/categories/%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://andyhui.top/2017/09/20/gitfirstuse/</loc>
+    <lastmod>2017-11-04T12:47:04.422Z</lastmod>
+    <data>
+        <display>
+        <title>Git及GitHub使用</title>
+        <pubTime>2017-09-20T11:35:10.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+        <tag>github</tag>
+         
+         
+           
+             
+              <breadCrumb title="git" url="http://andyhui.top/categories/git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://andyhui.top/2017/09/02/qsbkspider/</loc>
     <lastmod>2017-10-03T09:14:17.346Z</lastmod>
     <data>
@@ -25,28 +69,6 @@
            
              
               <breadCrumb title="python" url="http://andyhui.top/categories/python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://andyhui.top/2017/09/20/gitfirstuse/</loc>
-    <lastmod>2017-10-03T09:12:12.904Z</lastmod>
-    <data>
-        <display>
-        <title>Git及GitHub使用</title>
-        <pubTime>2017-09-20T11:35:10.000Z</pubTime>
-        
-        <tag>git</tag>
-         
-        <tag>github</tag>
-         
-         
-           
-             
-              <breadCrumb title="git" url="http://andyhui.top/categories/git/"/>
           
         </display>
     </data>
@@ -107,9 +129,9 @@
         <title>Markdown 基本语法</title>
         <pubTime>2017-08-25T00:19:08.000Z</pubTime>
         
-        <tag>Markdown</tag>
-         
         <tag>Hexo</tag>
+         
+        <tag>Markdown</tag>
          
          
            
