@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="后端,laradock,docker,laravel," />
 
 
 
@@ -101,17 +101,20 @@
 
 
 
-<meta name="description" content="Where there&apos;s a will,there&apos;s a way.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://andyhui.top/categories/index.html">
+<meta name="description" content="为什么使用laradock  搭建环境对于上手框架的新人是一件头疼的事,多人协作开发,线上线下环境的一致也是一个很麻烦的问题,而laradock的使用,完美解决了这个问题,相比homestead与vagrant,laradock更加轻量级,只需要数秒就可以完成启动,既可以作为开发环境也可以作为生产环境,支持PHP、MySQL、 Nginx等一系列软件,且安装较为简便。  支持的软件有1234567">
+<meta name="keywords" content="后端,laradock,docker,laravel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="15分钟用Docker部署PHP开发环境">
+<meta property="og:url" content="http://andyhui.top/2017/12/09/LaradockInstall/index.html">
 <meta property="og:site_name" content="andyhui&#39;s blog">
-<meta property="og:description" content="Where there&apos;s a will,there&apos;s a way.">
+<meta property="og:description" content="为什么使用laradock  搭建环境对于上手框架的新人是一件头疼的事,多人协作开发,线上线下环境的一致也是一个很麻烦的问题,而laradock的使用,完美解决了这个问题,相比homestead与vagrant,laradock更加轻量级,只需要数秒就可以完成启动,既可以作为开发环境也可以作为生产环境,支持PHP、MySQL、 Nginx等一系列软件,且安装较为简便。  支持的软件有1234567">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-27T02:20:01.097Z">
+<meta property="og:image" content="http://ov8i0dn6x.bkt.clouddn.com/%E6%88%90%E5%8A%9F.png">
+<meta property="og:updated_time" content="2017-12-08T18:51:13.982Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="Where there&apos;s a will,there&apos;s a way.">
+<meta name="twitter:title" content="15分钟用Docker部署PHP开发环境">
+<meta name="twitter:description" content="为什么使用laradock  搭建环境对于上手框架的新人是一件头疼的事,多人协作开发,线上线下环境的一致也是一个很麻烦的问题,而laradock的使用,完美解决了这个问题,相比homestead与vagrant,laradock更加轻量级,只需要数秒就可以完成启动,既可以作为开发环境也可以作为生产环境,支持PHP、MySQL、 Nginx等一系列软件,且安装较为简便。  支持的软件有1234567">
+<meta name="twitter:image" content="http://ov8i0dn6x.bkt.clouddn.com/%E6%88%90%E5%8A%9F.png">
 
 
 
@@ -141,13 +144,13 @@
 
 
 
-  <link rel="canonical" href="http://andyhui.top/categories/"/>
+  <link rel="canonical" href="http://andyhui.top/2017/12/09/LaradockInstall/"/>
 
 
 
 
 
-  <title>分类 | andyhui's blog</title>
+  <title>15分钟用Docker部署PHP开发环境 | andyhui's blog</title>
   
 
 
@@ -296,40 +299,277 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://andyhui.top/2017/12/09/LaradockInstall/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="andyhui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="andyhui's blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">分类</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                目前共计 8 个分类
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown/">Markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端学习/">后端学习</a><span class="category-list-count">2</span></li></ul>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">15分钟用Docker部署PHP开发环境</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-09T02:41:17+08:00">
+                2017-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端学习/" itemprop="url" rel="index">
+                    <span itemprop="name">后端学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/09/LaradockInstall/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/09/LaradockInstall/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h2 id="为什么使用laradock"><a href="#为什么使用laradock" class="headerlink" title="为什么使用laradock"></a>为什么使用laradock</h2><blockquote>
+<p> 搭建环境对于上手框架的新人是一件头疼的事,多人协作开发,线上线下环境的一致也是一个很麻烦的问题,而<code>laradock</code>的使用,完美解决了这个问题,相比<code>homestead</code>与<code>vagrant</code>,<code>laradock</code>更加轻量级,只需要数秒就可以完成启动,既可以作为开发环境也可以作为生产环境,支持<code>PHP</code>、<code>MySQL</code>、 <code>Nginx</code>等一系列软件,且安装较为简便。</p>
+</blockquote>
+<p>支持的软件有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt; Database Engines: MySQL - MariaDB - Percona - MongoDB - Neo4j - RethinkDB - MSSQL - PostgreSQL - Postgres-PostGIS.</div><div class="line">&gt; Database Management: PhpMyAdmin - Adminer - PgAdmin</div><div class="line">&gt; Cache Engines: Redis - Memcached - Aerospike</div><div class="line">&gt; PHP Servers: NGINX - Apache2 - Caddy</div><div class="line">&gt; PHP Compilers: PHP FPM - HHVM</div><div class="line">&gt; Message Queueing: Beanstalkd - RabbitMQ - PHP Worker</div><div class="line">&gt; Queueing Management: Beanstalkd Console - RabbitMQ Console</div><div class="line">&gt; Random Tools: HAProxy - Certbot - Blackfire - Selenium - Jenkins - ElasticSearch - Kibana - Grafana - Mailhog - MailDev - Minio - Varnish - Swoole - Laravel Echo…</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><ul>
+<li><a href="https://git-scm.com/downloads" target="_blank" rel="external">Git</a></li>
+<li><p><a href="https://www.docker.com/community-edition" target="_blank" rel="external">Docker</a> <code>&gt;= 1.12</code></p>
+<blockquote>
+<p>可以通过<code>docker -v</code>查看自己的docker版本，一定要保证大于<code>1.12</code>，否则会遇到各种问题，推荐安装<code>17.0</code>以上，之前<code>1.13.1</code>mysql启动不了。</p>
+</blockquote>
+<p>  附上我的docker版本</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&gt; docker version</div><div class="line">Client:</div><div class="line">Version:      17.05.0-ce</div><div class="line">API version:  1.29</div><div class="line">Go version:   go1.7.5</div><div class="line">Git commit:   89658be</div><div class="line">Built:        Thu May  4 22:09:06 2017</div><div class="line">OS/Arch:      linux/amd64</div><div class="line"></div><div class="line">Server:</div><div class="line">Version:      17.05.0-ce</div><div class="line">API version:  1.29 (minimum version 1.12)</div><div class="line">Go version:   go1.7.5</div><div class="line">Git commit:   89658be</div><div class="line">Built:        Thu May  4 22:09:06 2017</div><div class="line">OS/Arch:      linux/amd64</div><div class="line">Experimental: false</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="选择安装位置"><a href="#选择安装位置" class="headerlink" title="选择安装位置"></a>选择安装位置</h3><ul>
+<li><p>首先选择一个文件目录，克隆<code>laradock</code>，理论上文件目录可以任选，推荐这样的文件结构</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">+ laradock</div><div class="line">+ project-1</div><div class="line">+ project-2</div></pre></td></tr></table></figure>
+</li>
+<li><p>这样每个项目文件夹和<code>laradock</code>是平行的关系，多个项目共用一个<code>laradock</code>,也可以每个项目单独装一个laradock，推荐第一种方式</p>
+<h3 id="安装laradock"><a href="#安装laradock" class="headerlink" title="安装laradock"></a>安装laradock</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/laradock/laradock.git</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="安装Laravel"><a href="#安装Laravel" class="headerlink" title="安装Laravel"></a>安装Laravel</h3><ol>
+<li><p>进入<code>laradock</code>文件夹</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd ~/Code/laradock</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>Code</code>是我存放项目的文件夹</p>
+</blockquote>
+</li>
+<li><p>修改配置文件</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp env-example .env</div></pre></td></tr></table></figure>
+<blockquote>
+<p>编辑<code>.env</code>文件可以修改需要安装软件，以及相关软件的设置，如php版本、mysql数据库名称等</p>
+</blockquote>
+</li>
+<li><p>构建环境</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose up -d nginx mysql</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>workspace</code> 和 <code>php-fpm</code>会自动启动，这个不用添加在后面，后面可选择的软件有</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx, hhvm, php-fpm, mysql, redis, postgres, mariadb, neo4j, mongo, apache2, caddy, memcached, beanstalkd, beanstalkd-console, workspace</div></pre></td></tr></table></figure>
+<p>第一次构建需下载安装镜像，会花较长时间，之后启动仅需数秒。</p>
+<p>可以用<code>docker-compose ps</code>查看容器运行状态</p>
+</blockquote>
+</li>
+<li>进入<code>workspace</code>容器</li>
+</ol>
+<ul>
+<li><p>执行<code>Artisan</code>, <code>Composer</code>, <code>PHPUnit</code>等命令需要进入<code>workspace</code>容器内才能执行</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose exec --user=laradock workspace bash</div></pre></td></tr></table></figure>
+<blockquote>
+<p>以<code>laradock</code>身份进入容器，也可以执行<code>docker-compose exec workspace bash</code></p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li><code>Laravel</code>相关配置<blockquote>
+<p>从一个项目的创建来说明相关配置</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li><p>创建一个<code>Laravel</code>项目</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project laravel/laravel testapp --prefer-dist &quot;5.5.*&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改刚创建应用的<code>.env</code>文件，主要要修改以下几个地方</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">DB_HOST=mysql</div><div class="line">DB_DATABASE=default</div><div class="line">DB_USERNAME=default</div><div class="line">DB_PASSWORD=secret</div><div class="line"></div><div class="line">REDIS_HOST=redis</div><div class="line">...</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>nginx</code>相关配置</p>
+<ul>
+<li><p>进入<code>nginx</code>站点配置文件夹<code>/laradock/nginx/sites</code></p>
+<blockquote>
+<p>默认给出了<code>app.conf.example</code>, <code>laravel.conf.example</code> 等文件夹，克隆一份修改对应名字</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp app.conf.example testapp.conf</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>编辑配置文件</p>
+<blockquote>
+<p>修改下主页对应位置，<code>/var/www/</code>对应的是laradock的同级目录，应用要对应到<code>public</code>文件夹</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">server_name testapp.dev;</div><div class="line">root /var/www/testapp/public;</div><div class="line">...</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>在hosts里添加解析,文件路径为<code>/etc/hosts</code></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">127.0.0.1 testapp.dev</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启nginx</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; docker-compose restart nginx</div><div class="line">Restarting laradock_nginx_1 ... done</div></pre></td></tr></table></figure>
+</li>
+<li><p>打开浏览器输入<code>testapp.dev</code>看到如下界面即安装成功</p>
+<p>  <img src="http://ov8i0dn6x.bkt.clouddn.com/%E6%88%90%E5%8A%9F.png" alt="安装成功"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://laradock.io/" target="_blank" rel="external">官方文档</a><br><a href="https://github.com/laradock/laradock" target="_blank" rel="external">项目地址</a></p>
+</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/后端/" rel="tag"><i class="fa fa-tag"></i> 后端</a>
+          
+            <a href="/tags/laradock/" rel="tag"><i class="fa fa-tag"></i> laradock</a>
+          
+            <a href="/tags/docker/" rel="tag"><i class="fa fa-tag"></i> docker</a>
+          
+            <a href="/tags/laravel/" rel="tag"><i class="fa fa-tag"></i> laravel</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/04/learnpath/" rel="next" title="后端学习路径">
+                <i class="fa fa-chevron-left"></i> 后端学习路径
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -338,6 +578,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -358,8 +609,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -458,6 +718,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么使用laradock"><span class="nav-number">1.</span> <span class="nav-text">为什么使用laradock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖"><span class="nav-number">2.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">3.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择安装位置"><span class="nav-number">3.1.</span> <span class="nav-text">选择安装位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装laradock"><span class="nav-number">3.2.</span> <span class="nav-text">安装laradock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Laravel"><span class="nav-number">3.3.</span> <span class="nav-text">安装Laravel</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -586,10 +862,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
@@ -607,6 +883,18 @@
       <script id="dsq-count-scr" src="https://andyhui.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://andyhui.top/2017/12/09/LaradockInstall/';
+          this.page.identifier = '2017/12/09/LaradockInstall/';
+          this.page.title = '15分钟用Docker部署PHP开发环境';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://andyhui.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

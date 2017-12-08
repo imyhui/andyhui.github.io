@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://andyhui.top/"/>
-  <updated>2017-11-04T16:36:18.205Z</updated>
+  <updated>2017-12-08T18:51:13.982Z</updated>
   <id>http://andyhui.top/</id>
   
   <author>
@@ -16,11 +16,137 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>LearningPath</title>
+    <title>15分钟用Docker部署PHP开发环境</title>
+    <link href="http://andyhui.top/2017/12/09/LaradockInstall/"/>
+    <id>http://andyhui.top/2017/12/09/LaradockInstall/</id>
+    <published>2017-12-08T18:41:17.000Z</published>
+    <updated>2017-12-08T18:51:13.982Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="为什么使用laradock"><a href="#为什么使用laradock" class="headerlink" title="为什么使用laradock"></a>为什么使用laradock</h2><blockquote>
+<p> 搭建环境对于上手框架的新人是一件头疼的事,多人协作开发,线上线下环境的一致也是一个很麻烦的问题,而<code>laradock</code>的使用,完美解决了这个问题,相比<code>homestead</code>与<code>vagrant</code>,<code>laradock</code>更加轻量级,只需要数秒就可以完成启动,既可以作为开发环境也可以作为生产环境,支持<code>PHP</code>、<code>MySQL</code>、 <code>Nginx</code>等一系列软件,且安装较为简便。</p>
+</blockquote>
+<p>支持的软件有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt; Database Engines: MySQL - MariaDB - Percona - MongoDB - Neo4j - RethinkDB - MSSQL - PostgreSQL - Postgres-PostGIS.</div><div class="line">&gt; Database Management: PhpMyAdmin - Adminer - PgAdmin</div><div class="line">&gt; Cache Engines: Redis - Memcached - Aerospike</div><div class="line">&gt; PHP Servers: NGINX - Apache2 - Caddy</div><div class="line">&gt; PHP Compilers: PHP FPM - HHVM</div><div class="line">&gt; Message Queueing: Beanstalkd - RabbitMQ - PHP Worker</div><div class="line">&gt; Queueing Management: Beanstalkd Console - RabbitMQ Console</div><div class="line">&gt; Random Tools: HAProxy - Certbot - Blackfire - Selenium - Jenkins - ElasticSearch - Kibana - Grafana - Mailhog - MailDev - Minio - Varnish - Swoole - Laravel Echo…</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><ul>
+<li><a href="https://git-scm.com/downloads" target="_blank" rel="external">Git</a></li>
+<li><p><a href="https://www.docker.com/community-edition" target="_blank" rel="external">Docker</a> <code>&gt;= 1.12</code></p>
+<blockquote>
+<p>可以通过<code>docker -v</code>查看自己的docker版本，一定要保证大于<code>1.12</code>，否则会遇到各种问题，推荐安装<code>17.0</code>以上，之前<code>1.13.1</code>mysql启动不了。</p>
+</blockquote>
+<p>  附上我的docker版本</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&gt; docker version</div><div class="line">Client:</div><div class="line">Version:      17.05.0-ce</div><div class="line">API version:  1.29</div><div class="line">Go version:   go1.7.5</div><div class="line">Git commit:   89658be</div><div class="line">Built:        Thu May  4 22:09:06 2017</div><div class="line">OS/Arch:      linux/amd64</div><div class="line"></div><div class="line">Server:</div><div class="line">Version:      17.05.0-ce</div><div class="line">API version:  1.29 (minimum version 1.12)</div><div class="line">Go version:   go1.7.5</div><div class="line">Git commit:   89658be</div><div class="line">Built:        Thu May  4 22:09:06 2017</div><div class="line">OS/Arch:      linux/amd64</div><div class="line">Experimental: false</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="选择安装位置"><a href="#选择安装位置" class="headerlink" title="选择安装位置"></a>选择安装位置</h3><ul>
+<li><p>首先选择一个文件目录，克隆<code>laradock</code>，理论上文件目录可以任选，推荐这样的文件结构</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">+ laradock</div><div class="line">+ project-1</div><div class="line">+ project-2</div></pre></td></tr></table></figure>
+</li>
+<li><p>这样每个项目文件夹和<code>laradock</code>是平行的关系，多个项目共用一个<code>laradock</code>,也可以每个项目单独装一个laradock，推荐第一种方式</p>
+<h3 id="安装laradock"><a href="#安装laradock" class="headerlink" title="安装laradock"></a>安装laradock</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/laradock/laradock.git</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="安装Laravel"><a href="#安装Laravel" class="headerlink" title="安装Laravel"></a>安装Laravel</h3><ol>
+<li><p>进入<code>laradock</code>文件夹</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd ~/Code/laradock</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>Code</code>是我存放项目的文件夹</p>
+</blockquote>
+</li>
+<li><p>修改配置文件</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp env-example .env</div></pre></td></tr></table></figure>
+<blockquote>
+<p>编辑<code>.env</code>文件可以修改需要安装软件，以及相关软件的设置，如php版本、mysql数据库名称等</p>
+</blockquote>
+</li>
+<li><p>构建环境</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose up -d nginx mysql</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>workspace</code> 和 <code>php-fpm</code>会自动启动，这个不用添加在后面，后面可选择的软件有</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx, hhvm, php-fpm, mysql, redis, postgres, mariadb, neo4j, mongo, apache2, caddy, memcached, beanstalkd, beanstalkd-console, workspace</div></pre></td></tr></table></figure>
+<p>第一次构建需下载安装镜像，会花较长时间，之后启动仅需数秒。</p>
+<p>可以用<code>docker-compose ps</code>查看容器运行状态</p>
+</blockquote>
+</li>
+<li>进入<code>workspace</code>容器</li>
+</ol>
+<ul>
+<li><p>执行<code>Artisan</code>, <code>Composer</code>, <code>PHPUnit</code>等命令需要进入<code>workspace</code>容器内才能执行</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose exec --user=laradock workspace bash</div></pre></td></tr></table></figure>
+<blockquote>
+<p>以<code>laradock</code>身份进入容器，也可以执行<code>docker-compose exec workspace bash</code></p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li><code>Laravel</code>相关配置<blockquote>
+<p>从一个项目的创建来说明相关配置</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li><p>创建一个<code>Laravel</code>项目</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project laravel/laravel testapp --prefer-dist &quot;5.5.*&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改刚创建应用的<code>.env</code>文件，主要要修改以下几个地方</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">DB_HOST=mysql</div><div class="line">DB_DATABASE=default</div><div class="line">DB_USERNAME=default</div><div class="line">DB_PASSWORD=secret</div><div class="line"></div><div class="line">REDIS_HOST=redis</div><div class="line">...</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>nginx</code>相关配置</p>
+<ul>
+<li><p>进入<code>nginx</code>站点配置文件夹<code>/laradock/nginx/sites</code></p>
+<blockquote>
+<p>默认给出了<code>app.conf.example</code>, <code>laravel.conf.example</code> 等文件夹，克隆一份修改对应名字</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp app.conf.example testapp.conf</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>编辑配置文件</p>
+<blockquote>
+<p>修改下主页对应位置，<code>/var/www/</code>对应的是laradock的同级目录，应用要对应到<code>public</code>文件夹</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">server_name testapp.dev;</div><div class="line">root /var/www/testapp/public;</div><div class="line">...</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>在hosts里添加解析,文件路径为<code>/etc/hosts</code></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">127.0.0.1 testapp.dev</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启nginx</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; docker-compose restart nginx</div><div class="line">Restarting laradock_nginx_1 ... done</div></pre></td></tr></table></figure>
+</li>
+<li><p>打开浏览器输入<code>testapp.dev</code>看到如下界面即安装成功</p>
+<p>  <img src="http://ov8i0dn6x.bkt.clouddn.com/%E6%88%90%E5%8A%9F.png" alt="安装成功"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://laradock.io/" target="_blank" rel="external">官方文档</a><br><a href="https://github.com/laradock/laradock" target="_blank" rel="external">项目地址</a></p>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;为什么使用laradock&quot;&gt;&lt;a href=&quot;#为什么使用laradock&quot; class=&quot;headerlink&quot; title=&quot;为什么使用laradock&quot;&gt;&lt;/a&gt;为什么使用laradock&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt; 搭建环境对于上手框架的新人是一件头疼的事,多人协作开发,线上线下环境的一致也是一个很麻烦的问题,而&lt;code&gt;laradock&lt;/code&gt;的使用,完美解决了这个问题,相比&lt;code&gt;homestead&lt;/code&gt;与&lt;code&gt;vagrant&lt;/code&gt;,&lt;code&gt;laradock&lt;/code&gt;更加轻量级,只需要数秒就可以完成启动,既可以作为开发环境也可以作为生产环境,支持&lt;code&gt;PHP&lt;/code&gt;、&lt;code&gt;MySQL&lt;/code&gt;、 &lt;code&gt;Nginx&lt;/code&gt;等一系列软件,且安装较为简便。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;支持的软件有&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; Database Engines: MySQL - MariaDB - Percona - MongoDB - Neo4j - RethinkDB - MSSQL - PostgreSQL - Postgres-PostGIS.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; Database Management: PhpMyAdmin - Adminer - PgAdmin&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; Cache Engines: Redis - Memcached - Aerospike&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; PHP Servers: NGINX - Apache2 - Caddy&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; PHP Compilers: PHP FPM - HHVM&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; Message Queueing: Beanstalkd - RabbitMQ - PHP Worker&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; Queueing Management: Beanstalkd Console - RabbitMQ Console&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; Random Tools: HAProxy - Certbot - Blackfire - Selenium - Jenkins - ElasticSearch - Kibana - Grafana - Mailhog - MailDev - Minio - Varnish - Swoole - Laravel Echo…&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="后端学习" scheme="http://andyhui.top/categories/%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="后端" scheme="http://andyhui.top/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="laradock" scheme="http://andyhui.top/tags/laradock/"/>
+    
+      <category term="docker" scheme="http://andyhui.top/tags/docker/"/>
+    
+      <category term="laravel" scheme="http://andyhui.top/tags/laravel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>后端学习路径</title>
     <link href="http://andyhui.top/2017/11/04/learnpath/"/>
     <id>http://andyhui.top/2017/11/04/learnpath/</id>
     <published>2017-11-04T03:30:01.000Z</published>
-    <updated>2017-11-04T16:36:18.205Z</updated>
+    <updated>2017-12-08T18:49:01.690Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>大一刷了一年算法 到省赛结束也算是圆满退役了，从暑假开始零零散散的学习web开发，到现到现在大二上过半了依旧很迷茫，还好接下来的时间不太忙碌，足够去弥补。前段时间在思考写博客的意义是什么，一方面，作为一个博客，是要记录自己的学习历程，另一方面，是留给后来者，能给别人以启迪，算是实现了写博客的意义吧。之前写的几篇，都是偏向教程向，写起来很累，基本是从0开始考虑的，后续我觉得还是以记录为主，但教程还是要继续写的，现在网络这么普及，网上教程五花八门，中间会有各种坑,而且连贯性很差，我希望留下点东西能给后来者。<br>接下是学长给的后端开发学习路线，顺便就拿过来了，接下来我会在学长的基础上完善这个教程，留作俱乐部的学习资料。</p>
@@ -483,9 +609,9 @@ int main()
       <category term="Markdown" scheme="http://andyhui.top/categories/Markdown/"/>
     
     
-      <category term="Hexo" scheme="http://andyhui.top/tags/Hexo/"/>
-    
       <category term="Markdown" scheme="http://andyhui.top/tags/Markdown/"/>
+    
+      <category term="Hexo" scheme="http://andyhui.top/tags/Hexo/"/>
     
   </entry>
   
