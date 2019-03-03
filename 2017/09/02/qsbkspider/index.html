@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="andyhui&#39;s blog">
 <meta property="og:description" content="一周前买了阿里云服务器，简单部署了一个JudgeService，感觉闲着也是闲着，决定在上面部署一个爬虫，打算每隔一段时间爬取糗事百科前几页的文本段子并以邮件的形式发送到qq邮箱中。   基本环境 requests + smtplib + bs4都可以用pip install 来安装">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-03T09:14:17.346Z">
+<meta property="og:updated_time" content="2017-10-03T09:14:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="糗事百科爬虫">
 <meta name="twitter:description" content="一周前买了阿里云服务器，简单部署了一个JudgeService，感觉闲着也是闲着，决定在上面部署一个爬虫，打算每隔一段时间爬取糗事百科前几页的文本段子并以邮件的形式发送到qq邮箱中。   基本环境 requests + smtplib + bs4都可以用pip install 来安装">
@@ -424,9 +424,9 @@
 <p>我们这次只爬取文字内容，所以这次爬取的url是 <strong>‘<a href="https://www.qiushibaike.com/text/" target="_blank" rel="external">https://www.qiushibaike.com/text/</a>‘</strong><br>点开第二页会发现 url变为 <strong>‘<a href="https://www.qiushibaike.com/text/page/2/" target="_blank" rel="external">https://www.qiushibaike.com/text/page/2/</a>‘</strong><br>很清晰的知道 第i页的url也就是 url = <strong>‘<a href="https://www.qiushibaike.com/text/page/%s/&#39;%str(i" target="_blank" rel="external">https://www.qiushibaike.com/text/page/%s/&#39;%str(i</a>)</strong><br>我们要爬前多少页也就是一个for循环的事</p>
 </blockquote>
 <h4 id="分析网页源码"><a href="#分析网页源码" class="headerlink" title="分析网页源码"></a>分析网页源码</h4><blockquote>
-<p>首先来看下网页的基本内容<br><img src="" alt=""></p>
+<p>首先来看下网页的基本内容<br><img src alt></p>
 <p>我们要做的是提取这一个个文本，然后保存下来</p>
-<p>根据网页源码很容易看出 内容是在 class=”content”的div标签下，可以直接套用正则表达式，我们这使用BeautifulSoup库的find_all函数就可以搞定<br><img src="" alt=""></p>
+<p>根据网页源码很容易看出 内容是在 class=”content”的div标签下，可以直接套用正则表达式，我们这使用BeautifulSoup库的find_all函数就可以搞定<br><img src alt></p>
 </blockquote>
 <h3 id="构造request请求"><a href="#构造request请求" class="headerlink" title="构造request请求"></a>构造request请求</h3><blockquote>
 <p>首先就是通过requests库得到网页源码 <em>html = requests.get(url)</em></p>
@@ -686,7 +686,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
