@@ -32,7 +32,7 @@ Markdown基础用法与规则：
 &emsp;&emsp; # 一级标题
 &emsp;&emsp; \#\# 二级标题
 &emsp;&emsp; \#\#\# 三级标题
-![](http://ov8i0dn6x.bkt.clouddn.com/markdown%E6%A0%87%E9%A2%98.png)
+![](http://githubblog.andyhui.top/markdown%E6%A0%87%E9%A2%98.png)
 
 ---
 

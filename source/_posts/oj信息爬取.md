@@ -29,23 +29,23 @@ permalink: ojrankscan
 pip install requests
 ```
 
-![requests安装](http://ov8i0dn6x.bkt.clouddn.com/requests%E5%AE%89%E8%A3%85.png)
+![requests安装](http://githubblog.andyhui.top/requests%E5%AE%89%E8%A3%85.png)
 
 ### 分析需求
 
 > 首先需要统计的 Contest 有3周的作业 加 最后的结课测试
 
-![ojContestList](http://ov8i0dn6x.bkt.clouddn.com/ojContestList.png)
+![ojContestList](http://githubblog.andyhui.top/ojContestList.png)
 
 > 每个榜单结构都是一致的，我只需要统计自己营里的**昵称**和**总解决数目**就好
 
-![oj榜单](http://ov8i0dn6x.bkt.clouddn.com/oj%E6%A6%9C%E5%8D%95.png)
+![oj榜单](http://githubblog.andyhui.top/oj%E6%A6%9C%E5%8D%95.png)
 
 > url 是 "http://oj.acmclub.cn/contestrank.php?cid=" + contestID
 
 > 右键查看网页源代码 两个a标签中刚好有我们的数据，用简单正则表达式匹配下就好
 
-![oj榜单源码](http://ov8i0dn6x.bkt.clouddn.com/oj%E6%A6%9C%E5%8D%95%E6%BA%90%E7%A0%81.png)
+![oj榜单源码](http://githubblog.andyhui.top/oj%E6%A6%9C%E5%8D%95%E6%BA%90%E7%A0%81.png)
 
 ### 构造request爬取网页
 
@@ -72,12 +72,12 @@ main()
 
 **这算一个基本框架了，通过request得到网页源码，中间_r.raise_for_status()_是错误检查，后面是根据推断的编码类型设置字符编码**
 运行结果如下
-![result1](http://ov8i0dn6x.bkt.clouddn.com/result1.png)
+![result1](http://githubblog.andyhui.top/result1.png)
 ### 对html源码处理
 
 > 首先看网页源码
 
-![oj榜单源码](http://ov8i0dn6x.bkt.clouddn.com/oj%E6%A6%9C%E5%8D%95%E6%BA%90%E7%A0%81.png)
+![oj榜单源码](http://githubblog.andyhui.top/oj%E6%A6%9C%E5%8D%95%E6%BA%90%E7%A0%81.png)
 
 > 这里可以用正则表达式库 **re** 来进行字符匹配，如果昵称符合规范**xx营xx号_Nickname_name**就很容易处理了，匹配两个a标签之间的内容
 ``` python
@@ -109,7 +109,7 @@ def main():
 main()
 ```
 这样得到的sinfo就是包含元组(name,solve)的列表，程序到这阶段基本算是完工了，但是输出的样式也并不尽人意，比如_没有对齐_，看起来很乱，而且三周内容_挤在一块_不好区分，接下来就对这个程序进行优化
-![result2](http://ov8i0dn6x.bkt.clouddn.com/result2.png)
+![result2](http://githubblog.andyhui.top/result2.png)
 
 ### 格式化输出
 
@@ -153,5 +153,5 @@ main()
 ```
 
 运行结果如下
-![result3](http://ov8i0dn6x.bkt.clouddn.com/result3.png)
+![result3](http://githubblog.andyhui.top/result3.png)
 ### 未完待续

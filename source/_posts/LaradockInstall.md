@@ -137,7 +137,7 @@ git clone https://github.com/laradock/laradock.git
         ```
     + 打开浏览器输入` testapp.dev`看到如下界面即安装成功
 
-        ![安装成功](http://ov8i0dn6x.bkt.clouddn.com/%E6%88%90%E5%8A%9F.png)
+        ![安装成功](http://githubblog.andyhui.top/%E6%88%90%E5%8A%9F.png)
 ## 参考
 [官方文档](http://laradock.io/)
 [项目地址](https://github.com/laradock/laradock)

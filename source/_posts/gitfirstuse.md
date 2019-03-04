@@ -35,16 +35,16 @@ permalink: gitfirstuse
 首先肯定是[下载Git](https://git-scm.com/downloads)
 ( `提醒:资源下载较慢，推荐挂vpn`)
 
-![git下载](http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/git%E4%B8%8B%E8%BD%BD.png)
+![git下载](http://githubblog.andyhui.top/image/gitfirstuse/git%E4%B8%8B%E8%BD%BD.png)
 
 
 然后安装界面如下(`windows平台`)
 
-![安装1](http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E5%AE%89%E8%A3%851.png)
+![安装1](http://githubblog.andyhui.top/image/gitfirstuse/%E5%AE%89%E8%A3%851.png)
 
 这里注意这两个都是添加到右键菜单栏，很好用
 
-![安装2](http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E5%AE%89%E8%A3%852.png)
+![安装2](http://githubblog.andyhui.top/image/gitfirstuse/%E5%AE%89%E8%A3%852.png)
 
 一路next下去就好
 
@@ -63,7 +63,7 @@ git version 2.14.1.windows.1
 在桌面上右键`Git Bash here` 启动git bush命令行界面
 当然也可以从终端打开
 
-![启动](http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E5%90%AF%E5%8A%A8.png)
+![启动](http://githubblog.andyhui.top/image/gitfirstuse/%E5%90%AF%E5%8A%A8.png)
 
 首先我们对 `Git` 进行全局用户名和邮箱进行设置，请参照下面格式，`Your Name` 替换为你的名字， `you@example.com` 替换为你的邮箱
 这里个人信息设置的作用，是为你在代码提交时自动署名标记，方便查看提交日志时区分作者。
@@ -129,7 +129,7 @@ $ git log
 
 从输出信息中可以很清晰的看到每次提交的作者、日期、描述等信息。按 `q`可退出查看。
 
-![gitlog](http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/gitlog.png)
+![gitlog](http://githubblog.andyhui.top/image/gitfirstuse/gitlog.png)
 
 git 基本提交操作到这就结束了，如果你想学习更多关于 `Git` 相关的知识，可以查阅[《Pro Git》](https://git-scm.com/book/zh/v2)一书进行学习。
 
@@ -181,11 +181,11 @@ $ ssh-add ~/.ssh/id_rsa
 ```
 $ cat ~/.ssh/id_rsa.pub
 ```
-![copyssh](http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/copyssh.png)
+![copyssh](http://githubblog.andyhui.top/image/gitfirstuse/copyssh.png)
 
 最后我们需要将公钥添加到 GitHub 账号，先打开 [Github SSH](https://github.com/settings/keys) 令牌管理页面，然后把你刚刚复制的令牌按照下图示例添加：
 
-![sshkey添加](http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/sshkey%E6%B7%BB%E5%8A%A0.png)
+![sshkey添加](http://githubblog.andyhui.top/image/gitfirstuse/sshkey%E6%B7%BB%E5%8A%A0.png)
 
 测试`ssh key`是否成功
 ```
@@ -197,7 +197,7 @@ $ ssh -T git@github.com
 
 在配置完 GitHub 账号之后，我们便可以开始在上面存放项目代码了。首先 [新建一个 GitHub 仓库](https://github.com/new)，取名为 `你项目的名字`，填上 `Description` 项目描述，`Initialize this repository with a README` 这一项是询问你是否需要生成一个默认的介绍。
 
-![新仓库](http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E6%96%B0%E4%BB%93%E5%BA%93.png)
+![新仓库](http://githubblog.andyhui.top/image/gitfirstuse/%E6%96%B0%E4%BB%93%E5%BA%93.png)
 
 
 创建完成之后，使用以下命令将代码上传到 `GitHub` 上（将 `your_username` 替换为你自己的 `GitHub` 用户名，`your_projectname` 是你的项目名字，就是刚刚创建仓库的名字）：
@@ -209,7 +209,7 @@ $ git push -u origin master
 (如果Git 提示`fatal: remote origin already exists`[请看这里](http://blog.csdn.net/top_code/article/details/50381432))
 (如果提示`error: src refspec master does not match any`[请看这里](http://www.jianshu.com/p/8d26730386f3)))
 
-![代码提交成功](http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E6%88%90%E5%8A%9F.png)
+![代码提交成功](http://githubblog.andyhui.top/image/gitfirstuse/%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E6%88%90%E5%8A%9F.png)
 
 
 #### 小总结
@@ -268,7 +268,7 @@ $ ll
 
 首先到我们要克隆的到GitHub的某个仓库，比如[neuq-acmclubTD](https://github.com/imyhui/neuq-acmclubTD),右边有个绿色的`Clone or download`，点开后有`Clone with HTTPS `，当然你也可以直接下载
 
-![克隆连接](http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E5%85%8B%E9%9A%86%E8%BF%9E%E6%8E%A5.png)
+![克隆连接](http://githubblog.andyhui.top/image/gitfirstuse/%E5%85%8B%E9%9A%86%E8%BF%9E%E6%8E%A5.png)
 
 然后回到要存放的目录下，右键`Git Bash here`使用命令
 ```
