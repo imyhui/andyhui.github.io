@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>andyhui&#39;s blog</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://andyhui.top/"/>
+  <updated>2019-03-04T07:44:12.000Z</updated>
+  <id>http://andyhui.top/</id>
+  
+  <author>
+    <name>andyhui</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>15分钟用Docker部署PHP开发环境</title>
+    <link href="http://andyhui.top/2017/12/09/LaradockInstall/"/>
+    <id>http://andyhui.top/2017/12/09/LaradockInstall/</id>
+    <published>2017-12-08T18:41:17.000Z</published>
+    <updated>2019-03-04T07:44:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="为什么使用laradock"><a href="#为什么使用laradock" class="headerlink" title="为什么使用laradock"></a>为什么使用laradock</h2><blockquote>
+<p> 搭建环境对于上手框架的新人是一件头疼的事,多人协作开发,线上线下环境的一致也是一个很麻烦的问题,而<code>laradock</code>的使用,完美解决了这个问题,相比<code>homestead</code>与<code>vagrant</code>,<code>laradock</code>更加轻量级,只需要数秒就可以完成启动,既可以作为开发环境也可以作为生产环境,支持<code>PHP</code>、<code>MySQL</code>、 <code>Nginx</code>等一系列软件,且安装较为简便。</p>
+</blockquote>
+<p>支持的软件有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt; Database Engines: MySQL - MariaDB - Percona - MongoDB - Neo4j - RethinkDB - MSSQL - PostgreSQL - Postgres-PostGIS.</div><div class="line">&gt; Database Management: PhpMyAdmin - Adminer - PgAdmin</div><div class="line">&gt; Cache Engines: Redis - Memcached - Aerospike</div><div class="line">&gt; PHP Servers: NGINX - Apache2 - Caddy</div><div class="line">&gt; PHP Compilers: PHP FPM - HHVM</div><div class="line">&gt; Message Queueing: Beanstalkd - RabbitMQ - PHP Worker</div><div class="line">&gt; Queueing Management: Beanstalkd Console - RabbitMQ Console</div><div class="line">&gt; Random Tools: HAProxy - Certbot - Blackfire - Selenium - Jenkins - ElasticSearch - Kibana - Grafana - Mailhog - MailDev - Minio - Varnish - Swoole - Laravel Echo…</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><ul>
+<li><a href="https://git-scm.com/downloads" target="_blank" rel="external">Git</a></li>
+<li><p><a href="https://www.docker.com/community-edition" target="_blank" rel="external">Docker</a> <code>&gt;= 1.12</code></p>
+<blockquote>
+<p>可以通过<code>docker -v</code>查看自己的docker版本，一定要保证大于<code>1.12</code>，否则会遇到各种问题，推荐安装<code>17.0</code>以上，之前<code>1.13.1</code>mysql启动不了。</p>
+</blockquote>
+<p>  附上我的docker版本</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&gt; docker version</div><div class="line">Client:</div><div class="line">Version:      17.05.0-ce</div><div class="line">API version:  1.29</div><div class="line">Go version:   go1.7.5</div><div class="line">Git commit:   89658be</div><div class="line">Built:        Thu May  4 22:09:06 2017</div><div class="line">OS/Arch:      linux/amd64</div><div class="line"></div><div class="line">Server:</div><div class="line">Version:      17.05.0-ce</div><div class="line">API version:  1.29 (minimum version 1.12)</div><div class="line">Go version:   go1.7.5</div><div class="line">Git commit:   89658be</div><div class="line">Built:        Thu May  4 22:09:06 2017</div><div class="line">OS/Arch:      linux/amd64</div><div class="line">Experimental: false</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="选择安装位置"><a href="#选择安装位置" class="headerlink" title="选择安装位置"></a>选择安装位置</h3><ul>
+<li><p>首先选择一个文件目录，克隆<code>laradock</code>，理论上文件目录可以任选，推荐这样的文件结构</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">+ laradock</div><div class="line">+ project-1</div><div class="line">+ project-2</div></pre></td></tr></table></figure>
+</li>
+<li><p>这样每个项目文件夹和<code>laradock</code>是平行的关系，多个项目共用一个<code>laradock</code>,也可以每个项目单独装一个laradock，推荐第一种方式</p>
+<h3 id="安装laradock"><a href="#安装laradock" class="headerlink" title="安装laradock"></a>安装laradock</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/laradock/laradock.git</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="安装Laravel"><a href="#安装Laravel" class="headerlink" title="安装Laravel"></a>安装Laravel</h3><ol>
+<li><p>进入<code>laradock</code>文件夹</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd ~/Code/laradock</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>Code</code>是我存放项目的文件夹</p>
+</blockquote>
+</li>
+<li><p>修改配置文件</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp env-example .env</div></pre></td></tr></table></figure>
+<blockquote>
+<p>编辑<code>.env</code>文件可以修改需要安装软件，以及相关软件的设置，如php版本、mysql数据库名称等</p>
+</blockquote>
+</li>
+<li><p>构建环境</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose up -d nginx mysql</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>workspace</code> 和 <code>php-fpm</code>会自动启动，这个不用添加在后面，后面可选择的软件有</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx, hhvm, php-fpm, mysql, redis, postgres, mariadb, neo4j, mongo, apache2, caddy, memcached, beanstalkd, beanstalkd-console, workspace</div></pre></td></tr></table></figure>
+<p>第一次构建需下载安装镜像，会花较长时间，之后启动仅需数秒。</p>
+<p>可以用<code>docker-compose ps</code>查看容器运行状态</p>
+</blockquote>
+</li>
+<li>进入<code>workspace</code>容器</li>
+</ol>
+<ul>
+<li><p>执行<code>Artisan</code>, <code>Composer</code>, <code>PHPUnit</code>等命令需要进入<code>workspace</code>容器内才能执行</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose exec --user=laradock workspace bash</div></pre></td></tr></table></figure>
+<blockquote>
+<p>以<code>laradock</code>身份进入容器，也可以执行<code>docker-compose exec workspace bash</code></p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li><code>Laravel</code>相关配置<blockquote>
+<p>从一个项目的创建来说明相关配置</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li><p>创建一个<code>Laravel</code>项目</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project laravel/laravel testapp --prefer-dist &quot;5.5.*&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改刚创建应用的<code>.env</code>文件，主要要修改以下几个地方</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">DB_HOST=mysql</div><div class="line">DB_DATABASE=default</div><div class="line">DB_USERNAME=default</div><div class="line">DB_PASSWORD=secret</div><div class="line"></div><div class="line">REDIS_HOST=redis</div><div class="line">...</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>nginx</code>相关配置</p>
+<ul>
+<li><p>进入<code>nginx</code>站点配置文件夹<code>/laradock/nginx/sites</code></p>
+<blockquote>
+<p>默认给出了<code>app.conf.example</code>, <code>laravel.conf.example</code> 等文件夹，克隆一份修改对应名字</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp app.conf.example testapp.conf</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>编辑配置文件</p>
+<blockquote>
+<p>修改下主页对应位置，<code>/var/www/</code>对应的是laradock的同级目录，应用要对应到<code>public</code>文件夹</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">server_name testapp.dev;</div><div class="line">root /var/www/testapp/public;</div><div class="line">...</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>在hosts里添加解析,文件路径为<code>/etc/hosts</code></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">127.0.0.1 testapp.dev</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启nginx</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; docker-compose restart nginx</div><div class="line">Restarting laradock_nginx_1 ... done</div></pre></td></tr></table></figure>
+</li>
+<li><p>打开浏览器输入<code>testapp.dev</code>看到如下界面即安装成功</p>
+<p>  <img src="http://ov8i0dn6x.bkt.clouddn.com/%E6%88%90%E5%8A%9F.png" alt="安装成功"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://laradock.io/" target="_blank" rel="external">官方文档</a><br><a href="https://github.com/laradock/laradock" target="_blank" rel="external">项目地址</a></p>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;为什么使用laradock&quot;&gt;&lt;a href=&quot;#为什么使用laradock&quot; class=&quot;headerlink&quot; title=&quot;为什么使用laradock&quot;&gt;&lt;/a&gt;为什么使用laradock&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt; 搭建环境对于上手框架的新人是一件头疼的事,多人协作开发,线上线下环境的一致也是一个很麻烦的问题,而&lt;code&gt;laradock&lt;/code&gt;的使用,完美解决了这个问题,相比&lt;code&gt;homestead&lt;/code&gt;与&lt;code&gt;vagrant&lt;/code&gt;,&lt;code&gt;laradock&lt;/code&gt;更加轻量级,只需要数秒就可以完成启动,既可以作为开发环境也可以作为生产环境,支持&lt;code&gt;PHP&lt;/code&gt;、&lt;code&gt;MySQL&lt;/code&gt;、 &lt;code&gt;Nginx&lt;/code&gt;等一系列软件,且安装较为简便。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;支持的软件有&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; Database Engines: MySQL - MariaDB - Percona - MongoDB - Neo4j - RethinkDB - MSSQL - PostgreSQL - Postgres-PostGIS.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; Database Management: PhpMyAdmin - Adminer - PgAdmin&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; Cache Engines: Redis - Memcached - Aerospike&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; PHP Servers: NGINX - Apache2 - Caddy&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; PHP Compilers: PHP FPM - HHVM&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; Message Queueing: Beanstalkd - RabbitMQ - PHP Worker&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; Queueing Management: Beanstalkd Console - RabbitMQ Console&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; Random Tools: HAProxy - Certbot - Blackfire - Selenium - Jenkins - ElasticSearch - Kibana - Grafana - Mailhog - MailDev - Minio - Varnish - Swoole - Laravel Echo…&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="后端学习" scheme="http://andyhui.top/categories/%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="后端" scheme="http://andyhui.top/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="laradock" scheme="http://andyhui.top/tags/laradock/"/>
+    
+      <category term="docker" scheme="http://andyhui.top/tags/docker/"/>
+    
+      <category term="laravel" scheme="http://andyhui.top/tags/laravel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>后端学习路径</title>
+    <link href="http://andyhui.top/2017/11/04/learnpath/"/>
+    <id>http://andyhui.top/2017/11/04/learnpath/</id>
+    <published>2017-11-04T03:30:01.000Z</published>
+    <updated>2019-03-04T07:44:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>大一刷了一年算法 到省赛结束也算是圆满退役了，从暑假开始零零散散的学习web开发，到现到现在大二上过半了依旧很迷茫，还好接下来的时间不太忙碌，足够去弥补。前段时间在思考写博客的意义是什么，一方面，作为一个博客，是要记录自己的学习历程，另一方面，是留给后来者，能给别人以启迪，算是实现了写博客的意义吧。之前写的几篇，都是偏向教程向，写起来很累，基本是从0开始考虑的，后续我觉得还是以记录为主，但教程还是要继续写的，现在网络这么普及，网上教程五花八门，中间会有各种坑,而且连贯性很差，我希望留下点东西能给后来者。<br>接下是学长给的后端开发学习路线，顺便就拿过来了，接下来我会在学长的基础上完善这个教程，留作俱乐部的学习资料。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="入门篇"><a href="#入门篇" class="headerlink" title="入门篇"></a>入门篇</h2><p>了解html是什么，以及网页运作的原理</p>
+<p>学习使用现代化的开发工具！——换一个好看又好用的文本编辑器吧</p>
+<p>前端认知：使用css和js为网页增添色彩</p>
+<p>后端认知：使用表单和服务端交互吧！——认识HTTP和PHP以及会话</p>
+<p>编程认知：面向对象和函数式编程</p>
+<p>linux入门，告别windows</p>
+<p>数据库认知：mysql入门</p>
+<p>web应用认知：搭建wordpress</p>
+<h2 id="工程篇"><a href="#工程篇" class="headerlink" title="工程篇"></a>工程篇</h2><p>学习使用库：使用bootstrap快速写出好看的页面</p>
+<p>学习代码管理：使用git实现代码同步，注册自己的github库，尝试使用多分支进行协作开<br>发</p>
+<p>学习包管理：使用composer，以现代的方式构建应用并获取扩展吧</p>
+<p>集成开发环境入门：给自己换个IDE吧!</p>
+<p>学习设计模式：用MVC的架构去编写应用</p>
+<p>使用框架吧：从最简单的框架(CodeIgniter)开始，了解如何使用框架开发应用</p>
+<h2 id="应用篇"><a href="#应用篇" class="headerlink" title="应用篇"></a>应用篇</h2><p>（这一章将会带大家从零构建一个完整的简易博客系统 ，了解一个项目的基本开发流程）</p>
+<p>需求分析</p>
+<p>原型设计</p>
+<p>数据层设计</p>
+<p>逻辑架构设计</p>
+<p>编写后端代码</p>
+<p>编写前端代码</p>
+<p>上线部署和调试</p>
+<p>高级话题：运维，web安全</p>
+<h2 id="进阶篇"><a href="#进阶篇" class="headerlink" title="进阶篇"></a>进阶篇</h2><p>前后端分离<br>前端的学习路径和技术栈<br>后端的学习路径和技术栈<br>一些简单的设计模式和架构<br>如何进一步学习</p>
+<p>作者：MarkyLumin<br><a href="http://www.jianshu.com/p/c8671328a375" target="_blank" rel="external">原帖地址</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;大一刷了一年算法 到省赛结束也算是圆满退役了，从暑假开始零零散散的学习web开发，到现到现在大二上过半了依旧很迷茫，还好接下来的时间不太忙碌，足够去弥补。前段时间在思考写博客的意义是什么，一方面，作为一个博客，是要记录自己的学习历程，另一方面，是留给后来者，能给别人以启迪，算是实现了写博客的意义吧。之前写的几篇，都是偏向教程向，写起来很累，基本是从0开始考虑的，后续我觉得还是以记录为主，但教程还是要继续写的，现在网络这么普及，网上教程五花八门，中间会有各种坑,而且连贯性很差，我希望留下点东西能给后来者。&lt;br&gt;接下是学长给的后端开发学习路线，顺便就拿过来了，接下来我会在学长的基础上完善这个教程，留作俱乐部的学习资料。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="后端学习" scheme="http://andyhui.top/categories/%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="后端" scheme="http://andyhui.top/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+      <category term="php" scheme="http://andyhui.top/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git及GitHub使用</title>
+    <link href="http://andyhui.top/2017/09/20/gitfirstuse/"/>
+    <id>http://andyhui.top/2017/09/20/gitfirstuse/</id>
+    <published>2017-09-20T11:35:10.000Z</published>
+    <updated>2019-03-04T07:44:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="什么是-Git"><a href="#什么是-Git" class="headerlink" title="什么是 Git"></a>什么是 Git</h3><blockquote>
+<p><strong>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</strong> 项目加上Git后能能更好的追踪代码修改，进行版本回溯等操作。当今时代，多人协作开发是公司合作的基本模式，在多人协作的开发过程中Git变得必不可少，接下来大致介绍下Git的基本命令以及GitHub的基本使用。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="为什么用Git"><a href="#为什么用Git" class="headerlink" title="为什么用Git"></a>为什么用Git</h3><h4 id="提高开发效率"><a href="#提高开发效率" class="headerlink" title="提高开发效率!"></a>提高开发效率!</h4><blockquote>
+<p>git不仅仅是一个代码版本管理工具，也是一个文档管理工具，在git上很容易维护一个文档</p>
+</blockquote>
+<h4 id="git可以提高开发效率，主要表现在"><a href="#git可以提高开发效率，主要表现在" class="headerlink" title="git可以提高开发效率，主要表现在:"></a>git可以提高开发效率，主要表现在:</h4><ul>
+<li>合并对提交过程的保留</li>
+<li>修正提交</li>
+<li>廉价好用的本地分支</li>
+<li>更强大智能的合并能力</li>
+<li>完整配套的开发过程设施(wiki issue 功能大赞！)</li>
+<li>查看日志</li>
+</ul>
+<p>转自 <a href="http://www.jianshu.com/p/834678d9c213" target="_blank" rel="external">Koudle</a></p>
+<h3 id="Git的下载及安装"><a href="#Git的下载及安装" class="headerlink" title="Git的下载及安装"></a>Git的下载及安装</h3><p>首先肯定是<a href="https://git-scm.com/downloads" target="_blank" rel="external">下载Git</a><br>( <code>提醒:资源下载较慢，推荐挂vpn</code>)</p>
+<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/git%E4%B8%8B%E8%BD%BD.png" alt="git下载"></p>
+<p>然后安装界面如下(<code>windows平台</code>)</p>
+<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E5%AE%89%E8%A3%851.png" alt="安装1"></p>
+<p>这里注意这两个都是添加到右键菜单栏，很好用</p>
+<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E5%AE%89%E8%A3%852.png" alt="安装2"></p>
+<p>一路next下去就好</p>
+<p>安装完后 打开终端输入<br><code>注意 $ 是表示从命令行输入，不用自己输入，只需要输入后面内容即可，后面一致</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git --version</div></pre></td></tr></table></figure></p>
+<p>如果显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git version 2.14.1.windows.1</div></pre></td></tr></table></figure></p>
+<p>表示安装成功了</p>
+<h3 id="Git基本设置"><a href="#Git基本设置" class="headerlink" title="Git基本设置"></a>Git基本设置</h3><p>在桌面上右键<code>Git Bash here</code> 启动git bush命令行界面<br>当然也可以从终端打开</p>
+<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E5%90%AF%E5%8A%A8.png" alt="启动"></p>
+<p>首先我们对 <code>Git</code> 进行全局用户名和邮箱进行设置，请参照下面格式，<code>Your Name</code> 替换为你的名字， <code>you@example.com</code> 替换为你的邮箱<br>这里个人信息设置的作用，是为你在代码提交时自动署名标记，方便查看提交日志时区分作者。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;Your Name&quot;</div><div class="line">$ git config --global user.email you@example.com</div></pre></td></tr></table></figure></p>
+<p>接下来进行Git推送分支相关设置<br>这个是命令 <code>Git</code>当我们执行 <code>git push</code> 没有指定分支时，自动使用当前分支，而不是报错。<a href="http://blog.csdn.net/daijingxin/article/details/51326715" target="_blank" rel="external">更多关于push.default</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git config --global push.default simple</div></pre></td></tr></table></figure>
+<h3 id="Git基本操作"><a href="#Git基本操作" class="headerlink" title="Git基本操作"></a>Git基本操作</h3><p>对于有经验的开发者来说，在他每次新建完开发项目的时候，首先要做的第一件事就是将自己的项目纳入到 <code>Git</code> 代码版本管理中，完成这个操作一般需要以下这几个步骤：</p>
+<h4 id="对Git进行初始化"><a href="#对Git进行初始化" class="headerlink" title="对Git进行初始化"></a>对Git进行初始化</h4><p>我们要在对应的项目文件夹(文件夹内)对git初始化，<br>windows下可直接在对应文件夹下右键 <code>Git Bush here</code><br>也可以用命令行找到对应文件夹，<br>这里我们用命令行示范下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd D:/andyhui/DataStructure</div><div class="line">$ git init</div></pre></td></tr></table></figure></p>
+<p><code>D:/andyhui/DataStructure</code>这个是我自己的文件目录，替换成你项目的文件目录即可,如果没有就自己创建一个，在里面随意放一个文件即可，比如 一个说明<code>what.md</code>或 代码文件 <code>HelloWorld.cpp</code></p>
+<h4 id="将项目所有文件纳入到Git暂存区中"><a href="#将项目所有文件纳入到Git暂存区中" class="headerlink" title="将项目所有文件纳入到Git暂存区中"></a>将项目所有文件纳入到Git暂存区中</h4><p>这些文件并未真正提交到Git上<br>这里<code>-A</code> 是all的意思，我们也可以指定一个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git add -A</div></pre></td></tr></table></figure></p>
+<p> 这里的所有文件指的是没在 <code>.gitignore</code> 中被忽略的文件。在Git工作区的根目录下创建一个特殊的<code>.gitignore</code>文件，然后把要忽略的文件名填进去，Git就会来选择忽略掉一些我们不想纳入到 Git 版本管理中的文件（如缓存文件）。<a href="http://bdxnote.blog.163.com/blog/static/844423520124153051409/" target="_blank" rel="external">git忽略文件设置</a>以及<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013758404317281e54b6f5375640abbb11e67be4cd49e0000" target="_blank" rel="external">了解更多.gitignore</a>。</p>
+<h4 id="检查-Git-状态"><a href="#检查-Git-状态" class="headerlink" title="检查 Git 状态"></a>检查 Git 状态</h4><p>这条命令将会向你输出存放在 <code>Git</code> 暂存区的文件，这意味着这些文件还未真正提交到 Git 中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git status</div></pre></td></tr></table></figure></p>
+<h4 id="保留改动并提交"><a href="#保留改动并提交" class="headerlink" title="保留改动并提交"></a>保留改动并提交</h4><p>这行命令会将暂存区的文件都提交到 <code>Git</code>，-m 选项后面带的参数表示本次提交的简单描述。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ git commit -m &quot;Initial commit&quot;</div><div class="line">$ git log</div><div class="line">commit e7419d269d65021fa056b731e09f8bdeaac00d9d (HEAD -&gt; master, origin/master)</div><div class="line">Author: andyhui &lt;andyhui686666@gmail.com&gt;</div><div class="line">Date:   Thu Sep 21 09:24:53 2017 +0800</div><div class="line"></div><div class="line">    Initial commit</div></pre></td></tr></table></figure></p>
+<h4 id="查看历史提交记录："><a href="#查看历史提交记录：" class="headerlink" title="查看历史提交记录："></a>查看历史提交记录：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git log</div></pre></td></tr></table></figure>
+<p>从输出信息中可以很清晰的看到每次提交的作者、日期、描述等信息。按 <code>q</code>可退出查看。</p>
+<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/gitlog.png" alt="gitlog"></p>
+<p>git 基本提交操作到这就结束了，如果你想学习更多关于 <code>Git</code> 相关的知识，可以查阅<a href="https://git-scm.com/book/zh/v2" target="_blank" rel="external">《Pro Git》</a>一书进行学习。</p>
+<h2 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h2><h3 id="什么是-GitHub"><a href="#什么是-GitHub" class="headerlink" title="什么是 GitHub"></a>什么是 GitHub</h3><p><code>GitHub</code> 是目前全球最大的代码托管平台，许多非常著名的项目如 Linux、Swift、Laravel 等都托管在 <code>GitHub</code> 上。开发者们利用 <code>GitHub</code> 来进行团队协作开发，查阅或收藏别人开源项目的优秀代码，针对某个 <code>Bug</code> 进行技术讨论等。</p>
+<h3 id="GitHub基本操作"><a href="#GitHub基本操作" class="headerlink" title="GitHub基本操作"></a>GitHub基本操作</h3><h4 id="注册-GitHub-账号"><a href="#注册-GitHub-账号" class="headerlink" title="注册 GitHub 账号"></a>注册 GitHub 账号</h4><p>如果你还没有 <code>GitHub</code> 账号的话，请先 <a href="https://github.com/join" target="_blank" rel="external">注册</a>。</p>
+<h4 id="为-GitHub-账号设置-SSH-Key"><a href="#为-GitHub-账号设置-SSH-Key" class="headerlink" title="为 GitHub 账号设置 SSH Key"></a>为 <code>GitHub</code> 账号设置 <code>SSH Key</code></h4><p>生成 <code>SSH Key</code>，开始之前，我们先使用以下命令来检查主机上是否已经生成过 <code>SSH Key</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ls -al ~/.ssh</div></pre></td></tr></table></figure></p>
+<p>如果存在 <code>id_rsa</code> 和 <code>id_rsa.pub</code>的话，请跳过以下生成 <code>SSH</code> 的步骤继续阅读剩下内容。<br>否则使用以下方法来生成 <code>SSH Key</code>，请将 <code>your_email@example.com</code> 替换为你的邮箱：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;your_email@youremail.com&quot;</div></pre></td></tr></table></figure></p>
+<p>命令行会提示让你指定秘钥的名称，按回车键将 <code>SSH Key</code>保存到默认文件名即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]</div></pre></td></tr></table></figure></p>
+<p>接下来会询问你为 <code>SSH Key</code> 设置密码，每次提交需要用到，可以设置，也可以按回车键即可，默认为空密码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Enter passphrase (empty for no passphrase): [Type a passphrase]</div><div class="line">Enter same passphrase again: [Type passphrase again]</div></pre></td></tr></table></figure></p>
+<p>可以都选择默认，也就是直接敲击几个 <code>Enter</code> 键即可。这时候我们再检查一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ls -al ~/.ssh</div></pre></td></tr></table></figure></p>
+<p>可以看到以下两个文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">id_rsa —— SSH 秘钥的 私钥 (Private Key)</div><div class="line">id_rsa.pub —— SSH 秘钥的 公钥 (Public Key)</div></pre></td></tr></table></figure></p>
+<p>接下来将 <code>SSH Key</code> 添加到 <code>ssh-agent</code> 中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ eval `ssh-agent -s`</div><div class="line">$ ssh-add ~/.ssh/id_rsa</div></pre></td></tr></table></figure></p>
+<p>打印出公钥 <code>id_rsa.pub</code> 文件里的内容，并把输出的内容复制到剪贴板里：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cat ~/.ssh/id_rsa.pub</div></pre></td></tr></table></figure></p>
+<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/copyssh.png" alt="copyssh"></p>
+<p>最后我们需要将公钥添加到 GitHub 账号，先打开 <a href="https://github.com/settings/keys" target="_blank" rel="external">Github SSH</a> 令牌管理页面，然后把你刚刚复制的令牌按照下图示例添加：</p>
+<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/sshkey%E6%B7%BB%E5%8A%A0.png" alt="sshkey添加"></p>
+<p>测试<code>ssh key</code>是否成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@github.com</div></pre></td></tr></table></figure></p>
+<p>输入完密码后，如果出现You’ve successfully authenticated, but GitHub does not provide shell access 。这就表示已成功连上github。</p>
+<h4 id="提交代码到-Github"><a href="#提交代码到-Github" class="headerlink" title="提交代码到 Github"></a>提交代码到 Github</h4><p>在配置完 GitHub 账号之后，我们便可以开始在上面存放项目代码了。首先 <a href="https://github.com/new" target="_blank" rel="external">新建一个 GitHub 仓库</a>，取名为 <code>你项目的名字</code>，填上 <code>Description</code> 项目描述，<code>Initialize this repository with a README</code> 这一项是询问你是否需要生成一个默认的介绍。</p>
+<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E6%96%B0%E4%BB%93%E5%BA%93.png" alt="新仓库"></p>
+<p>创建完成之后，使用以下命令将代码上传到 <code>GitHub</code> 上（将 <code>your_username</code> 替换为你自己的 <code>GitHub</code> 用户名，<code>your_projectname</code> 是你的项目名字，就是刚刚创建仓库的名字）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git remote add origin git@github.com:your_username/your_projectname.git</div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure></p>
+<p>至此，项目已成功托管到 GitHub 上。<br>(如果Git 提示<code>fatal: remote origin already exists</code><a href="http://blog.csdn.net/top_code/article/details/50381432" target="_blank" rel="external">请看这里</a>)<br>(如果提示<code>error: src refspec master does not match any</code><a href="http://www.jianshu.com/p/8d26730386f3" target="_blank" rel="external">请看这里</a>))</p>
+<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E6%88%90%E5%8A%9F.png" alt="代码提交成功"></p>
+<h4 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h4><p>后面我们如果对本地代码进行了改动，只需运行这 3 条命令即可将代码推送到安全可靠的 <code>GitHub</code> 上：</p>
+<p><code>注意：以下命令作为知识重温，不需要执行</code></p>
+<p>1、保存到暂存区,-A也可以换成指定文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git add -A</div></pre></td></tr></table></figure></p>
+<p>2、输入描述信息并提交到本地的 Git：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit -m &quot;Say something&quot;</div></pre></td></tr></table></figure></p>
+<p>3、将代码推送到 GitHub：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push</div></pre></td></tr></table></figure></p>
+<h2 id="Git-进阶操作"><a href="#Git-进阶操作" class="headerlink" title="Git 进阶操作"></a>Git 进阶操作</h2><h3 id="误删恢复"><a href="#误删恢复" class="headerlink" title="误删恢复"></a>误删恢复</h3><p>通过上面 <code>Git</code> 的基本讲解，你可能还无法真正体会到 <code>Git</code> 的强大。在平时开发中，我们有时候可能会因为手误或其它原因将某些重要文件删除。如果之前有将此文件纳入到 <code>Git</code> 中，这时便可以利用 <code>Git</code> 来对误删文件进行恢复。请看下面演示。</p>
+<p>我们先假装不小心删除 <code>what.md</code> 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ rm what.md</div><div class="line">$ ll</div></pre></td></tr></table></figure></p>
+<p>使用 ll 打印出文件目录列表时，能看到 <code>what.md</code> 文件已被成功移除。</p>
+<p>查看 Git 状态：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ git status</div><div class="line">On branch master</div><div class="line">Your branch is up-to-date with &apos;origin/master&apos;.</div><div class="line"></div><div class="line">Changes not staged for commit:</div><div class="line">  (use &quot;git add/rm &lt;file&gt;...&quot; to update what will be committed)</div><div class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</div><div class="line"></div><div class="line">        deleted:    what.md</div><div class="line"></div><div class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</div></pre></td></tr></table></figure>
+<p>能看到有相关提示显示 <code>what.md</code> 文件已被删除，这时你可以选择将删除的文件进行恢复或提交。</p>
+<p>下面我们使用 <code>Git</code> 进行恢复被删除文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git checkout -f</div><div class="line">$ ll</div></pre></td></tr></table></figure></p>
+<p>这时能看到 <code>what.md</code> 文件已成功恢复。<code>git checkout -f</code> 的作用是将在暂存区的更改文件进行强制撤销。</p>
+<h3 id="从GitHub克隆项目到本地"><a href="#从GitHub克隆项目到本地" class="headerlink" title="从GitHub克隆项目到本地"></a>从GitHub克隆项目到本地</h3><p>首先到我们要克隆的到GitHub的某个仓库，比如<a href="https://github.com/imyhui/neuq-acmclubTD" target="_blank" rel="external">neuq-acmclubTD</a>,右边有个绿色的<code>Clone or download</code>，点开后有<code>Clone with HTTPS</code>，当然你也可以直接下载</p>
+<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E5%85%8B%E9%9A%86%E8%BF%9E%E6%8E%A5.png" alt="克隆连接"></p>
+<p>然后回到要存放的目录下，右键<code>Git Bash here</code>使用命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/imyhui/neuq-acmclubTD.git</div></pre></td></tr></table></figure></p>
+<p>如果本地的版本不是最新的，可以使用以下命令，<code>origin</code>是本地仓库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git fetch origin</div></pre></td></tr></table></figure></p>
+<p>把更新的内容合并到本地分支，可以使用以下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git merge origin/master</div></pre></td></tr></table></figure></p>
+<p>如果你不想手动去合并，那么你可以使用以下命令,这个命令可以拉去最新版本并自动合并<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull &lt;本地仓库&gt; master</div></pre></td></tr></table></figure></p>
+<p>注意:记得如果不是单独另需创建的branch，每次对本地仓库操作的时候都要使用 <code>git pull</code>命令，更新远程仓库到本地中，防止冲突。这点和SVN的update类似</p>
+<h3 id="GitHub的分支管理"><a href="#GitHub的分支管理" class="headerlink" title="GitHub的分支管理"></a>GitHub的分支管理</h3><p>几乎所有的版本控制系统都以某种形式支持分支。<strong>使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。</strong> 有人把 <code>Git</code> 的分支模型称为它的<code>‘必杀技特性’</code>，也正因为这一特性，使得 <code>Git</code>从众多版本控制系统中脱颖而出。<a href="https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B" target="_blank" rel="external">了解分支</a></p>
+<h4 id="分支创建合并删除"><a href="#分支创建合并删除" class="headerlink" title="分支创建合并删除"></a>分支创建合并删除</h4><ol>
+<li>首先选中主分支<br><code>git checkout master</code> 代表将当前分支切换到 <code>master</code> 分支上，<code>master</code> 分支是我们初始化 <code>Git</code> 时默认创建的主分支，其它分支都是基于主分支衍生出来的。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout master</div></pre></td></tr></table></figure>
+<ol>
+<li><p>创建一个本地分支： <code>git branch &lt;新分支名字&gt;</code>,比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch new_branch</div></pre></td></tr></table></figure>
+</li>
+<li><p>切换到新建立的分支： <code>git checkout &lt;新分支名&gt;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git checkout new_branch</div><div class="line">Switched to branch &apos;new_branch&apos;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2、3 步骤其实可以用一条命令搞定 <code>git checkout -b new_branch</code>，我习惯用这条,区别<a href="https://my.oschina.net/u/587974/blog/74341" target="_blank" rel="external">参考这里</a></p>
+<p>你可以将新建的 <code>new_branch</code> 理解为是对 <code>master</code> 分支的克隆，在上面做的所有修改都不会影响到 <code>master</code> 分支。本节后面会将 <code>new_branch</code> 分支合并到 <code>master</code> 分支上，合并成功之后，在 <code>new_branch</code> 分支上做的所有改动都会并入到 <code>master</code> 分支。另外，你也可以选择对一个分支进行删除操作，当一个分支被删除之后，在该分支之上的所有改动也都将被销毁，删除分支的操作不会影响到 <code>master</code> 分支。这便是 <code>Git</code> 工作流的强大之处。</p>
+<ol>
+<li><p>合并分支操作是<code>git merge &lt;分支名称&gt;</code>将分支的操作合并到主分支上,注意，多人协作中当两条分支对同一个文件的同一个文本块进行了不同的修改，并试图合并时，Git不能自动合并的，称之为<code>冲突(conflict)</code>。解决冲突需要人工处理。，解决冲突看<a href="http://www.cnblogs.com/mengdd/p/3585038.html" target="_blank" rel="external">这里</a>，合并分支示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git checkout master</div><div class="line">$ git merge new_branch</div></pre></td></tr></table></figure>
+</li>
+<li><p>从本地删除一个分支： <code>git branch -d &lt;分支名称&gt;</code>, 删除分支示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch -d new_branch</div></pre></td></tr></table></figure>
+</li>
+<li><p>将本地分支同步到GitHub上面： <code>git push &lt;本地仓库名&gt; &lt;新分支名&gt;</code></p>
+</li>
+<li><p>为你的分支加入一个新的远程端： <code>git remote add &lt;远程端名字&gt; &lt;地址&gt;</code></p>
+</li>
+<li><p>查看当前仓库有几个分支: <code>git branch</code></p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>经过以上配置后，之后新建仓库操作如下进行即可</p>
+<ol>
+<li>进入对应目录 <code>cd 你的仓库目录</code></li>
+<li>初始化git仓库 <code>git init</code></li>
+<li>添加提交的文件</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>文件数</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一个文件</td>
+<td><code>git add 文件名</code></td>
+</tr>
+<tr>
+<td>全部文件</td>
+<td><code>git add -A</code></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>提交修改提示 <code>git commit -m</code></li>
+<li>查看提交状态 <code>git status</code></li>
+<li>查看最近日志 <code>git log</code></li>
+<li>版本回退操作</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>回退次数</th>
+<th style="text-align:left">指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>回退一个</td>
+<td style="text-align:left"><code>git reset -hard HEAD^</code></td>
+</tr>
+<tr>
+<td>回退两个</td>
+<td style="text-align:left"><code>git reset -hard HEAD^^</code></td>
+</tr>
+<tr>
+<td>回退多个</td>
+<td style="text-align:left"><code>git reset -hard HEAD~100</code></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>(第一次连接)远程仓库提交 <code>git remote add origin 你复制的地址</code></li>
+<li>(第二次以后)远程仓库提交 <code>git push</code></li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://try.github.io/" target="_blank" rel="external">github官方教程</a></p>
+<p><a href="https://fsdhub.com/books/laravel-essential-training-5.5" target="_blank" rel="external">Laravel 教程 - Web 开发实战入门 ( Laravel 5.5 ) </a></p>
+<p><a href="http://www.linuxidc.com/Linux/2014-03/97821.htm" target="_blank" rel="external">Linux下Git和GitHub使用方法总结</a></p>
+<p><a href="http://hanfu.space/%E6%8A%80%E6%9C%AF/2015/08/26/git-tutorial/" target="_blank" rel="external">Git 初学者</a></p>
+<p><a href="http://blog.csdn.net/nellson/article/details/51526273" target="_blank" rel="external">mac os x使用Git简易入门教程 </a></p>
+<p><a href="https://git-scm.com/book/zh/v2" target="_blank" rel="external">《Pro Git》</a></p>
+<p>推荐看下<a href="https://try.github.io/" target="_blank" rel="external"><code>github官方教程</code></a>和<a href="https://git-scm.com/book/zh/v2" target="_blank" rel="external"><code>《Pro Git》</code></a>。</p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p><code>Git</code>与<code>GitHub</code>基础教程到这就结束了，熬夜写了两晚上······半夜写头脑难免混乱可能有疏漏的地方，欢迎给我留言，有部分是参考以上链接的部分内容，侵删。希望大家看完这个教程能有一定收获，毕竟这是以后的合作途径。好了我要去补实验报告了&gt;.&lt;。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Git&quot;&gt;&lt;a href=&quot;#Git&quot; class=&quot;headerlink&quot; title=&quot;Git&quot;&gt;&lt;/a&gt;Git&lt;/h2&gt;&lt;h3 id=&quot;什么是-Git&quot;&gt;&lt;a href=&quot;#什么是-Git&quot; class=&quot;headerlink&quot; title=&quot;什么是 Git&quot;&gt;&lt;/a&gt;什么是 Git&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.&lt;/strong&gt; 项目加上Git后能能更好的追踪代码修改，进行版本回溯等操作。当今时代，多人协作开发是公司合作的基本模式，在多人协作的开发过程中Git变得必不可少，接下来大致介绍下Git的基本命令以及GitHub的基本使用。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="git" scheme="http://andyhui.top/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://andyhui.top/tags/git/"/>
+    
+      <category term="github" scheme="http://andyhui.top/tags/github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>糗事百科爬虫</title>
+    <link href="http://andyhui.top/2017/09/02/qsbkspider/"/>
+    <id>http://andyhui.top/2017/09/02/qsbkspider/</id>
+    <published>2017-09-02T05:57:19.000Z</published>
+    <updated>2019-03-04T07:44:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>一周前买了阿里云服务器，简单部署了一个JudgeService，感觉闲着也是闲着，决定在上面部署一个爬虫，打算每隔一段时间爬取糗事百科前几页的文本段子并以邮件的形式发送到qq邮箱中。</p>
+</blockquote>
+<hr>
+<h3 id="基本环境"><a href="#基本环境" class="headerlink" title="基本环境"></a>基本环境</h3><blockquote>
+<p>requests + smtplib + bs4<br>都可以用pip install 来安装</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="分析需求"><a href="#分析需求" class="headerlink" title="分析需求"></a>分析需求</h3><blockquote>
+<p>基本目的是爬取糗事百科文本部分前几页内容保存<br>后续操作有通过邮件发送到邮箱，之后是挂载到云服务器上每隔一段时间自动爬取并发送邮件</p>
+</blockquote>
+<h4 id="分析url"><a href="#分析url" class="headerlink" title="分析url"></a>分析url</h4><blockquote>
+<p>我们这次只爬取文字内容，所以这次爬取的url是 <strong>‘<a href="https://www.qiushibaike.com/text/" target="_blank" rel="external">https://www.qiushibaike.com/text/</a>‘</strong><br>点开第二页会发现 url变为 <strong>‘<a href="https://www.qiushibaike.com/text/page/2/" target="_blank" rel="external">https://www.qiushibaike.com/text/page/2/</a>‘</strong><br>很清晰的知道 第i页的url也就是 url = <strong>‘<a href="https://www.qiushibaike.com/text/page/%s/&#39;%str(i" target="_blank" rel="external">https://www.qiushibaike.com/text/page/%s/&#39;%str(i</a>)</strong><br>我们要爬前多少页也就是一个for循环的事</p>
+</blockquote>
+<h4 id="分析网页源码"><a href="#分析网页源码" class="headerlink" title="分析网页源码"></a>分析网页源码</h4><blockquote>
+<p>首先来看下网页的基本内容<br><img src alt></p>
+<p>我们要做的是提取这一个个文本，然后保存下来</p>
+<p>根据网页源码很容易看出 内容是在 class=”content”的div标签下，可以直接套用正则表达式，我们这使用BeautifulSoup库的find_all函数就可以搞定<br><img src alt></p>
+</blockquote>
+<h3 id="构造request请求"><a href="#构造request请求" class="headerlink" title="构造request请求"></a>构造request请求</h3><blockquote>
+<p>首先就是通过requests库得到网页源码 <em>html = requests.get(url)</em></p>
+<p>这里我们加一个小的异常处理，也就是如果爬取不到我们将错误信息写入一个文件，文件名为<strong>Http error on time.ctime()</strong> 这里的<strong><a href="http://www.runoob.com/python/att-time-ctime.html" target="_blank" rel="external">time.ctime()</a></strong>是包含在time里面的一个函数，返回当前时间。</p>
+<p>然后用BeautifulSoup做成一锅汤<strong>soup = BeautifulSoup(html.text, ‘lxml’)</strong><br>这里我们用lxml HTML 解析器，因为它的优势是速度快，文档容错能力强，(更多关于BeautifulSoup)[<a href="http://cuiqingcai.com/1319.html" target="_blank" rel="external">http://cuiqingcai.com/1319.html</a>]</p>
+</blockquote>
+<p>之后我们用_find<em>all</em>找到每一个笑话，之后呢，把换行标签替换掉，然后加到data_list 中去</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> lxml</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getcontent</span><span class="params">(url)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        html = requests.get(url)</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="keyword">with</span> open(<span class="string">"log.log"</span>,<span class="string">"a"</span>) <span class="keyword">as</span> file:</div><div class="line">            file.write(<span class="string">"Http error on "</span> + time.ctime())</div><div class="line">        time.sleep(<span class="number">60</span>)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line">    soup = BeautifulSoup(html.text, <span class="string">'lxml'</span>)</div><div class="line">    data_list = []</div><div class="line">    <span class="keyword">for</span> cont <span class="keyword">in</span> soup.find_all(<span class="string">"div"</span>, &#123;<span class="string">"class"</span>:<span class="string">"content"</span>&#125;):</div><div class="line">        raw_data = cont.get_text()</div><div class="line">        data = raw_data.replace(<span class="string">"\n"</span>,<span class="string">""</span>)</div><div class="line">        data_list.append(data)</div><div class="line">    <span class="keyword">return</span> data_list</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    data_list = []</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">2</span>):</div><div class="line">        url = <span class="string">'https://www.qiushibaike.com/text/page/%s/'</span>%str(i)</div><div class="line">        temp_data = getcontent(url)</div><div class="line">        data_list.extend(temp_data)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data_list:</div><div class="line">        print(i)</div><div class="line">        print(<span class="string">'\n\n'</span>)</div><div class="line">main()</div></pre></td></tr></table></figure>
+<h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;一周前买了阿里云服务器，简单部署了一个JudgeService，感觉闲着也是闲着，决定在上面部署一个爬虫，打算每隔一段时间爬取糗事百科前几页的文本段子并以邮件的形式发送到qq邮箱中。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;基本环境&quot;&gt;&lt;a href=&quot;#基本环境&quot; class=&quot;headerlink&quot; title=&quot;基本环境&quot;&gt;&lt;/a&gt;基本环境&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;requests + smtplib + bs4&lt;br&gt;都可以用pip install 来安装&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="python" scheme="http://andyhui.top/categories/python/"/>
+    
+    
+      <category term="爬虫" scheme="http://andyhui.top/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="python" scheme="http://andyhui.top/tags/python/"/>
+    
+      <category term="requests" scheme="http://andyhui.top/tags/requests/"/>
+    
+      <category term="linux" scheme="http://andyhui.top/tags/linux/"/>
+    
+      <category term="BeautifulSoup" scheme="http://andyhui.top/tags/BeautifulSoup/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>oj信息爬取</title>
+    <link href="http://andyhui.top/2017/08/29/ojrankscan/"/>
+    <id>http://andyhui.top/2017/08/29/ojrankscan/</id>
+    <published>2017-08-29T07:04:51.000Z</published>
+    <updated>2019-03-04T07:44:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>假期俱乐部举办了编程训练营，每个人负责管理15人的营，每天作业会在oj的一个总榜上<br>关于各营营长每天统计很麻烦，所以我写了一个简单的爬虫来节省一部分工作<br><strong> 代码改变世界，使人更高效的完成自己的工作</strong></p>
+</blockquote>
+<hr>
+<h3 id="基本环境"><a href="#基本环境" class="headerlink" title="基本环境"></a>基本环境</h3><blockquote>
+<p>Windows 10 + python 3.6.2 + requests 库</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="requests-库安装"><a href="#requests-库安装" class="headerlink" title="requests 库安装"></a>requests 库安装</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install requests</div></pre></td></tr></table></figure>
+<p><img src="http://ov8i0dn6x.bkt.clouddn.com/requests%E5%AE%89%E8%A3%85.png" alt="requests安装"></p>
+<h3 id="分析需求"><a href="#分析需求" class="headerlink" title="分析需求"></a>分析需求</h3><blockquote>
+<p>首先需要统计的 Contest 有3周的作业 加 最后的结课测试</p>
+</blockquote>
+<p><img src="http://ov8i0dn6x.bkt.clouddn.com/ojContestList.png" alt="ojContestList"></p>
+<blockquote>
+<p>每个榜单结构都是一致的，我只需要统计自己营里的<strong>昵称</strong>和<strong>总解决数目</strong>就好</p>
+</blockquote>
+<p><img src="http://ov8i0dn6x.bkt.clouddn.com/oj%E6%A6%9C%E5%8D%95.png" alt="oj榜单"></p>
+<blockquote>
+<p>url 是 “<a href="http://oj.acmclub.cn/contestrank.php?cid=" target="_blank" rel="external">http://oj.acmclub.cn/contestrank.php?cid=</a>“ + contestID</p>
+<p>右键查看网页源代码 两个a标签中刚好有我们的数据，用简单正则表达式匹配下就好</p>
+</blockquote>
+<p><img src="http://ov8i0dn6x.bkt.clouddn.com/oj%E6%A6%9C%E5%8D%95%E6%BA%90%E7%A0%81.png" alt="oj榜单源码"></p>
+<h3 id="构造request爬取网页"><a href="#构造request爬取网页" class="headerlink" title="构造request爬取网页"></a>构造request爬取网页</h3><blockquote>
+<p>首先拿出一个榜单来处理，由于不需要登陆就可以查看榜单所以我直接抓取榜单html页面</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTMLText</span><span class="params">(url)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        r = requests.get(url, timeout=<span class="number">30</span>)</div><div class="line">        r.raise_for_status()</div><div class="line">        r.encoding = r.apparent_encoding</div><div class="line">        <span class="keyword">return</span> r.text</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">for</span> no <span class="keyword">in</span> range(<span class="number">1166</span>,<span class="number">1169</span>):</div><div class="line">        url = <span class="string">'http://oj.acmclub.cn/contestrank.php?cid='</span>+str(no)</div><div class="line">        html = getHTMLText(url)</div><div class="line">        print(html)</div><div class="line">main()</div></pre></td></tr></table></figure>
+<p><strong>这算一个基本框架了，通过request得到网页源码，中间_r.raise_for<em>status()</em>是错误检查，后面是根据推断的编码类型设置字符编码</strong><br>运行结果如下<br><img src="http://ov8i0dn6x.bkt.clouddn.com/result1.png" alt="result1"></p>
+<h3 id="对html源码处理"><a href="#对html源码处理" class="headerlink" title="对html源码处理"></a>对html源码处理</h3><blockquote>
+<p>首先看网页源码</p>
+</blockquote>
+<p><img src="http://ov8i0dn6x.bkt.clouddn.com/oj%E6%A6%9C%E5%8D%95%E6%BA%90%E7%A0%81.png" alt="oj榜单源码"></p>
+<blockquote>
+<p>这里可以用正则表达式库 <strong>re</strong> 来进行字符匹配，如果昵称符合规范<strong>xx营xx号_Nickname_name</strong>就很容易处理了，匹配两个a标签之间的内容<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rege = <span class="string">r'&lt;a href=.*?&gt;(0&#123;0,1&#125;'</span>+str(num)+<span class="string">'营.*?)&lt;/a&gt;&lt;td&gt;&lt;a href=.*?&gt;([0-9]&#123;1,2&#125;)&lt;/a&gt;'</span></div></pre></td></tr></table></figure></p>
+<p>对html的处理函数也就是很容易写了</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTMLText</span><span class="params">(url)</span>:</span></div><div class="line">    <span class="comment">#省略</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fillscoreList</span><span class="params">(slist, html, num)</span>:</span></div><div class="line">    rege = <span class="string">r'&lt;a href=.*?&gt;(0&#123;0,1&#125;'</span>+str(num)+<span class="string">'营.*?)&lt;/a&gt;&lt;td&gt;&lt;a href=.*?&gt;([0-9]&#123;1,2&#125;)&lt;/a&gt;'</span></div><div class="line">    score = re.findall(rege,html)</div><div class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> score:</div><div class="line">        slist.append(x)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    num = int(input(<span class="string">"请输入营号:"</span>))</div><div class="line">    <span class="keyword">for</span> no <span class="keyword">in</span> range(<span class="number">1166</span>,<span class="number">1169</span>):</div><div class="line">        sinfo = []</div><div class="line">        url = <span class="string">'http://oj.acmclub.cn/contestrank.php?cid='</span>+str(no)</div><div class="line">        html = getHTMLText(url)</div><div class="line">        fillscoreList(sinfo, html, num)</div><div class="line">        <span class="keyword">for</span> (name,solve) <span class="keyword">in</span>  sinfo:</div><div class="line">            print(name,solve)</div><div class="line">main()</div></pre></td></tr></table></figure>
+<p>这样得到的sinfo就是包含元组(name,solve)的列表，程序到这阶段基本算是完工了，但是输出的样式也并不尽人意，比如<em>没有对齐</em>，看起来很乱，而且三周内容<em>挤在一块</em>不好区分，接下来就对这个程序进行优化<br><img src="http://ov8i0dn6x.bkt.clouddn.com/result2.png" alt="result2"></p>
+<h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><blockquote>
+<p>我们想要达到的效果是三周内容清晰可辨，并且有良好的对齐，下面就来是实现下<br>python 的 字符串 有<strong>format函数</strong>，通过这个来达到我们想要的效果<br>对于(xx营xx号_Nickname_name,solve_num)这样一个元组，通过格式限定符来达到<strong>指定字段宽度</strong>和<strong>居中对齐</strong></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tplt = <span class="string">"&#123;0:&lt;20&#125;\t\t&#123;1:^3&#125;"</span></div><div class="line">print(tplt.format(<span class="string">"xx营xx号_Nickname_name"</span>,<span class="string">"   解决总题目数"</span>,chr(<span class="number">12288</span>)))</div></pre></td></tr></table></figure>
+<p>{}来指明位置 相当于c的printf中的%，{0} 指的是第0个元素，填充常跟对齐一起使用^、&lt;、&gt;分别是居中、左对齐、右对齐，后面带宽度<br>:号后面带填充的字符，只能是一个字符，不指定的话默认是用空格填充，后面我们指定了中文空格</p>
+<blockquote>
+<p>所以现在的程序就是这样</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTMLText</span><span class="params">(url)</span>:</span></div><div class="line">    <span class="comment">#省略</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fillscoreList</span><span class="params">(slist, html, num)</span>:</span></div><div class="line">    <span class="comment">#省略</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">printscoreList</span><span class="params">(slist, num)</span>:</span></div><div class="line">    tplt = <span class="string">"&#123;0:20&#125;\t\t&#123;1:^3&#125;"</span></div><div class="line">    print(tplt.format(<span class="string">"xx营xx号_Nickname_name"</span>,<span class="string">"     解决题目数"</span>,chr(<span class="number">12288</span>)))</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(num):</div><div class="line">        u=slist[i]</div><div class="line">        print(tplt.format(u[<span class="number">0</span>],u[<span class="number">1</span>],chr(<span class="number">12288</span>)))</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    num = int(input(<span class="string">"请输入营号:"</span>))</div><div class="line">    <span class="keyword">for</span> no <span class="keyword">in</span> range(<span class="number">1166</span>,<span class="number">1169</span>):</div><div class="line">        sinfo = []</div><div class="line">        url = <span class="string">'http://oj.acmclub.cn/contestrank.php?cid='</span>+str(no)</div><div class="line">        html = getHTMLText(url)</div><div class="line">        fillscoreList(sinfo, html, num)</div><div class="line">        print(<span class="string">"*"</span>*<span class="number">15</span>,<span class="string">"第%d周%d营成绩"</span>%(int(no<span class="number">-1165</span>),num),<span class="string">"*"</span>*<span class="number">18</span>)</div><div class="line">        printscoreList(sinfo, len(sinfo))</div><div class="line">main()</div></pre></td></tr></table></figure>
+<p>运行结果如下<br><img src="http://ov8i0dn6x.bkt.clouddn.com/result3.png" alt="result3"></p>
+<h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;假期俱乐部举办了编程训练营，每个人负责管理15人的营，每天作业会在oj的一个总榜上&lt;br&gt;关于各营营长每天统计很麻烦，所以我写了一个简单的爬虫来节省一部分工作&lt;br&gt;&lt;strong&gt; 代码改变世界，使人更高效的完成自己的工作&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;基本环境&quot;&gt;&lt;a href=&quot;#基本环境&quot; class=&quot;headerlink&quot; title=&quot;基本环境&quot;&gt;&lt;/a&gt;基本环境&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Windows 10 + python 3.6.2 + requests 库&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="python" scheme="http://andyhui.top/categories/python/"/>
+    
+    
+      <category term="爬虫" scheme="http://andyhui.top/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="oj" scheme="http://andyhui.top/tags/oj/"/>
+    
+      <category term="python" scheme="http://andyhui.top/tags/python/"/>
+    
+      <category term="requests" scheme="http://andyhui.top/tags/requests/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown 基本语法</title>
+    <link href="http://andyhui.top/2017/08/25/Markdown_%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"/>
+    <id>http://andyhui.top/2017/08/25/Markdown_基本语法/</id>
+    <published>2017-08-25T00:19:08.000Z</published>
+    <updated>2017-08-27T09:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>近几天刚刚搭建了博客，用的是Hexo+Next主题，托管在github和codding上，写博文是需要Markdown，所以先学习下Markdown的基本语法，也算是为博客增加一篇博文吧。</p>
+<hr>
+<p>Markdown基础用法与规则：</p>
+<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>使用”#”加空格在首行来创建标题<br>如:<br>&emsp;&emsp; # 一级标题<br>&emsp;&emsp; ## 二级标题<br>&emsp;&emsp; ### 三级标题<br><img src="http://ov8i0dn6x.bkt.clouddn.com/markdown%E6%A0%87%E9%A2%98.png" alt></p>
+<hr>
+<a id="more"></a>
+<h3 id="加粗功能"><a href="#加粗功能" class="headerlink" title="加粗功能"></a>加粗功能</h3><p>使用一组星号”**“或一组下划线”__“来加粗一段文字，用转义符”\“来打出”*“<br>如:<br>&emsp;&emsp; 这是<strong>加粗的文字</strong><br>&emsp;&emsp; 这也是<strong>加粗的文字</strong></p>
+<hr>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>使用”&gt;”在段首来引用一段文字，要在引用前后加入空白行声明开始和结束引用<br>如:</p>
+<blockquote>
+<p>这是一段引用<br>这是一段引用</p>
+</blockquote>
+<hr>
+<h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>使用”-“、”*”或”+”加空格来创建无序列表<br>如:</p>
+<ul>
+<li>这是一个无序列表</li>
+</ul>
+<ul>
+<li>这是一个无序列表</li>
+</ul>
+<ul>
+<li>这是一个无序列表</li>
+</ul>
+<hr>
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>使用数字圆点加空格如”1.”、”2.”来创建有序列表<br>如:</p>
+<ol>
+<li>这是一个有序列表</li>
+<li>这是一个有序列表</li>
+<li>这是一个有序列表</li>
+</ol>
+<hr>
+<p>以上来源<a href="https:\\cloud.smartisan.com\apps\note\md.html" target="_blank" rel="external"><strong>锤子便签</strong></a></p>
+<hr>
+<h3 id="贴代码"><a href="#贴代码" class="headerlink" title="贴代码"></a>贴代码</h3><p>用一对重音符”``` code ```“引起来，可以在```后表明语言<br>如:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"Hello World!"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>也可以用4个空格(Tab)缩进再贴上代码实现相同的效果</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+int main()
+{
+    cout&lt;&lt;&quot;Hello World!&quot;&lt;&lt;endl;
+    return 0;
+}
+</code></pre><hr>
+<h3 id="强调标记"><a href="#强调标记" class="headerlink" title="强调标记"></a>强调标记</h3><p>用两个重音符”`强调内容`“<br>这是一个<code>强调标记</code></p>
+<hr>
+<h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;近几天刚刚搭建了博客，用的是Hexo+Next主题，托管在github和codding上，写博文是需要Markdown，所以先学习下Markdown的基本语法，也算是为博客增加一篇博文吧。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Markdown基础用法与规则：&lt;/p&gt;
+&lt;h3 id=&quot;标题&quot;&gt;&lt;a href=&quot;#标题&quot; class=&quot;headerlink&quot; title=&quot;标题&quot;&gt;&lt;/a&gt;标题&lt;/h3&gt;&lt;p&gt;使用”#”加空格在首行来创建标题&lt;br&gt;如:&lt;br&gt;&amp;emsp;&amp;emsp; # 一级标题&lt;br&gt;&amp;emsp;&amp;emsp; ## 二级标题&lt;br&gt;&amp;emsp;&amp;emsp; ### 三级标题&lt;br&gt;&lt;img src=&quot;http://ov8i0dn6x.bkt.clouddn.com/markdown%E6%A0%87%E9%A2%98.png&quot; alt&gt;&lt;/p&gt;
+&lt;hr&gt;
+    
+    </summary>
+    
+      <category term="Markdown" scheme="http://andyhui.top/categories/Markdown/"/>
+    
+    
+      <category term="Hexo" scheme="http://andyhui.top/tags/Hexo/"/>
+    
+      <category term="Markdown" scheme="http://andyhui.top/tags/Markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://andyhui.top/2017/08/24/hello-world/"/>
+    <id>http://andyhui.top/2017/08/24/hello-world/</id>
+    <published>2017-08-24T04:52:25.000Z</published>
+    <updated>2019-03-04T07:44:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://andyhui.top/categories/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="http://andyhui.top/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Welcome to my blog</title>
+    <link href="http://andyhui.top/2017/08/23/Welcome/"/>
+    <id>http://andyhui.top/2017/08/23/Welcome/</id>
+    <published>2017-08-23T04:52:25.000Z</published>
+    <updated>2017-08-27T09:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//C</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"Hello,my friend\n"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//c++</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"Welcome to andyhui's blog!"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Java</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"There are some blog posts here."</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Python</span></div><div class="line">print(<span class="string">"Hope it helps you!"</span>)</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//C&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;meta-string&quot;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;built_in&quot;&gt;printf&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;Hello,my friend\n&quot;&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="C++" scheme="http://andyhui.top/categories/C/"/>
+    
+    
+      <category term="code" scheme="http://andyhui.top/tags/code/"/>
+    
+      <category term="C++" scheme="http://andyhui.top/tags/C/"/>
+    
+  </entry>
+  
+</feed>
