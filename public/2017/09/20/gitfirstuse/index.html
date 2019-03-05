@@ -537,6 +537,7 @@
 <li>初始化git仓库 <code>git init</code></li>
 <li>添加提交的文件</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -555,12 +556,14 @@
 </tr>
 </tbody>
 </table>
+</div>
 <ol>
 <li>提交修改提示 <code>git commit -m</code></li>
 <li>查看提交状态 <code>git status</code></li>
 <li>查看最近日志 <code>git log</code></li>
 <li>版本回退操作</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -583,6 +586,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <ol>
 <li>(第一次连接)远程仓库提交 <code>git remote add origin 你复制的地址</code></li>
 <li>(第二次以后)远程仓库提交 <code>git push</code></li>
@@ -725,7 +729,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -736,7 +740,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -747,7 +751,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1360,6 +1364,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 

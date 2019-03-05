@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://andyhui.top/"/>
-  <updated>2019-03-04T08:54:51.000Z</updated>
+  <updated>2019-03-05T15:15:05.000Z</updated>
   <id>http://andyhui.top/</id>
   
   <author>
@@ -16,25 +16,135 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>1stoftterm</title>
-    <link href="http://andyhui.top/2019/03/04/1stoftterm/"/>
-    <id>http://andyhui.top/2019/03/04/1stoftterm/</id>
-    <published>2019-03-04T08:22:34.000Z</published>
-    <updated>2019-03-04T08:54:51.000Z</updated>
+    <title>LeetCode[1] 两数之和</title>
+    <link href="http://andyhui.top/2019/03/05/LeetCode-1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
+    <id>http://andyhui.top/2019/03/05/LeetCode-1-两数之和/</id>
+    <published>2019-03-05T14:10:00.000Z</published>
+    <updated>2019-03-05T15:15:05.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>just for test</p>
+    <content type="html"><![CDATA[<h2 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="[1] 两数之和"></a>[1] <a href="https://leetcode-cn.com/problems/two-sum/description/" target="_blank" rel="external">两数之和</a></h2><blockquote>
+<p> 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
 </blockquote>
+<a id="more"></a>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h2><blockquote>
+<p>给定 nums = [2, 7, 11, 15], target = 9</p>
+<p>因为 nums[0] + nums[1] = 2 + 7 = 9<br> 所以返回 [0, 1]</p>
+</blockquote>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><blockquote>
+<p>对于本题，给出的数组是未排序的，若两两求和需要<script type="math/tex">n^{2}</script></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums, target)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type nums: List[int]</span></div><div class="line"><span class="string">        :type target: int</span></div><div class="line"><span class="string">        :rtype: List[int]</span></div><div class="line"><span class="string">        """</span></div><div class="line">        <span class="keyword">if</span> len(nums) &lt; <span class="number">2</span>:</div><div class="line">            <span class="keyword">return</span> [<span class="number">-1</span>, <span class="number">-1</span>]</div><div class="line">        map = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</div><div class="line">            <span class="keyword">if</span> target - nums[i] <span class="keyword">in</span> map:</div><div class="line">                <span class="keyword">return</span> [i, map[target - nums[i]]]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                map[nums[i]] = i</div><div class="line"></div><div class="line">s = Solution()</div><div class="line">print(s.twoSum([<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>],<span class="number">9</span>))</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1-两数之和&quot;&gt;&lt;a href=&quot;#1-两数之和&quot; class=&quot;headerlink&quot; title=&quot;[1] 两数之和&quot;&gt;&lt;/a&gt;[1] &lt;a href=&quot;https://leetcode-cn.com/problems/two-sum/description/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;两数之和&lt;/a&gt;&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt; 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。&lt;/p&gt;
+&lt;p&gt;你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="http://andyhui.top/categories/leetcode/"/>
+    
+    
+      <category term="algorithms" scheme="http://andyhui.top/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CI 持续集成</title>
+    <link href="http://andyhui.top/2019/03/04/Continuous_Integration/"/>
+    <id>http://andyhui.top/2019/03/04/Continuous_Integration/</id>
+    <published>2019-03-04T11:45:00.000Z</published>
+    <updated>2019-03-04T16:07:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前废弃Hexo时，觉得hexo比较麻烦，每次都要执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo deploy</div><div class="line">hexo generate</div></pre></td></tr></table></figure></p>
+<p>，才能推到线上，虽然有人把命令简化了一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo clean &amp;&amp; hexo d -g</div></pre></td></tr></table></figure></p>
+<p>一行就能搞定，但我还是觉得命令太长，每次复制太麻烦，于是发现了持续集成工具<a href="https://www.travis-ci.org/" target="_blank" rel="external"><code>travis-ci</code></a>，因此顺便了解一下持续集成。<br><a id="more"></a></p>
+<h2 id="什么是持续集成？"><a href="#什么是持续集成？" class="headerlink" title="什么是持续集成？"></a>什么是持续集成？</h2><blockquote>
+<p>持续集成（英语：Continuous integration，缩写 CI）是一种软件工程流程，是将所有软件工程师对于软件的工作副本持续集成到共享主线（mainline）的一种举措。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。</p>
+</blockquote>
+<p>也就是说，上面的命令可以通过持续集成工具自动化执行，这样每次我们对博客做出的修改，只需提交<code>commit</code>后，推送到<code>github</code>，持续集成工具自动在线构建博客并部署到<code>GitHub Pages</code>,简化了博客发布流程。</p>
+<p>下面是几张图片描述下持续集成、持续交付和持续部署</p>
+<h3 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h3><p><img src="http://githubblog.andyhui.top/image/Continuous_Integration%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%20Continuous%20Integration.jpeg" alt="持续集成流程"></p>
+<blockquote>
+<p>持续集成强调开发人员提交了新代码之后，立刻进行构建、（单元）测试。根据测试结果，我们可以确定新代码和原有代码能否正确地集成在一起。</p>
+</blockquote>
+<h3 id="持续交付"><a href="#持续交付" class="headerlink" title="持续交付"></a>持续交付</h3><p><img src="http://githubblog.andyhui.top/image/Continuous_Integration%E6%8C%81%E7%BB%AD%E4%BA%A4%E4%BB%98%20Continuous%20Delivery.jpeg" alt="持续交付流程"></p>
+<blockquote>
+<p>持续交付在持续集成的基础上，将集成后的代码部署到更贴近真实运行环境的「类生产环境」（production-like environments）中。比如，我们完成单元测试后，可以把代码部署到连接数据库的 Staging 环境中更多的测试。如果代码没有问题，可以继续手动部署到生产环境中。</p>
+</blockquote>
+<h3 id="持续部署"><a href="#持续部署" class="headerlink" title="持续部署"></a>持续部署</h3><p><img src="http://githubblog.andyhui.top/image/Continuous_Integration%E6%8C%81%E7%BB%AD%E9%83%A8%E7%BD%B2%20Continuous%20Deployment.jpeg" alt="持续部署流程"></p>
+<blockquote>
+<p>持续部署则是在持续交付的基础上，把部署到生产环境的过程自动化。</p>
+</blockquote>
+<h2 id="关于Hexo的一次持续集成实践"><a href="#关于Hexo的一次持续集成实践" class="headerlink" title="关于Hexo的一次持续集成实践"></a>关于Hexo的一次持续集成实践</h2><blockquote>
+<p>详细流程见<a href="https://easyhexo.com/1-Hexo-install-and-config/1-5-continuous-integration.html#%E6%B3%A8%E5%86%8C-travis-ci-%E8%B4%A6%E5%8F%B7%EF%BC%8C%E7%BB%91%E5%AE%9A-github-%E8%B4%A6%E6%88%B7" target="_blank" rel="external">这里</a></p>
+</blockquote>
+<p>写下对于这个的一些补充</p>
+<ol>
+<li>对于博客源文件，最好添加<strong><code>.gitignore</code></strong>,忽略掉<code>node_modules</code>，依赖文件太大，影响上传速度。</li>
+<li>仓库必须Public,私有仓库既不能通过name.github.io访问，也不能完成CI</li>
+<li>对于主题文件，如果有<code>.git</code>文件可能会造成git add失败，如果主题不打算更新可删掉主题文件内的<code>.git</code>文件夹</li>
+</ol>
+<h2 id="下一步计划"><a href="#下一步计划" class="headerlink" title="下一步计划"></a>下一步计划</h2><ul>
+<li>学习主流CI工具，如<a href="https://juejin.im/entry/565fbc6c60b215d646403d33" target="_blank" rel="external"><code>Jenkins</code></a></li>
+<li><a href="https://juejin.im/entry/5a2a269df265da43052e8878" target="_blank" rel="external">基于Docker的CI平台实践</a></li>
+</ul>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://easyhexo.com/1-Hexo-install-and-config/1-5-continuous-integration.html#%E4%BB%80%E4%B9%88%E6%98%AF%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%EF%BC%9F" target="_blank" rel="external">EasyHexo 持续集成Continuous Integration
+</a></p>
+<p><a href="https://blog.csdn.net/jjm1437/article/details/71601450" target="_blank" rel="external">致产品经理： 持续集成、持续交付、持续部署和DevOps
+</a><br><a href="https://www.zhihu.com/question/23444990" target="_blank" rel="external">如何理解持续集成、持续交付、持续部署？
+</a></p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p><a href="https://zhuanlan.zhihu.com/p/33206437" target="_blank" rel="external">微服务化的基石——持续集成
+</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;just for test&lt;/p&gt;
-&lt;/blockquote&gt;
-
+      &lt;p&gt;之前废弃Hexo时，觉得hexo比较麻烦，每次都要执行&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;hexo clean&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;hexo deploy&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;hexo generate&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;，才能推到线上，虽然有人把命令简化了一下&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;hexo clean &amp;amp;&amp;amp; hexo d -g&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;一行就能搞定，但我还是觉得命令太长，每次复制太麻烦，于是发现了持续集成工具&lt;a href=&quot;https://www.travis-ci.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;code&gt;travis-ci&lt;/code&gt;&lt;/a&gt;，因此顺便了解一下持续集成。&lt;br&gt;
     
     </summary>
+    
+      <category term="devops" scheme="http://andyhui.top/categories/devops/"/>
+    
+    
+      <category term="CI" scheme="http://andyhui.top/tags/CI/"/>
+    
+      <category term="devops" scheme="http://andyhui.top/tags/devops/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>新的开始</title>
+    <link href="http://andyhui.top/2019/03/04/1stoftterm/"/>
+    <id>http://andyhui.top/2019/03/04/1stoftterm/</id>
+    <published>2019-03-04T08:22:00.000Z</published>
+    <updated>2019-03-04T11:41:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>2019年3月4日，大三下新学期开始的第一天</p>
+<p>又重新把远古的hexo博客重新在黑苹果上，记得上次折腾博客还是在大一下的那个暑假，那时还在搞算法，正值暑期培训，开学就面临着学习算法还是开发的抉择。<br><a id="more"></a></p>
+<p>人生的好多选择都在不经意间，一方面觉得自己高中没参加过算法竞赛，可能基础落后一些，另一方面经过几次集训联赛，已经彻底对算法失去了信心，学习算法的确有些枯燥，整日面向输入输出编程，屏幕里只有黑框框，也正是这样，走上了web开发这条道路。(有时候会对自己做过的选择有些后悔，但转念一想，是之前的所有选择造就了现在的我，在特定时间点上，对于那个时候的我来说，选项可能本来就只有一个）。</p>
+<p>两次多校联赛后，连签到题都不想看了，那时对于web开发的理解，仅止于开发网站，不知道前后端是干啥的，稀里糊涂的就开始了后端开发这条路（虽然最初的一些工作并不是后端的），看别人的教程，说先从搭建一个博客开始，于是我开始了对hexo的折腾。那时候经常翻别人的博客，看到有意思的便查实现，然后照搬到自己的博客上，最终的作品在那时看来还是有模有样的(现在看来我确实不适合做前端）。</p>
+<p>大二上开学后，留部答辩，拿着我的hexo博客已经几个入门级的爬虫参加了面试，那时的我还沾沾自喜，觉得自己学到了不少东西，面试结束后，敲响了一记警钟，时刻要保持虔诚，不要因为看到了这个行业的一点就自以为窥一斑而见全豹，犹记得我告诉下一届学弟学妹，搭建博客不在搭建美化的过程，而在于你的记录，勤于写博客才是搭建博客的真正意义，然而，我自己都没有做到……</p>
+<hr>
+<p>现在，已经是大三下学期了，上届的学长们在这个时候，早已经出去实习了，自己相较于那时的他们，还是太菜了，固守于旧知识，没有任何计划，盲目的去学习，可能是那段时间最真实的写照，不要看到什么都想要去了解一下，仅仅是为了增加谈资的学习，真的是不值得。找准目标，有目的有计划的学习，是今后努力的方向。</p>
+<p>寒假对面试做了一部分准备，相较于持续不断的学习，考前突击这样的填鸭式灌输一点效果都没有，经过一次面试，也对整个流程有了更深入的了解，同时，也对自己的水平有了正确的认识，面试，不能抱着答上来就万事大吉了，面试是对自己的知识水平的考察，准备面试的过程，也是知识积累的过程，固然面试难度不同以往，但只要自身实力过硬，是不会愁没有伯乐的。</p>
+<p>寒假时，看到别人拿到offer，已经走入实习岗位，多少还是有些焦虑的，觉得自己落后了好多，甚至一度觉得自己不适合开发，不如去考研逃避一下，后来渐渐释然了，不一定要刻意的去走别人的道路，那只是正确道路的一条，并不一定适合自己，自己做出的选择，要对自己负责，人生没有SL，能做的只是谨慎对待每次选择。</p>
+<p>重新启用这个博客，博客的样式也不在那么华丽，换了一个简约的风格，可能这样更适合自己，洗尽铅华，归于平淡，谨以此博客记录接下来的学习历程。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;2019年3月4日，大三下新学期开始的第一天&lt;/p&gt;
+&lt;p&gt;又重新把远古的hexo博客重新在黑苹果上，记得上次折腾博客还是在大一下的那个暑假，那时还在搞算法，正值暑期培训，开学就面临着学习算法还是开发的抉择。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="个人" scheme="http://andyhui.top/categories/%E4%B8%AA%E4%BA%BA/"/>
     
     
   </entry>
@@ -44,7 +154,7 @@
     <link href="http://andyhui.top/2017/12/09/LaradockInstall/"/>
     <id>http://andyhui.top/2017/12/09/LaradockInstall/</id>
     <published>2017-12-08T18:41:17.000Z</published>
-    <updated>2019-03-04T09:12:54.000Z</updated>
+    <updated>2019-03-04T11:00:54.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="为什么使用laradock"><a href="#为什么使用laradock" class="headerlink" title="为什么使用laradock"></a>为什么使用laradock</h2><blockquote>
 <p> 搭建环境对于上手框架的新人是一件头疼的事,多人协作开发,线上线下环境的一致也是一个很麻烦的问题,而<code>laradock</code>的使用,完美解决了这个问题,相比<code>homestead</code>与<code>vagrant</code>,<code>laradock</code>更加轻量级,只需要数秒就可以完成启动,既可以作为开发环境也可以作为生产环境,支持<code>PHP</code>、<code>MySQL</code>、 <code>Nginx</code>等一系列软件,且安装较为简便。</p>
@@ -344,6 +454,7 @@
 <li>初始化git仓库 <code>git init</code></li>
 <li>添加提交的文件</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -362,12 +473,14 @@
 </tr>
 </tbody>
 </table>
+</div>
 <ol>
 <li>提交修改提示 <code>git commit -m</code></li>
 <li>查看提交状态 <code>git status</code></li>
 <li>查看最近日志 <code>git log</code></li>
 <li>版本回退操作</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -390,6 +503,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <ol>
 <li>(第一次连接)远程仓库提交 <code>git remote add origin 你复制的地址</code></li>
 <li>(第二次以后)远程仓库提交 <code>git push</code></li>
@@ -452,7 +566,7 @@
 <p>这里我们加一个小的异常处理，也就是如果爬取不到我们将错误信息写入一个文件，文件名为<strong>Http error on time.ctime()</strong> 这里的<strong><a href="http://www.runoob.com/python/att-time-ctime.html" target="_blank" rel="external">time.ctime()</a></strong>是包含在time里面的一个函数，返回当前时间。</p>
 <p>然后用BeautifulSoup做成一锅汤<strong>soup = BeautifulSoup(html.text, ‘lxml’)</strong><br>这里我们用lxml HTML 解析器，因为它的优势是速度快，文档容错能力强，(更多关于BeautifulSoup)[<a href="http://cuiqingcai.com/1319.html" target="_blank" rel="external">http://cuiqingcai.com/1319.html</a>]</p>
 </blockquote>
-<p>之后我们用_find<em>all</em>找到每一个笑话，之后呢，把换行标签替换掉，然后加到data_list 中去</p>
+<p>之后我们用<em>find_all</em>找到每一个笑话，之后呢，把换行标签替换掉，然后加到data_list 中去</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> lxml</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getcontent</span><span class="params">(url)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        html = requests.get(url)</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="keyword">with</span> open(<span class="string">"log.log"</span>,<span class="string">"a"</span>) <span class="keyword">as</span> file:</div><div class="line">            file.write(<span class="string">"Http error on "</span> + time.ctime())</div><div class="line">        time.sleep(<span class="number">60</span>)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line">    soup = BeautifulSoup(html.text, <span class="string">'lxml'</span>)</div><div class="line">    data_list = []</div><div class="line">    <span class="keyword">for</span> cont <span class="keyword">in</span> soup.find_all(<span class="string">"div"</span>, &#123;<span class="string">"class"</span>:<span class="string">"content"</span>&#125;):</div><div class="line">        raw_data = cont.get_text()</div><div class="line">        data = raw_data.replace(<span class="string">"\n"</span>,<span class="string">""</span>)</div><div class="line">        data_list.append(data)</div><div class="line">    <span class="keyword">return</span> data_list</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    data_list = []</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">2</span>):</div><div class="line">        url = <span class="string">'https://www.qiushibaike.com/text/page/%s/'</span>%str(i)</div><div class="line">        temp_data = getcontent(url)</div><div class="line">        data_list.extend(temp_data)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data_list:</div><div class="line">        print(i)</div><div class="line">        print(<span class="string">'\n\n'</span>)</div><div class="line">main()</div></pre></td></tr></table></figure>
 <h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h3>]]></content>
     
@@ -473,11 +587,11 @@
     
       <category term="爬虫" scheme="http://andyhui.top/tags/%E7%88%AC%E8%99%AB/"/>
     
+      <category term="linux" scheme="http://andyhui.top/tags/linux/"/>
+    
       <category term="python" scheme="http://andyhui.top/tags/python/"/>
     
       <category term="requests" scheme="http://andyhui.top/tags/requests/"/>
-    
-      <category term="linux" scheme="http://andyhui.top/tags/linux/"/>
     
       <category term="BeautifulSoup" scheme="http://andyhui.top/tags/BeautifulSoup/"/>
     
@@ -517,7 +631,7 @@
 <p>首先拿出一个榜单来处理，由于不需要登陆就可以查看榜单所以我直接抓取榜单html页面</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTMLText</span><span class="params">(url)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        r = requests.get(url, timeout=<span class="number">30</span>)</div><div class="line">        r.raise_for_status()</div><div class="line">        r.encoding = r.apparent_encoding</div><div class="line">        <span class="keyword">return</span> r.text</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">for</span> no <span class="keyword">in</span> range(<span class="number">1166</span>,<span class="number">1169</span>):</div><div class="line">        url = <span class="string">'http://oj.acmclub.cn/contestrank.php?cid='</span>+str(no)</div><div class="line">        html = getHTMLText(url)</div><div class="line">        print(html)</div><div class="line">main()</div></pre></td></tr></table></figure>
-<p><strong>这算一个基本框架了，通过request得到网页源码，中间_r.raise_for<em>status()</em>是错误检查，后面是根据推断的编码类型设置字符编码</strong><br>运行结果如下<br><img src="http://githubblog.andyhui.top/result1.png" alt="result1"></p>
+<p><strong>这算一个基本框架了，通过request得到网页源码，中间<em>r.raise_for_status()</em>是错误检查，后面是根据推断的编码类型设置字符编码</strong><br>运行结果如下<br><img src="http://githubblog.andyhui.top/result1.png" alt="result1"></p>
 <h3 id="对html源码处理"><a href="#对html源码处理" class="headerlink" title="对html源码处理"></a>对html源码处理</h3><blockquote>
 <p>首先看网页源码</p>
 </blockquote>
@@ -557,11 +671,11 @@
     
       <category term="爬虫" scheme="http://andyhui.top/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="oj" scheme="http://andyhui.top/tags/oj/"/>
-    
       <category term="python" scheme="http://andyhui.top/tags/python/"/>
     
       <category term="requests" scheme="http://andyhui.top/tags/requests/"/>
+    
+      <category term="oj" scheme="http://andyhui.top/tags/oj/"/>
     
   </entry>
   

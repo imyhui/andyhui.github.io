@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="爬虫,oj,python,requests," />
+  <meta name="keywords" content="爬虫,python,requests,oj," />
 
 
 
@@ -102,7 +102,7 @@
 
 
 <meta name="description" content="假期俱乐部举办了编程训练营，每个人负责管理15人的营，每天作业会在oj的一个总榜上关于各营营长每天统计很麻烦，所以我写了一个简单的爬虫来节省一部分工作 代码改变世界，使人更高效的完成自己的工作   基本环境 Windows 10 + python 3.6.2 + requests 库">
-<meta name="keywords" content="爬虫,oj,python,requests">
+<meta name="keywords" content="爬虫,python,requests,oj">
 <meta property="og:type" content="article">
 <meta property="og:title" content="oj信息爬取">
 <meta property="og:url" content="http://andyhui.top/2017/08/29/ojrankscan/index.html">
@@ -445,7 +445,7 @@
 <p>首先拿出一个榜单来处理，由于不需要登陆就可以查看榜单所以我直接抓取榜单html页面</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTMLText</span><span class="params">(url)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        r = requests.get(url, timeout=<span class="number">30</span>)</div><div class="line">        r.raise_for_status()</div><div class="line">        r.encoding = r.apparent_encoding</div><div class="line">        <span class="keyword">return</span> r.text</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">for</span> no <span class="keyword">in</span> range(<span class="number">1166</span>,<span class="number">1169</span>):</div><div class="line">        url = <span class="string">'http://oj.acmclub.cn/contestrank.php?cid='</span>+str(no)</div><div class="line">        html = getHTMLText(url)</div><div class="line">        print(html)</div><div class="line">main()</div></pre></td></tr></table></figure>
-<p><strong>这算一个基本框架了，通过request得到网页源码，中间_r.raise_for<em>status()</em>是错误检查，后面是根据推断的编码类型设置字符编码</strong><br>运行结果如下<br><img src="http://githubblog.andyhui.top/result1.png" alt="result1"></p>
+<p><strong>这算一个基本框架了，通过request得到网页源码，中间<em>r.raise_for_status()</em>是错误检查，后面是根据推断的编码类型设置字符编码</strong><br>运行结果如下<br><img src="http://githubblog.andyhui.top/result1.png" alt="result1"></p>
 <h3 id="对html源码处理"><a href="#对html源码处理" class="headerlink" title="对html源码处理"></a>对html源码处理</h3><blockquote>
 <p>首先看网页源码</p>
 </blockquote>
@@ -485,11 +485,11 @@
           
             <a href="/tags/爬虫/" rel="tag"><i class="fa fa-tag"></i> 爬虫</a>
           
-            <a href="/tags/oj/" rel="tag"><i class="fa fa-tag"></i> oj</a>
-          
             <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
           
             <a href="/tags/requests/" rel="tag"><i class="fa fa-tag"></i> requests</a>
+          
+            <a href="/tags/oj/" rel="tag"><i class="fa fa-tag"></i> oj</a>
           
         </div>
       
@@ -600,7 +600,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -611,7 +611,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -622,7 +622,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1235,6 +1235,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
