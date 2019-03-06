@@ -104,7 +104,6 @@ print(s.twoSum([2, 7, 11, 15], 9))
 
 ##  [653] [两数之和 IV - 输入 BST](https://leetcode-cn.com/problems/two-sum-iv-input-is-a-bst/description/)
 
-> 剑指Offer34 二叉树中和为某一值的路径
 
 ### 描述
 
@@ -149,10 +148,96 @@ False
 ```
 
 ### 思路
-> Todo
+> 找到两数字存在即可
+>
+> **思路1**
+>
+> 前序遍历一遍，用`HashSet`记录访问过节点的值，对于每个值val查target-val是否存在即可，时间空间复杂度均为$$O(n)​$$
+>
+> **思路2**
+>
+> BFS遍历, 对树来说即层序遍历，同样用`HashSet`记录访问过的节点，与**思路1**不同的地方仅是树的遍历方式，时空复杂度均为$$O(n)$$
+>
+> **思路3**
+>
+> 给定的树为**二叉搜索树**，`inorder`遍历结果即为升序排列的列表，这样就转向了_**两数之和 II**_双指针即可完成查找，中序遍历加后面的查找，时空复杂度均为$$O(n)​$$
+>
+> 
 
 ###  代码
 ``` python
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
+# 思路1
+class Solution(object):
+    def findTarget(self, root, k):
+        """
+        :type root: TreeNode
+        :type k: int
+        :rtype: bool
+        """
+        dic = {}
+        return self.pre_order(root, dic, k)
+    def pre_order(self, root, dic, k):
+        if root == None:
+            return False
+        if k - root.val in dic:
+            return True
+        dic[root.val] = 1
+        return self.pre_order(root.left, dic, k) or self.pre_order(root.right, dic, k)
+    
+# 思路2
+    def findTarget2(self, root, k):
+        if not root:
+            return False
+        nodes, dic = [root], set()
+        for node in nodes:
+            if k - node.val in dic:
+                return True
+            dic.add(node.val)
+            if node.left:
+                nodes.append(node.left)
+            if node.right:
+                nodes.append(node.right)
+        return False
+# 思路3
+    def findTarget(self, root, k):
+        """
+        :type root: TreeNode
+        :type k: int
+        :rtype: bool
+        """
+        nums = self.inorder(root)
+        l,r = 0,len(nums) - 1
+        while l < r:
+            sum = nums[l] + nums[r]
+            if sum == k:
+                return True
+            elif sum < k:
+                l += 1
+            else:
+                r -= 1
+        return False
+    def inorder(self, root):
+        if root == None:
+            return []
+        return self.inorder(root.left) + [root.val] + self.inorder(root.right)
+  
+root = TreeNode(5)
+rl = TreeNode(3)
+rr = TreeNode(6)
+root.left = rl
+root.right = rr
+rl.left = TreeNode(2)
+rl.right = TreeNode(4)
+rr.right = TreeNode(7)
+s = Solution()
+print(s.findTarget(root,9))
 ```
 
+> 拓展 剑指Offer34 二叉树中和为某一值的路径
