@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="爬虫,python,requests,linux,BeautifulSoup," />
+  <meta name="keywords" content="python,爬虫,requests,linux,BeautifulSoup," />
 
 
 
@@ -102,14 +102,14 @@
 
 
 <meta name="description" content="一周前买了阿里云服务器，简单部署了一个JudgeService，感觉闲着也是闲着，决定在上面部署一个爬虫，打算每隔一段时间爬取糗事百科前几页的文本段子并以邮件的形式发送到qq邮箱中。   基本环境 requests + smtplib + bs4都可以用pip install 来安装">
-<meta name="keywords" content="爬虫,python,requests,linux,BeautifulSoup">
+<meta name="keywords" content="python,爬虫,requests,linux,BeautifulSoup">
 <meta property="og:type" content="article">
 <meta property="og:title" content="糗事百科爬虫">
 <meta property="og:url" content="http://andyhui.top/2017/09/02/qsbkspider/index.html">
 <meta property="og:site_name" content="andyhui&#39;s blog">
 <meta property="og:description" content="一周前买了阿里云服务器，简单部署了一个JudgeService，感觉闲着也是闲着，决定在上面部署一个爬虫，打算每隔一段时间爬取糗事百科前几页的文本段子并以邮件的形式发送到qq邮箱中。   基本环境 requests + smtplib + bs4都可以用pip install 来安装">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-04T07:44:12.000Z">
+<meta property="og:updated_time" content="2019-03-04T09:08:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="糗事百科爬虫">
 <meta name="twitter:description" content="一周前买了阿里云服务器，简单部署了一个JudgeService，感觉闲着也是闲着，决定在上面部署一个爬虫，打算每隔一段时间爬取糗事百科前几页的文本段子并以邮件的形式发送到qq邮箱中。   基本环境 requests + smtplib + bs4都可以用pip install 来安装">
@@ -389,6 +389,18 @@
 
           
           
+             <span id="/2017/09/02/qsbkspider/" class="leancloud_visitors" data-flag-title="糗事百科爬虫">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+             <span>°C</span>
+          
 
           
 
@@ -433,7 +445,7 @@
 <p>这里我们加一个小的异常处理，也就是如果爬取不到我们将错误信息写入一个文件，文件名为<strong>Http error on time.ctime()</strong> 这里的<strong><a href="http://www.runoob.com/python/att-time-ctime.html" target="_blank" rel="external">time.ctime()</a></strong>是包含在time里面的一个函数，返回当前时间。</p>
 <p>然后用BeautifulSoup做成一锅汤<strong>soup = BeautifulSoup(html.text, ‘lxml’)</strong><br>这里我们用lxml HTML 解析器，因为它的优势是速度快，文档容错能力强，(更多关于BeautifulSoup)[<a href="http://cuiqingcai.com/1319.html" target="_blank" rel="external">http://cuiqingcai.com/1319.html</a>]</p>
 </blockquote>
-<p>之后我们用_find<em>all</em>找到每一个笑话，之后呢，把换行标签替换掉，然后加到data_list 中去</p>
+<p>之后我们用<em>find_all</em>找到每一个笑话，之后呢，把换行标签替换掉，然后加到data_list 中去</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> lxml</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getcontent</span><span class="params">(url)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        html = requests.get(url)</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="keyword">with</span> open(<span class="string">"log.log"</span>,<span class="string">"a"</span>) <span class="keyword">as</span> file:</div><div class="line">            file.write(<span class="string">"Http error on "</span> + time.ctime())</div><div class="line">        time.sleep(<span class="number">60</span>)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line">    soup = BeautifulSoup(html.text, <span class="string">'lxml'</span>)</div><div class="line">    data_list = []</div><div class="line">    <span class="keyword">for</span> cont <span class="keyword">in</span> soup.find_all(<span class="string">"div"</span>, &#123;<span class="string">"class"</span>:<span class="string">"content"</span>&#125;):</div><div class="line">        raw_data = cont.get_text()</div><div class="line">        data = raw_data.replace(<span class="string">"\n"</span>,<span class="string">""</span>)</div><div class="line">        data_list.append(data)</div><div class="line">    <span class="keyword">return</span> data_list</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    data_list = []</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">2</span>):</div><div class="line">        url = <span class="string">'https://www.qiushibaike.com/text/page/%s/'</span>%str(i)</div><div class="line">        temp_data = getcontent(url)</div><div class="line">        data_list.extend(temp_data)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data_list:</div><div class="line">        print(i)</div><div class="line">        print(<span class="string">'\n\n'</span>)</div><div class="line">main()</div></pre></td></tr></table></figure>
 <h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h3>
       
@@ -452,9 +464,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/爬虫/" rel="tag"><i class="fa fa-tag"></i> 爬虫</a>
-          
             <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          
+            <a href="/tags/爬虫/" rel="tag"><i class="fa fa-tag"></i> 爬虫</a>
           
             <a href="/tags/requests/" rel="tag"><i class="fa fa-tag"></i> requests</a>
           
@@ -571,7 +583,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -582,7 +594,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -593,7 +605,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -703,7 +715,7 @@
 
   <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
 <div>
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
 本站访客数<span id="busuanzi_value_site_uv"></span>人次
 </div>
@@ -1202,10 +1214,139 @@
   
 
   
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("dCrPOQNiDQ29tSOe5VcIsoat-gzGzoHsz", "x0qryDBi7uNxVdyjsKP2sANS");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
   
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://andyhui.top/"/>
-  <updated>2019-03-04T07:44:12.000Z</updated>
+  <updated>2019-03-11T14:27:03.000Z</updated>
   <id>http://andyhui.top/</id>
   
   <author>
@@ -16,11 +16,382 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>剑指Offer 12矩阵中的路径</title>
+    <link href="http://andyhui.top/2019/03/11/%E5%89%91%E6%8C%87Offer-12%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/"/>
+    <id>http://andyhui.top/2019/03/11/剑指Offer-12矩阵中的路径/</id>
+    <published>2019-03-11T14:03:23.000Z</published>
+    <updated>2019-03-11T14:27:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="矩阵中的路径"><a href="#矩阵中的路径" class="headerlink" title="矩阵中的路径"></a><a href="https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&amp;tqId=11218&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="external">矩阵中的路径</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则之后不能再次进入这个格子。 例如 a b c e s f c s a d e e 这样的3 X 4 矩阵中包含一条字符串”bcced”的路径，但是矩阵中不包含”abcb”路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>首先应将字符串转为二维数组，然后对于每个字母作为起始字母<code>DFS</code>扫描一遍即可，注意搜索的写法。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hasPath</span><span class="params">(self, matrix, rows, cols, path)</span>:</span></div><div class="line">        <span class="comment"># write code here</span></div><div class="line">        <span class="keyword">if</span> rows == <span class="number">0</span> <span class="keyword">or</span> cols == <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        self.build_matrix(matrix, rows, cols)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(rows):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(cols):</div><div class="line">                <span class="keyword">if</span> self.find(i, j, <span class="number">0</span>, rows, cols, path):</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find</span><span class="params">(self, i, j, l, rows, cols, path)</span>:</span></div><div class="line">        <span class="keyword">if</span> l == len(path):</div><div class="line">            <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        <span class="keyword">if</span> i &lt; <span class="number">0</span> <span class="keyword">or</span> i &gt;= rows <span class="keyword">or</span> j &lt; <span class="number">0</span> <span class="keyword">or</span> j &gt;= cols <span class="keyword">or</span> self.flag[i][j] <span class="keyword">or</span> self.new_matrix[i][j] != path[l]:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        self.flag[i][j] = <span class="number">1</span></div><div class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> [[<span class="number">-1</span>, <span class="number">0</span>], [<span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">-1</span>], [<span class="number">0</span>, <span class="number">1</span>]]:</div><div class="line">            <span class="keyword">if</span> self.find(i+n[<span class="number">0</span>], j+n[<span class="number">1</span>], l+<span class="number">1</span>, rows, cols, path):</div><div class="line">                <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        self.flag[i][j] = <span class="number">0</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build_matrix</span><span class="params">(self, matrix, rows, cols)</span>:</span></div><div class="line">        self.flag = []</div><div class="line">        self.new_matrix = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(rows):</div><div class="line">            self.flag.append([<span class="number">0</span>]*cols)</div><div class="line">            self.new_matrix.append(list(matrix[i*cols:cols+i*cols]))</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># s = Solution()</span></div><div class="line"><span class="comment"># print(s.hasPath("ABCESFCSADEE", 3, 4, "ABCCED"))</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;矩阵中的路径&quot;&gt;&lt;a href=&quot;#矩阵中的路径&quot; class=&quot;headerlink&quot; title=&quot;矩阵中的路径&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&amp;amp;tqId=11218&amp;amp;tPage=1&amp;amp;rp=1&amp;amp;ru=/ta/coding-interviews&amp;amp;qru=/ta/coding-interviews/question-ranking&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;矩阵中的路径&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则之后不能再次进入这个格子。 例如 a b c e s f c s a d e e 这样的3 X 4 矩阵中包含一条字符串”bcced”的路径，但是矩阵中不包含”abcb”路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="剑指Offer" scheme="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+    
+    
+      <category term="algorithms" scheme="http://andyhui.top/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指Offer 7重建二叉树</title>
+    <link href="http://andyhui.top/2019/03/10/%E5%89%91%E6%8C%87Offer-7%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <id>http://andyhui.top/2019/03/10/剑指Offer-7重建二叉树/</id>
+    <published>2019-03-10T15:43:46.000Z</published>
+    <updated>2019-03-10T16:03:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="重建二叉树"><a href="#重建二叉树" class="headerlink" title="重建二叉树"></a><a href="https://www.nowcoder.com/practice/8a19cbe657394eeaac2f6ea9b0f6fcf6?tpId=13&amp;tqId=11157&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="external">重建二叉树</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>前序遍历取出根节点，可根据此将中序遍历结果分为左右子树两部分，递归实现此过程即可</p>
+</blockquote>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></div><div class="line">        self.val = x</div><div class="line">        self.left = <span class="keyword">None</span></div><div class="line">        self.right = <span class="keyword">None</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="comment"># 返回构造的TreeNode根节点</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reConstructBinaryTree</span><span class="params">(self, pre, tin)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> pre <span class="keyword">or</span> <span class="keyword">not</span> tin:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line">        root = TreeNode(pre.pop(<span class="number">0</span>))</div><div class="line">        index = tin.index(root.val)</div><div class="line">        root.left = self.reConstructBinaryTree(pre, tin[:index])</div><div class="line">        root.right = self.reConstructBinaryTree(pre, tin[index + <span class="number">1</span>:])</div><div class="line">        <span class="keyword">return</span> root</div></pre></td></tr></table></figure>
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p><a href="https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/" target="_blank" rel="external">LeetCode 1008. 先序遍历构造二叉搜索树</a></p>
+<blockquote>
+<p>返回与给定先序遍历 <code>preorder</code> 相匹配的二叉搜索树（binary <strong>search</strong> tree）的根结点。</p>
+<p><em>(回想一下，二叉搜索树是二叉树的一种，其每个节点都满足以下规则，对于 node.left 的任何后代，值总 &lt; node.val，而 node.right 的任何后代，值总 &gt; node.val。此外，先序遍历首先显示节点的值，然后遍历 node.left，接着遍历 node.right。）</em></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">输入：[8,5,1,7,10,12]</div><div class="line">输出：[8,5,10,1,7,null,12]</div></pre></td></tr></table></figure>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/03/08/1266.png" alt="img"></p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bstFromPreorder</span><span class="params">(self, preorder)</span> -&gt; TreeNode:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> preorder:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line">        root = TreeNode(preorder[<span class="number">0</span>])</div><div class="line">        itr = <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> itr &lt; len(preorder) <span class="keyword">and</span> preorder[itr] &lt; preorder[<span class="number">0</span>]:</div><div class="line">            itr += <span class="number">1</span></div><div class="line">        root.left = self.bstFromPreorder(preorder[<span class="number">1</span>: itr])</div><div class="line">        root.right = self.bstFromPreorder(preorder[itr:])</div><div class="line">        <span class="keyword">return</span> root</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;重建二叉树&quot;&gt;&lt;a href=&quot;#重建二叉树&quot; class=&quot;headerlink&quot; title=&quot;重建二叉树&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.nowcoder.com/practice/8a19cbe657394eeaac2f6ea9b0f6fcf6?tpId=13&amp;amp;tqId=11157&amp;amp;tPage=1&amp;amp;rp=1&amp;amp;ru=/ta/coding-interviews&amp;amp;qru=/ta/coding-interviews/question-ranking&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;重建二叉树&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="剑指Offer" scheme="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+    
+    
+      <category term="algorithms" scheme="http://andyhui.top/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指Offer15 二进制中1的个数</title>
+    <link href="http://andyhui.top/2019/03/09/%E5%89%91%E6%8C%87Offer15-%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0/"/>
+    <id>http://andyhui.top/2019/03/09/剑指Offer15-二进制中1的个数/</id>
+    <published>2019-03-09T15:46:00.000Z</published>
+    <updated>2019-03-09T16:24:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="二进制中1的个数"><a href="#二进制中1的个数" class="headerlink" title="二进制中1的个数"></a><a href="https://www.nowcoder.com/practice/8ee967e43c2c4ec193b040ea7fbb10b8?tpId=13&amp;tqId=11164&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&amp;tPage=1" target="_blank" rel="external">二进制中1的个数</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="思路1"><a href="#思路1" class="headerlink" title="思路1"></a>思路1</h3><blockquote>
+<p>32位整数取出每一位，与1做<code>&amp;</code>，求和即可</p>
+</blockquote>
+<h3 id="代码1"><a href="#代码1" class="headerlink" title="代码1"></a>代码1</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">NumberOf1</span><span class="params">(self, n)</span>:</span></div><div class="line">        <span class="comment"># move n</span></div><div class="line">        count = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">32</span>):</div><div class="line">            count += n &amp; <span class="number">1</span></div><div class="line">            n = n &gt;&gt; <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> count</div></pre></td></tr></table></figure>
+<h3 id="思路2"><a href="#思路2" class="headerlink" title="思路2"></a>思路2</h3><blockquote>
+<p>对比思路一，不对n做移位，而是用一个变量，实现一个过滤器的作用来取每一位</p>
+</blockquote>
+<h3 id="代码2"><a href="#代码2" class="headerlink" title="代码2"></a>代码2</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">NumberOf1</span><span class="params">(self, n)</span>:</span></div><div class="line">    <span class="comment"># move flag</span></div><div class="line">    count = <span class="number">0</span></div><div class="line">    flag = <span class="number">1</span></div><div class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">32</span>):</div><div class="line">        <span class="keyword">if</span> n &amp; flag:</div><div class="line">            count += <span class="number">1</span></div><div class="line">        flag &lt;&lt;=<span class="number">1</span></div><div class="line">    <span class="keyword">return</span> count</div></pre></td></tr></table></figure>
+<h3 id="思路3"><a href="#思路3" class="headerlink" title="思路3"></a>思路3</h3><blockquote>
+<p>对于一个数n, <code>n&amp;(n-1)</code>结果即消掉末尾1的结果，如8 = <script type="math/tex">(1100)_{2}</script>，8-1 = 7 = <script type="math/tex">(1011)_{2}</script></p>
+<p>1100 &amp; 1011 = 1000</p>
+<p>即消去了末尾的1</p>
+<p><strong>注意</strong></p>
+<p>由于Python 的动态类型，导致数字不会像<code>C++</code>那样溢出<code>int</code>范围变为0，因此要先做一步处理，若为负数则加上 2*32次方，转为补码，再进行统计</p>
+</blockquote>
+<h3 id="代码3"><a href="#代码3" class="headerlink" title="代码3"></a>代码3</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">NumberOf12</span><span class="params">(self, n)</span>:</span></div><div class="line">    <span class="comment"># not run if n&lt;0</span></div><div class="line">    <span class="keyword">if</span> n&lt;<span class="number">0</span>:</div><div class="line">        n += <span class="number">2</span>**<span class="number">32</span></div><div class="line">    count = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span> n != <span class="number">0</span>:</div><div class="line">        count += <span class="number">1</span></div><div class="line">        n = n &amp; (n<span class="number">-1</span>)</div><div class="line">    <span class="keyword">return</span> count</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;二进制中1的个数&quot;&gt;&lt;a href=&quot;#二进制中1的个数&quot; class=&quot;headerlink&quot; title=&quot;二进制中1的个数&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.nowcoder.com/practice/8ee967e43c2c4ec193b040ea7fbb10b8?tpId=13&amp;amp;tqId=11164&amp;amp;rp=1&amp;amp;ru=%2Fta%2Fcoding-interviews&amp;amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&amp;amp;tPage=1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;二进制中1的个数&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="剑指Offer" scheme="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+    
+    
+      <category term="algorithms" scheme="http://andyhui.top/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指Offer03 数组中重复的数字</title>
+    <link href="http://andyhui.top/2019/03/07/%E5%89%91%E6%8C%87Offer03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/"/>
+    <id>http://andyhui.top/2019/03/07/剑指Offer03-数组中重复的数字/</id>
+    <published>2019-03-07T15:55:00.000Z</published>
+    <updated>2019-03-07T16:40:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="数组中重复的数字"><a href="#数组中重复的数字" class="headerlink" title="数组中重复的数字"></a><a href="https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=0&amp;tqId=0&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="external">数组中重复的数字</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>排序后两两比较需要<script type="math/tex">O(nlogn)</script>时间，哈希表存储可以<script type="math/tex">O(1)</script> 查找，整体时间复杂度<script type="math/tex">O(n)</script> ，同时空间复杂度也为<script type="math/tex">O(n)</script>，若允许修改原数组，可以用原数组数的值和下标的对应关系来解，扫描到下标为i的数字m，若该m与i不同，则找数组中m位置对应的数字，若该数字与m相同，则重复，若不同则交换两数字位置，这种解法时间复杂度<script type="math/tex">O(n)</script>，空间复杂度<script type="math/tex">O(1)</script>。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="comment"># 这里要特别注意~找到任意重复的一个值并赋值到duplication[0]</span></div><div class="line">    <span class="comment"># 函数返回True/False</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">duplicate</span><span class="params">(self, numbers, duplication)</span>:</span></div><div class="line">        <span class="comment"># 允许修改数组 不允许额外空间</span></div><div class="line">        n = len(numbers)</div><div class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">            <span class="keyword">if</span> numbers[i] &lt; <span class="number">0</span> <span class="keyword">or</span> numbers[i] &gt; n - <span class="number">1</span>:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">            <span class="keyword">if</span> numbers[i] != i:</div><div class="line">                <span class="keyword">if</span> numbers[numbers[i]] == numbers[i]:</div><div class="line">                    duplication[<span class="number">0</span>] = numbers[i]</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">                tmp = numbers[numbers[i]]</div><div class="line">                numbers[numbers[i]] = numbers[i]</div><div class="line">                numbers[i] = tmp</div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line">s = Solution()</div><div class="line">x = [<span class="number">0</span>]</div><div class="line">print(s.duplicate([<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">3</span>],x))</div><div class="line">print(x)</div></pre></td></tr></table></figure>
+<h2 id="数组中重复数字2"><a href="#数组中重复数字2" class="headerlink" title="数组中重复数字2"></a>数组中重复数字2</h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>在一个长度为n+1的数组里的所有数字都在1~n的范围内，所以数组中至少有一个数字是重复的。请找出数组中任意一个重复的数字，但<strong>不能修改输入的数组</strong>。例如，如果输入长度为8的数组{2, 3, 5, 4, 3, 2, 6, 7}，那么对应的输出是重复的数字2或者3。</p>
+</blockquote>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>不修改数组，可以开一个大小为n的数组，与上题思路一致，若不适用额外空间，可采取二分统计数字，若一个s到e的范围内数字超过e-s + 1，则该范围内可能有重复的数字，采取二分查找即可。n个数字<code>count_range</code>被调用<script type="math/tex">O(log(n))</script>次，每次需<script type="math/tex">O(n)</script>时间，所以时间复杂度为<script type="math/tex">O(nlogn)</script>，空间复杂度为<script type="math/tex">O(1)</script></p>
+</blockquote>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><blockquote>
+<p>本题数组限制为<strong>长度为n+1的数组里的所有数字都在1~n的范围内</strong>，若没有这个条件可能解答会不成立</p>
+</blockquote>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"> <span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="comment"># 函数返回True/False</span></div><div class="line">     <span class="function"><span class="keyword">def</span> <span class="title">duplicate</span><span class="params">(self, numbers, duplication)</span>:</span></div><div class="line">            <span class="comment"># 不允许修改数组</span></div><div class="line">            n = len(numbers)</div><div class="line">            <span class="keyword">if</span> n == <span class="number">0</span>:</div><div class="line">                <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">            start, end = <span class="number">1</span>, n - <span class="number">1</span></div><div class="line">            <span class="keyword">while</span> start &lt;= end:</div><div class="line">                mid =  start + ((end-start)&gt;&gt;<span class="number">1</span>)</div><div class="line">                print(start,mid,end)</div><div class="line">                count = self.count_range(numbers, start, mid)</div><div class="line">                <span class="keyword">if</span> start == end:</div><div class="line">                    <span class="keyword">if</span> count &gt; <span class="number">1</span>:</div><div class="line">                        <span class="keyword">return</span> start</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        <span class="keyword">break</span></div><div class="line">                <span class="keyword">if</span> count &gt; mid - start + <span class="number">1</span>:</div><div class="line">                    end = mid</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    start = mid + <span class="number">1</span></div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span></div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">count_range</span><span class="params">(self, numbers, start, end)</span>:</span></div><div class="line">            <span class="keyword">if</span> len(numbers) == <span class="number">0</span>:</div><div class="line">                <span class="keyword">return</span> <span class="number">0</span></div><div class="line">            count = <span class="number">0</span></div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> numbers:</div><div class="line">                <span class="keyword">if</span> i &gt;= start <span class="keyword">and</span> i &lt;= end:</div><div class="line">                    count += <span class="number">1</span></div><div class="line">            <span class="keyword">return</span> count</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;数组中重复的数字&quot;&gt;&lt;a href=&quot;#数组中重复的数字&quot; class=&quot;headerlink&quot; title=&quot;数组中重复的数字&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=0&amp;amp;tqId=0&amp;amp;rp=1&amp;amp;ru=/ta/coding-interviews&amp;amp;qru=/ta/coding-interviews/question-ranking&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;数组中重复的数字&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="剑指Offer" scheme="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+    
+    
+      <category term="algorithms" scheme="http://andyhui.top/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python 练习册，每天一个小程序</title>
+    <link href="http://andyhui.top/2019/03/06/Python-%E7%BB%83%E4%B9%A0%E5%86%8C%EF%BC%8C%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    <id>http://andyhui.top/2019/03/06/Python-练习册，每天一个小程序/</id>
+    <published>2019-03-06T15:23:00.000Z</published>
+    <updated>2019-03-06T16:02:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>Talk is cheap. Show me the code.—Linus Torvalds</p>
+</blockquote>
+<p>最近发现一个有趣的项目——<a href="https://github.com/Yixiaohan/show-me-the-code" target="_blank" rel="external"><strong>show-me-the-code</strong></a>，25道<code>python</code>, 题目，涵盖各个方面，同时兼具挑战性，考察编码能力和资料搜集学习能力。</p>
+<a id="more"></a>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>完整代码在<a href="https://github.com/imyhui/show-me-the-code/" target="_blank" rel="external">这里</a>更新，为了不污染全局Python环境，使用了<a href="https://github.com/pypa/pipenv" target="_blank" rel="external"><code>pipenv</code></a>管理依赖，要运行代码只需只需</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">pipenv install</div><div class="line">pipenv shell</div><div class="line">python xxx.py</div></pre></td></tr></table></figure>
+<h2 id="0000"><a href="#0000" class="headerlink" title="0000"></a>0000</h2><blockquote>
+<p>将你的 QQ 头像（或者微博头像）右上角加上红色的数字，类似于微信未读信息数量那种提示效果。 </p>
+</blockquote>
+<p>查资料得知，<code>Python3</code>图像处理库为Pillow，于是看到了<em>廖雪峰</em>老师的<a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014320027235877860c87af5544f25a8deeb55141d60c5000" target="_blank" rel="external">教程</a>，简单看了下几个例子及<a href="https://pillow.readthedocs.io/en/stable/index.html" target="_blank" rel="external">Pillow文档</a>，代码便很容易写了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, ImageDraw, ImageFont</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment"># 打开图片，获取图片宽度和高度</span></div><div class="line">    im = Image.open(<span class="string">'avatar.jpg'</span>)</div><div class="line">    w, h = im.size</div><div class="line">    </div><div class="line">    <span class="comment"># 创建Draw对象</span></div><div class="line">    draw = ImageDraw.Draw(im)</div><div class="line">    <span class="comment"># 导入字体创建Font对象</span></div><div class="line">    font = ImageFont.truetype(<span class="string">'Arial.ttf'</span>, <span class="number">36</span>)</div><div class="line">    <span class="comment"># 图片左上角为(0, 0), 绘制文本为'99+', 字体为导入的字体，填充颜色为红色</span></div><div class="line">    draw.text((w*<span class="number">0.90</span>, h*<span class="number">0.01</span>),<span class="string">'99+'</span>, font=font,fill=<span class="string">'#FF0000'</span>)</div><div class="line"></div><div class="line">    im.show()</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    main()</div></pre></td></tr></table></figure>
+<p>运行效果</p>
+<p><img src="http://githubblog.andyhui.top/add_num.png" alt="add_num_pic"></p>
+<p>未完待续。。。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;Talk is cheap. Show me the code.—Linus Torvalds&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;最近发现一个有趣的项目——&lt;a href=&quot;https://github.com/Yixiaohan/show-me-the-code&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;strong&gt;show-me-the-code&lt;/strong&gt;&lt;/a&gt;，25道&lt;code&gt;python&lt;/code&gt;, 题目，涵盖各个方面，同时兼具挑战性，考察编码能力和资料搜集学习能力。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="python" scheme="http://andyhui.top/categories/python/"/>
+    
+    
+      <category term="python" scheme="http://andyhui.top/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode 两数之和系列</title>
+    <link href="http://andyhui.top/2019/03/05/LeetCode%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
+    <id>http://andyhui.top/2019/03/05/LeetCode 两数之和/</id>
+    <published>2019-03-05T14:10:00.000Z</published>
+    <updated>2019-03-06T14:29:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="[1] 两数之和"></a>[1] <a href="https://leetcode-cn.com/problems/two-sum/description/" target="_blank" rel="external">两数之和</a></h2><h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><blockquote>
+<p> 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h3><blockquote>
+<p>给定 nums = [2, 7, 11, 15], target = 9</p>
+<p>因为 nums[0] + nums[1] = 2 + 7 = 9<br> 所以返回 [0, 1]</p>
+</blockquote>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>对于本题，给出的数组是未排序的，若两两求和需要<script type="math/tex">O(n^{2})</script>, 如果排序后再双指针遍历，则需要<script type="math/tex">O(nlogn + n)</script>, 考虑到<code>HashMap</code>，可以<script type="math/tex">O(1)</script> 查找，因此对于一个数字nums[i],如果target-nums[i]出现过，则输出对应位置，若不存在则记录该数字与位置。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums, target)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type nums: List[int]</span></div><div class="line"><span class="string">        :type target: int</span></div><div class="line"><span class="string">        :rtype: List[int]</span></div><div class="line"><span class="string">        """</span></div><div class="line">        <span class="keyword">if</span> len(nums) &lt; <span class="number">2</span>:</div><div class="line">            <span class="keyword">return</span> [<span class="number">-1</span>, <span class="number">-1</span>]</div><div class="line">        map = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</div><div class="line">            <span class="keyword">if</span> target - nums[i] <span class="keyword">in</span> map:</div><div class="line">                <span class="keyword">return</span> [i, map[target - nums[i]]]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                map[nums[i]] = i</div><div class="line"></div><div class="line">s = Solution()</div><div class="line">print(s.twoSum([<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>],<span class="number">9</span>))</div></pre></td></tr></table></figure>
+<h2 id="167-两数之和-II-输入有序数组"><a href="#167-两数之和-II-输入有序数组" class="headerlink" title="[167] 两数之和 II - 输入有序数组"></a>[167] <a href="https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/description/" target="_blank" rel="external">两数之和 II - 输入有序数组</a></h2><h3 id="描述-1"><a href="#描述-1" class="headerlink" title="描述"></a>描述</h3><blockquote>
+<p> 给定一个已按照升序排列 的有序数组，找到两个数使得它们相加之和等于目标数。</p>
+<p> 函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2。</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h3><p> 返回的下标值（index1 和 index2）不是从零开始的。</p>
+<p> 你可以假设每个输入只对应唯一的答案，而且你不可以重复使用相同的元素。</p>
+</blockquote>
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例:"></a>示例:</h3><blockquote>
+<p>输入: numbers = [2, 7, 11, 15], target = 9</p>
+<p>输出: [1,2]</p>
+<p>解释: 2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。</p>
+</blockquote>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>双指针i,j，i指向较小元素，j指向较大元素，</p>
+<p>令 sum = numbers[i]+numbers[j]</p>
+<p>若sum &lt; target,  i+= 1, 使 sum 变大</p>
+<p>若sum &gt; target, j -=  1，使 sum 变小</p>
+</blockquote>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, numbers, target)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type numbers: List[int]</span></div><div class="line"><span class="string">        :type target: int</span></div><div class="line"><span class="string">        :rtype: List[int]</span></div><div class="line"><span class="string">        """</span></div><div class="line">        i = <span class="number">0</span></div><div class="line">        j = len(numbers) - <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> i &lt; j:</div><div class="line">            sum = numbers[i] + numbers[j]</div><div class="line">            <span class="keyword">if</span> sum == target:</div><div class="line">                <span class="keyword">return</span> [i+<span class="number">1</span>, j+<span class="number">1</span>]</div><div class="line">            <span class="keyword">elif</span> sum &lt; target:</div><div class="line">                i += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                j -= <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> [<span class="number">-1</span>, <span class="number">-1</span>]</div><div class="line">            </div><div class="line">s = Solution()</div><div class="line">print(s.twoSum([<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>], <span class="number">9</span>))</div></pre></td></tr></table></figure>
+<h2 id="653-两数之和-IV-输入-BST"><a href="#653-两数之和-IV-输入-BST" class="headerlink" title="[653] 两数之和 IV - 输入 BST"></a>[653] <a href="https://leetcode-cn.com/problems/two-sum-iv-input-is-a-bst/description/" target="_blank" rel="external">两数之和 IV - 输入 BST</a></h2><h3 id="描述-2"><a href="#描述-2" class="headerlink" title="描述"></a>描述</h3><blockquote>
+<p> 给定一个二叉搜索树和一个目标结果，如果 BST 中存在两个元素且它们的和等于给定的目标结果，则返回 true。</p>
+<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例:"></a>示例:</h3></blockquote>
+<h4 id="案例-1"><a href="#案例-1" class="headerlink" title="案例 1:"></a>案例 1:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">输入: </div><div class="line">⁠   5</div><div class="line">⁠  / \</div><div class="line">⁠ 3   6</div><div class="line">⁠/ \   \</div><div class="line">2   4   7</div><div class="line"></div><div class="line">Target = 9</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">输出:</div><div class="line">True</div></pre></td></tr></table></figure>
+<h4 id="案例-2"><a href="#案例-2" class="headerlink" title="案例 2:"></a>案例 2:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">输入: </div><div class="line">⁠   5</div><div class="line">⁠  / \</div><div class="line">⁠ 3   6</div><div class="line">⁠/ \   \</div><div class="line">2   4   7</div><div class="line"></div><div class="line">Target = 28</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">输出:</div><div class="line">False</div></pre></td></tr></table></figure>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>找到两数字存在即可</p>
+<p><strong>思路1</strong></p>
+<p>前序遍历一遍，用<code>HashSet</code>记录访问过节点的值，对于每个值val查target-val是否存在即可，时间空间复杂度均为<script type="math/tex">O(n)​</script></p>
+<p><strong>思路2</strong></p>
+<p>BFS遍历, 对树来说即层序遍历，同样用<code>HashSet</code>记录访问过的节点，与<strong>思路1</strong>不同的地方仅是树的遍历方式，时空复杂度均为<script type="math/tex">O(n)</script></p>
+<p><strong>思路3</strong></p>
+<p>给定的树为<strong>二叉搜索树</strong>，<code>inorder</code>遍历结果即为升序排列的列表，这样就转向了<em><strong>两数之和 II</strong></em>双指针即可完成查找，中序遍历加后面的查找，时空复杂度均为<script type="math/tex">O(n)​</script></p>
+</blockquote>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for a binary tree node.</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></div><div class="line">        self.val = x</div><div class="line">        self.left = <span class="keyword">None</span></div><div class="line">        self.right = <span class="keyword">None</span></div><div class="line"></div><div class="line"><span class="comment"># 思路1</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findTarget</span><span class="params">(self, root, k)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type root: TreeNode</span></div><div class="line"><span class="string">        :type k: int</span></div><div class="line"><span class="string">        :rtype: bool</span></div><div class="line"><span class="string">        """</span></div><div class="line">        dic = &#123;&#125;</div><div class="line">        <span class="keyword">return</span> self.pre_order(root, dic, k)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pre_order</span><span class="params">(self, root, dic, k)</span>:</span></div><div class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        <span class="keyword">if</span> k - root.val <span class="keyword">in</span> dic:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        dic[root.val] = <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> self.pre_order(root.left, dic, k) <span class="keyword">or</span> self.pre_order(root.right, dic, k)</div><div class="line">    </div><div class="line"><span class="comment"># 思路2</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findTarget2</span><span class="params">(self, root, k)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        nodes, dic = [root], set()</div><div class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> nodes:</div><div class="line">            <span class="keyword">if</span> k - node.val <span class="keyword">in</span> dic:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">            dic.add(node.val)</div><div class="line">            <span class="keyword">if</span> node.left:</div><div class="line">                nodes.append(node.left)</div><div class="line">            <span class="keyword">if</span> node.right:</div><div class="line">                nodes.append(node.right)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"><span class="comment"># 思路3</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findTarget</span><span class="params">(self, root, k)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type root: TreeNode</span></div><div class="line"><span class="string">        :type k: int</span></div><div class="line"><span class="string">        :rtype: bool</span></div><div class="line"><span class="string">        """</span></div><div class="line">        nums = self.inorder(root)</div><div class="line">        l,r = <span class="number">0</span>,len(nums) - <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> l &lt; r:</div><div class="line">            sum = nums[l] + nums[r]</div><div class="line">            <span class="keyword">if</span> sum == k:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">            <span class="keyword">elif</span> sum &lt; k:</div><div class="line">                l += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                r -= <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inorder</span><span class="params">(self, root)</span>:</span></div><div class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</div><div class="line">            <span class="keyword">return</span> []</div><div class="line">        <span class="keyword">return</span> self.inorder(root.left) + [root.val] + self.inorder(root.right)</div><div class="line">  </div><div class="line">root = TreeNode(<span class="number">5</span>)</div><div class="line">rl = TreeNode(<span class="number">3</span>)</div><div class="line">rr = TreeNode(<span class="number">6</span>)</div><div class="line">root.left = rl</div><div class="line">root.right = rr</div><div class="line">rl.left = TreeNode(<span class="number">2</span>)</div><div class="line">rl.right = TreeNode(<span class="number">4</span>)</div><div class="line">rr.right = TreeNode(<span class="number">7</span>)</div><div class="line">s = Solution()</div><div class="line">print(s.findTarget(root,<span class="number">9</span>))</div></pre></td></tr></table></figure>
+<blockquote>
+<p>拓展 剑指Offer34 二叉树中和为某一值的路径</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1-两数之和&quot;&gt;&lt;a href=&quot;#1-两数之和&quot; class=&quot;headerlink&quot; title=&quot;[1] 两数之和&quot;&gt;&lt;/a&gt;[1] &lt;a href=&quot;https://leetcode-cn.com/problems/two-sum/description/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;两数之和&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot; title=&quot;描述&quot;&gt;&lt;/a&gt;描述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt; 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。&lt;/p&gt;
+&lt;p&gt;你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="http://andyhui.top/categories/leetcode/"/>
+    
+    
+      <category term="algorithms" scheme="http://andyhui.top/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CI 持续集成</title>
+    <link href="http://andyhui.top/2019/03/04/Continuous_Integration/"/>
+    <id>http://andyhui.top/2019/03/04/Continuous_Integration/</id>
+    <published>2019-03-04T11:45:00.000Z</published>
+    <updated>2019-03-04T16:07:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前废弃Hexo时，觉得hexo比较麻烦，每次都要执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo deploy</div><div class="line">hexo generate</div></pre></td></tr></table></figure></p>
+<p>，才能推到线上，虽然有人把命令简化了一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo clean &amp;&amp; hexo d -g</div></pre></td></tr></table></figure></p>
+<p>一行就能搞定，但我还是觉得命令太长，每次复制太麻烦，于是发现了持续集成工具<a href="https://www.travis-ci.org/" target="_blank" rel="external"><code>travis-ci</code></a>，因此顺便了解一下持续集成。<br><a id="more"></a></p>
+<h2 id="什么是持续集成？"><a href="#什么是持续集成？" class="headerlink" title="什么是持续集成？"></a>什么是持续集成？</h2><blockquote>
+<p>持续集成（英语：Continuous integration，缩写 CI）是一种软件工程流程，是将所有软件工程师对于软件的工作副本持续集成到共享主线（mainline）的一种举措。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。</p>
+</blockquote>
+<p>也就是说，上面的命令可以通过持续集成工具自动化执行，这样每次我们对博客做出的修改，只需提交<code>commit</code>后，推送到<code>github</code>，持续集成工具自动在线构建博客并部署到<code>GitHub Pages</code>,简化了博客发布流程。</p>
+<p>下面是几张图片描述下持续集成、持续交付和持续部署</p>
+<h3 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h3><p><img src="http://githubblog.andyhui.top/image/Continuous_Integration%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%20Continuous%20Integration.jpeg" alt="持续集成流程"></p>
+<blockquote>
+<p>持续集成强调开发人员提交了新代码之后，立刻进行构建、（单元）测试。根据测试结果，我们可以确定新代码和原有代码能否正确地集成在一起。</p>
+</blockquote>
+<h3 id="持续交付"><a href="#持续交付" class="headerlink" title="持续交付"></a>持续交付</h3><p><img src="http://githubblog.andyhui.top/image/Continuous_Integration%E6%8C%81%E7%BB%AD%E4%BA%A4%E4%BB%98%20Continuous%20Delivery.jpeg" alt="持续交付流程"></p>
+<blockquote>
+<p>持续交付在持续集成的基础上，将集成后的代码部署到更贴近真实运行环境的「类生产环境」（production-like environments）中。比如，我们完成单元测试后，可以把代码部署到连接数据库的 Staging 环境中更多的测试。如果代码没有问题，可以继续手动部署到生产环境中。</p>
+</blockquote>
+<h3 id="持续部署"><a href="#持续部署" class="headerlink" title="持续部署"></a>持续部署</h3><p><img src="http://githubblog.andyhui.top/image/Continuous_Integration%E6%8C%81%E7%BB%AD%E9%83%A8%E7%BD%B2%20Continuous%20Deployment.jpeg" alt="持续部署流程"></p>
+<blockquote>
+<p>持续部署则是在持续交付的基础上，把部署到生产环境的过程自动化。</p>
+</blockquote>
+<h2 id="关于Hexo的一次持续集成实践"><a href="#关于Hexo的一次持续集成实践" class="headerlink" title="关于Hexo的一次持续集成实践"></a>关于Hexo的一次持续集成实践</h2><blockquote>
+<p>详细流程见<a href="https://easyhexo.com/1-Hexo-install-and-config/1-5-continuous-integration.html#%E6%B3%A8%E5%86%8C-travis-ci-%E8%B4%A6%E5%8F%B7%EF%BC%8C%E7%BB%91%E5%AE%9A-github-%E8%B4%A6%E6%88%B7" target="_blank" rel="external">这里</a></p>
+</blockquote>
+<p>写下对于这个的一些补充</p>
+<ol>
+<li>对于博客源文件，最好添加<strong><code>.gitignore</code></strong>,忽略掉<code>node_modules</code>，依赖文件太大，影响上传速度。</li>
+<li>仓库必须Public,私有仓库既不能通过name.github.io访问，也不能完成CI</li>
+<li>对于主题文件，如果有<code>.git</code>文件可能会造成git add失败，如果主题不打算更新可删掉主题文件内的<code>.git</code>文件夹</li>
+</ol>
+<h2 id="下一步计划"><a href="#下一步计划" class="headerlink" title="下一步计划"></a>下一步计划</h2><ul>
+<li>学习主流CI工具，如<a href="https://juejin.im/entry/565fbc6c60b215d646403d33" target="_blank" rel="external"><code>Jenkins</code></a></li>
+<li><a href="https://juejin.im/entry/5a2a269df265da43052e8878" target="_blank" rel="external">基于Docker的CI平台实践</a></li>
+</ul>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://easyhexo.com/1-Hexo-install-and-config/1-5-continuous-integration.html#%E4%BB%80%E4%B9%88%E6%98%AF%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%EF%BC%9F" target="_blank" rel="external">EasyHexo 持续集成Continuous Integration
+</a></p>
+<p><a href="https://blog.csdn.net/jjm1437/article/details/71601450" target="_blank" rel="external">致产品经理： 持续集成、持续交付、持续部署和DevOps
+</a><br><a href="https://www.zhihu.com/question/23444990" target="_blank" rel="external">如何理解持续集成、持续交付、持续部署？
+</a></p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p><a href="https://zhuanlan.zhihu.com/p/33206437" target="_blank" rel="external">微服务化的基石——持续集成
+</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;之前废弃Hexo时，觉得hexo比较麻烦，每次都要执行&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;hexo clean&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;hexo deploy&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;hexo generate&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;，才能推到线上，虽然有人把命令简化了一下&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;hexo clean &amp;amp;&amp;amp; hexo d -g&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;一行就能搞定，但我还是觉得命令太长，每次复制太麻烦，于是发现了持续集成工具&lt;a href=&quot;https://www.travis-ci.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;code&gt;travis-ci&lt;/code&gt;&lt;/a&gt;，因此顺便了解一下持续集成。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="devops" scheme="http://andyhui.top/categories/devops/"/>
+    
+    
+      <category term="CI" scheme="http://andyhui.top/tags/CI/"/>
+    
+      <category term="devops" scheme="http://andyhui.top/tags/devops/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>新的开始</title>
+    <link href="http://andyhui.top/2019/03/04/1stoftterm/"/>
+    <id>http://andyhui.top/2019/03/04/1stoftterm/</id>
+    <published>2019-03-04T08:22:00.000Z</published>
+    <updated>2019-03-04T11:41:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>2019年3月4日，大三下新学期开始的第一天</p>
+<p>又重新把远古的hexo博客重新在黑苹果上，记得上次折腾博客还是在大一下的那个暑假，那时还在搞算法，正值暑期培训，开学就面临着学习算法还是开发的抉择。<br><a id="more"></a></p>
+<p>人生的好多选择都在不经意间，一方面觉得自己高中没参加过算法竞赛，可能基础落后一些，另一方面经过几次集训联赛，已经彻底对算法失去了信心，学习算法的确有些枯燥，整日面向输入输出编程，屏幕里只有黑框框，也正是这样，走上了web开发这条道路。(有时候会对自己做过的选择有些后悔，但转念一想，是之前的所有选择造就了现在的我，在特定时间点上，对于那个时候的我来说，选项可能本来就只有一个）。</p>
+<p>两次多校联赛后，连签到题都不想看了，那时对于web开发的理解，仅止于开发网站，不知道前后端是干啥的，稀里糊涂的就开始了后端开发这条路（虽然最初的一些工作并不是后端的），看别人的教程，说先从搭建一个博客开始，于是我开始了对hexo的折腾。那时候经常翻别人的博客，看到有意思的便查实现，然后照搬到自己的博客上，最终的作品在那时看来还是有模有样的(现在看来我确实不适合做前端）。</p>
+<p>大二上开学后，留部答辩，拿着我的hexo博客已经几个入门级的爬虫参加了面试，那时的我还沾沾自喜，觉得自己学到了不少东西，面试结束后，敲响了一记警钟，时刻要保持虔诚，不要因为看到了这个行业的一点就自以为窥一斑而见全豹，犹记得我告诉下一届学弟学妹，搭建博客不在搭建美化的过程，而在于你的记录，勤于写博客才是搭建博客的真正意义，然而，我自己都没有做到……</p>
+<hr>
+<p>现在，已经是大三下学期了，上届的学长们在这个时候，早已经出去实习了，自己相较于那时的他们，还是太菜了，固守于旧知识，没有任何计划，盲目的去学习，可能是那段时间最真实的写照，不要看到什么都想要去了解一下，仅仅是为了增加谈资的学习，真的是不值得。找准目标，有目的有计划的学习，是今后努力的方向。</p>
+<p>寒假对面试做了一部分准备，相较于持续不断的学习，考前突击这样的填鸭式灌输一点效果都没有，经过一次面试，也对整个流程有了更深入的了解，同时，也对自己的水平有了正确的认识，面试，不能抱着答上来就万事大吉了，面试是对自己的知识水平的考察，准备面试的过程，也是知识积累的过程，固然面试难度不同以往，但只要自身实力过硬，是不会愁没有伯乐的。</p>
+<p>寒假时，看到别人拿到offer，已经走入实习岗位，多少还是有些焦虑的，觉得自己落后了好多，甚至一度觉得自己不适合开发，不如去考研逃避一下，后来渐渐释然了，不一定要刻意的去走别人的道路，那只是正确道路的一条，并不一定适合自己，自己做出的选择，要对自己负责，人生没有SL，能做的只是谨慎对待每次选择。</p>
+<p>重新启用这个博客，博客的样式也不在那么华丽，换了一个简约的风格，可能这样更适合自己，洗尽铅华，归于平淡，谨以此博客记录接下来的学习历程。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;2019年3月4日，大三下新学期开始的第一天&lt;/p&gt;
+&lt;p&gt;又重新把远古的hexo博客重新在黑苹果上，记得上次折腾博客还是在大一下的那个暑假，那时还在搞算法，正值暑期培训，开学就面临着学习算法还是开发的抉择。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="个人" scheme="http://andyhui.top/categories/%E4%B8%AA%E4%BA%BA/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>15分钟用Docker部署PHP开发环境</title>
     <link href="http://andyhui.top/2017/12/09/LaradockInstall/"/>
     <id>http://andyhui.top/2017/12/09/LaradockInstall/</id>
     <published>2017-12-08T18:41:17.000Z</published>
-    <updated>2019-03-04T07:44:12.000Z</updated>
+    <updated>2019-03-04T11:00:54.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="为什么使用laradock"><a href="#为什么使用laradock" class="headerlink" title="为什么使用laradock"></a>为什么使用laradock</h2><blockquote>
 <p> 搭建环境对于上手框架的新人是一件头疼的事,多人协作开发,线上线下环境的一致也是一个很麻烦的问题,而<code>laradock</code>的使用,完美解决了这个问题,相比<code>homestead</code>与<code>vagrant</code>,<code>laradock</code>更加轻量级,只需要数秒就可以完成启动,既可以作为开发环境也可以作为生产环境,支持<code>PHP</code>、<code>MySQL</code>、 <code>Nginx</code>等一系列软件,且安装较为简便。</p>
@@ -111,7 +482,7 @@
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; docker-compose restart nginx</div><div class="line">Restarting laradock_nginx_1 ... done</div></pre></td></tr></table></figure>
 </li>
 <li><p>打开浏览器输入<code>testapp.dev</code>看到如下界面即安装成功</p>
-<p>  <img src="http://ov8i0dn6x.bkt.clouddn.com/%E6%88%90%E5%8A%9F.png" alt="安装成功"></p>
+<p>  <img src="http://githubblog.andyhui.top/%E6%88%90%E5%8A%9F.png" alt="安装成功"></p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://laradock.io/" target="_blank" rel="external">官方文档</a><br><a href="https://github.com/laradock/laradock" target="_blank" rel="external">项目地址</a></p>
 </li>
 </ul>
@@ -146,7 +517,7 @@
     <link href="http://andyhui.top/2017/11/04/learnpath/"/>
     <id>http://andyhui.top/2017/11/04/learnpath/</id>
     <published>2017-11-04T03:30:01.000Z</published>
-    <updated>2019-03-04T07:44:12.000Z</updated>
+    <updated>2019-03-04T09:07:59.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>大一刷了一年算法 到省赛结束也算是圆满退役了，从暑假开始零零散散的学习web开发，到现到现在大二上过半了依旧很迷茫，还好接下来的时间不太忙碌，足够去弥补。前段时间在思考写博客的意义是什么，一方面，作为一个博客，是要记录自己的学习历程，另一方面，是留给后来者，能给别人以启迪，算是实现了写博客的意义吧。之前写的几篇，都是偏向教程向，写起来很累，基本是从0开始考虑的，后续我觉得还是以记录为主，但教程还是要继续写的，现在网络这么普及，网上教程五花八门，中间会有各种坑,而且连贯性很差，我希望留下点东西能给后来者。<br>接下是学长给的后端开发学习路线，顺便就拿过来了，接下来我会在学长的基础上完善这个教程，留作俱乐部的学习资料。</p>
@@ -201,7 +572,7 @@
     <link href="http://andyhui.top/2017/09/20/gitfirstuse/"/>
     <id>http://andyhui.top/2017/09/20/gitfirstuse/</id>
     <published>2017-09-20T11:35:10.000Z</published>
-    <updated>2019-03-04T07:44:12.000Z</updated>
+    <updated>2019-03-04T09:12:53.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="什么是-Git"><a href="#什么是-Git" class="headerlink" title="什么是 Git"></a>什么是 Git</h3><blockquote>
 <p><strong>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</strong> 项目加上Git后能能更好的追踪代码修改，进行版本回溯等操作。当今时代，多人协作开发是公司合作的基本模式，在多人协作的开发过程中Git变得必不可少，接下来大致介绍下Git的基本命令以及GitHub的基本使用。</p>
@@ -220,17 +591,17 @@
 </ul>
 <p>转自 <a href="http://www.jianshu.com/p/834678d9c213" target="_blank" rel="external">Koudle</a></p>
 <h3 id="Git的下载及安装"><a href="#Git的下载及安装" class="headerlink" title="Git的下载及安装"></a>Git的下载及安装</h3><p>首先肯定是<a href="https://git-scm.com/downloads" target="_blank" rel="external">下载Git</a><br>( <code>提醒:资源下载较慢，推荐挂vpn</code>)</p>
-<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/git%E4%B8%8B%E8%BD%BD.png" alt="git下载"></p>
+<p><img src="http://githubblog.andyhui.top/image/gitfirstuse/git%E4%B8%8B%E8%BD%BD.png" alt="git下载"></p>
 <p>然后安装界面如下(<code>windows平台</code>)</p>
-<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E5%AE%89%E8%A3%851.png" alt="安装1"></p>
+<p><img src="http://githubblog.andyhui.top/image/gitfirstuse/%E5%AE%89%E8%A3%851.png" alt="安装1"></p>
 <p>这里注意这两个都是添加到右键菜单栏，很好用</p>
-<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E5%AE%89%E8%A3%852.png" alt="安装2"></p>
+<p><img src="http://githubblog.andyhui.top/image/gitfirstuse/%E5%AE%89%E8%A3%852.png" alt="安装2"></p>
 <p>一路next下去就好</p>
 <p>安装完后 打开终端输入<br><code>注意 $ 是表示从命令行输入，不用自己输入，只需要输入后面内容即可，后面一致</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git --version</div></pre></td></tr></table></figure></p>
 <p>如果显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git version 2.14.1.windows.1</div></pre></td></tr></table></figure></p>
 <p>表示安装成功了</p>
 <h3 id="Git基本设置"><a href="#Git基本设置" class="headerlink" title="Git基本设置"></a>Git基本设置</h3><p>在桌面上右键<code>Git Bash here</code> 启动git bush命令行界面<br>当然也可以从终端打开</p>
-<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E5%90%AF%E5%8A%A8.png" alt="启动"></p>
+<p><img src="http://githubblog.andyhui.top/image/gitfirstuse/%E5%90%AF%E5%8A%A8.png" alt="启动"></p>
 <p>首先我们对 <code>Git</code> 进行全局用户名和邮箱进行设置，请参照下面格式，<code>Your Name</code> 替换为你的名字， <code>you@example.com</code> 替换为你的邮箱<br>这里个人信息设置的作用，是为你在代码提交时自动署名标记，方便查看提交日志时区分作者。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;Your Name&quot;</div><div class="line">$ git config --global user.email you@example.com</div></pre></td></tr></table></figure></p>
 <p>接下来进行Git推送分支相关设置<br>这个是命令 <code>Git</code>当我们执行 <code>git push</code> 没有指定分支时，自动使用当前分支，而不是报错。<a href="http://blog.csdn.net/daijingxin/article/details/51326715" target="_blank" rel="external">更多关于push.default</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git config --global push.default simple</div></pre></td></tr></table></figure>
@@ -243,7 +614,7 @@
 <h4 id="保留改动并提交"><a href="#保留改动并提交" class="headerlink" title="保留改动并提交"></a>保留改动并提交</h4><p>这行命令会将暂存区的文件都提交到 <code>Git</code>，-m 选项后面带的参数表示本次提交的简单描述。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ git commit -m &quot;Initial commit&quot;</div><div class="line">$ git log</div><div class="line">commit e7419d269d65021fa056b731e09f8bdeaac00d9d (HEAD -&gt; master, origin/master)</div><div class="line">Author: andyhui &lt;andyhui686666@gmail.com&gt;</div><div class="line">Date:   Thu Sep 21 09:24:53 2017 +0800</div><div class="line"></div><div class="line">    Initial commit</div></pre></td></tr></table></figure></p>
 <h4 id="查看历史提交记录："><a href="#查看历史提交记录：" class="headerlink" title="查看历史提交记录："></a>查看历史提交记录：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git log</div></pre></td></tr></table></figure>
 <p>从输出信息中可以很清晰的看到每次提交的作者、日期、描述等信息。按 <code>q</code>可退出查看。</p>
-<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/gitlog.png" alt="gitlog"></p>
+<p><img src="http://githubblog.andyhui.top/image/gitfirstuse/gitlog.png" alt="gitlog"></p>
 <p>git 基本提交操作到这就结束了，如果你想学习更多关于 <code>Git</code> 相关的知识，可以查阅<a href="https://git-scm.com/book/zh/v2" target="_blank" rel="external">《Pro Git》</a>一书进行学习。</p>
 <h2 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h2><h3 id="什么是-GitHub"><a href="#什么是-GitHub" class="headerlink" title="什么是 GitHub"></a>什么是 GitHub</h3><p><code>GitHub</code> 是目前全球最大的代码托管平台，许多非常著名的项目如 Linux、Swift、Laravel 等都托管在 <code>GitHub</code> 上。开发者们利用 <code>GitHub</code> 来进行团队协作开发，查阅或收藏别人开源项目的优秀代码，针对某个 <code>Bug</code> 进行技术讨论等。</p>
 <h3 id="GitHub基本操作"><a href="#GitHub基本操作" class="headerlink" title="GitHub基本操作"></a>GitHub基本操作</h3><h4 id="注册-GitHub-账号"><a href="#注册-GitHub-账号" class="headerlink" title="注册 GitHub 账号"></a>注册 GitHub 账号</h4><p>如果你还没有 <code>GitHub</code> 账号的话，请先 <a href="https://github.com/join" target="_blank" rel="external">注册</a>。</p>
@@ -255,16 +626,16 @@
 <p>可以看到以下两个文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">id_rsa —— SSH 秘钥的 私钥 (Private Key)</div><div class="line">id_rsa.pub —— SSH 秘钥的 公钥 (Public Key)</div></pre></td></tr></table></figure></p>
 <p>接下来将 <code>SSH Key</code> 添加到 <code>ssh-agent</code> 中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ eval `ssh-agent -s`</div><div class="line">$ ssh-add ~/.ssh/id_rsa</div></pre></td></tr></table></figure></p>
 <p>打印出公钥 <code>id_rsa.pub</code> 文件里的内容，并把输出的内容复制到剪贴板里：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cat ~/.ssh/id_rsa.pub</div></pre></td></tr></table></figure></p>
-<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/copyssh.png" alt="copyssh"></p>
+<p><img src="http://githubblog.andyhui.top/image/gitfirstuse/copyssh.png" alt="copyssh"></p>
 <p>最后我们需要将公钥添加到 GitHub 账号，先打开 <a href="https://github.com/settings/keys" target="_blank" rel="external">Github SSH</a> 令牌管理页面，然后把你刚刚复制的令牌按照下图示例添加：</p>
-<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/sshkey%E6%B7%BB%E5%8A%A0.png" alt="sshkey添加"></p>
+<p><img src="http://githubblog.andyhui.top/image/gitfirstuse/sshkey%E6%B7%BB%E5%8A%A0.png" alt="sshkey添加"></p>
 <p>测试<code>ssh key</code>是否成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@github.com</div></pre></td></tr></table></figure></p>
 <p>输入完密码后，如果出现You’ve successfully authenticated, but GitHub does not provide shell access 。这就表示已成功连上github。</p>
 <h4 id="提交代码到-Github"><a href="#提交代码到-Github" class="headerlink" title="提交代码到 Github"></a>提交代码到 Github</h4><p>在配置完 GitHub 账号之后，我们便可以开始在上面存放项目代码了。首先 <a href="https://github.com/new" target="_blank" rel="external">新建一个 GitHub 仓库</a>，取名为 <code>你项目的名字</code>，填上 <code>Description</code> 项目描述，<code>Initialize this repository with a README</code> 这一项是询问你是否需要生成一个默认的介绍。</p>
-<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E6%96%B0%E4%BB%93%E5%BA%93.png" alt="新仓库"></p>
+<p><img src="http://githubblog.andyhui.top/image/gitfirstuse/%E6%96%B0%E4%BB%93%E5%BA%93.png" alt="新仓库"></p>
 <p>创建完成之后，使用以下命令将代码上传到 <code>GitHub</code> 上（将 <code>your_username</code> 替换为你自己的 <code>GitHub</code> 用户名，<code>your_projectname</code> 是你的项目名字，就是刚刚创建仓库的名字）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git remote add origin git@github.com:your_username/your_projectname.git</div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure></p>
 <p>至此，项目已成功托管到 GitHub 上。<br>(如果Git 提示<code>fatal: remote origin already exists</code><a href="http://blog.csdn.net/top_code/article/details/50381432" target="_blank" rel="external">请看这里</a>)<br>(如果提示<code>error: src refspec master does not match any</code><a href="http://www.jianshu.com/p/8d26730386f3" target="_blank" rel="external">请看这里</a>))</p>
-<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E6%88%90%E5%8A%9F.png" alt="代码提交成功"></p>
+<p><img src="http://githubblog.andyhui.top/image/gitfirstuse/%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E6%88%90%E5%8A%9F.png" alt="代码提交成功"></p>
 <h4 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h4><p>后面我们如果对本地代码进行了改动，只需运行这 3 条命令即可将代码推送到安全可靠的 <code>GitHub</code> 上：</p>
 <p><code>注意：以下命令作为知识重温，不需要执行</code></p>
 <p>1、保存到暂存区,-A也可以换成指定文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git add -A</div></pre></td></tr></table></figure></p>
@@ -279,7 +650,7 @@
 <p>下面我们使用 <code>Git</code> 进行恢复被删除文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git checkout -f</div><div class="line">$ ll</div></pre></td></tr></table></figure></p>
 <p>这时能看到 <code>what.md</code> 文件已成功恢复。<code>git checkout -f</code> 的作用是将在暂存区的更改文件进行强制撤销。</p>
 <h3 id="从GitHub克隆项目到本地"><a href="#从GitHub克隆项目到本地" class="headerlink" title="从GitHub克隆项目到本地"></a>从GitHub克隆项目到本地</h3><p>首先到我们要克隆的到GitHub的某个仓库，比如<a href="https://github.com/imyhui/neuq-acmclubTD" target="_blank" rel="external">neuq-acmclubTD</a>,右边有个绿色的<code>Clone or download</code>，点开后有<code>Clone with HTTPS</code>，当然你也可以直接下载</p>
-<p><img src="http://ov8i0dn6x.bkt.clouddn.com/image/gitfirstuse/%E5%85%8B%E9%9A%86%E8%BF%9E%E6%8E%A5.png" alt="克隆连接"></p>
+<p><img src="http://githubblog.andyhui.top/image/gitfirstuse/%E5%85%8B%E9%9A%86%E8%BF%9E%E6%8E%A5.png" alt="克隆连接"></p>
 <p>然后回到要存放的目录下，右键<code>Git Bash here</code>使用命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/imyhui/neuq-acmclubTD.git</div></pre></td></tr></table></figure></p>
 <p>如果本地的版本不是最新的，可以使用以下命令，<code>origin</code>是本地仓库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git fetch origin</div></pre></td></tr></table></figure></p>
 <p>把更新的内容合并到本地分支，可以使用以下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git merge origin/master</div></pre></td></tr></table></figure></p>
@@ -320,6 +691,7 @@
 <li>初始化git仓库 <code>git init</code></li>
 <li>添加提交的文件</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -338,12 +710,14 @@
 </tr>
 </tbody>
 </table>
+</div>
 <ol>
 <li>提交修改提示 <code>git commit -m</code></li>
 <li>查看提交状态 <code>git status</code></li>
 <li>查看最近日志 <code>git log</code></li>
 <li>版本回退操作</li>
 </ol>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -366,6 +740,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <ol>
 <li>(第一次连接)远程仓库提交 <code>git remote add origin 你复制的地址</code></li>
 <li>(第二次以后)远程仓库提交 <code>git push</code></li>
@@ -402,7 +777,7 @@
     <link href="http://andyhui.top/2017/09/02/qsbkspider/"/>
     <id>http://andyhui.top/2017/09/02/qsbkspider/</id>
     <published>2017-09-02T05:57:19.000Z</published>
-    <updated>2019-03-04T07:44:12.000Z</updated>
+    <updated>2019-03-04T09:08:02.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>一周前买了阿里云服务器，简单部署了一个JudgeService，感觉闲着也是闲着，决定在上面部署一个爬虫，打算每隔一段时间爬取糗事百科前几页的文本段子并以邮件的形式发送到qq邮箱中。</p>
@@ -428,7 +803,7 @@
 <p>这里我们加一个小的异常处理，也就是如果爬取不到我们将错误信息写入一个文件，文件名为<strong>Http error on time.ctime()</strong> 这里的<strong><a href="http://www.runoob.com/python/att-time-ctime.html" target="_blank" rel="external">time.ctime()</a></strong>是包含在time里面的一个函数，返回当前时间。</p>
 <p>然后用BeautifulSoup做成一锅汤<strong>soup = BeautifulSoup(html.text, ‘lxml’)</strong><br>这里我们用lxml HTML 解析器，因为它的优势是速度快，文档容错能力强，(更多关于BeautifulSoup)[<a href="http://cuiqingcai.com/1319.html" target="_blank" rel="external">http://cuiqingcai.com/1319.html</a>]</p>
 </blockquote>
-<p>之后我们用_find<em>all</em>找到每一个笑话，之后呢，把换行标签替换掉，然后加到data_list 中去</p>
+<p>之后我们用<em>find_all</em>找到每一个笑话，之后呢，把换行标签替换掉，然后加到data_list 中去</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> lxml</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getcontent</span><span class="params">(url)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        html = requests.get(url)</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="keyword">with</span> open(<span class="string">"log.log"</span>,<span class="string">"a"</span>) <span class="keyword">as</span> file:</div><div class="line">            file.write(<span class="string">"Http error on "</span> + time.ctime())</div><div class="line">        time.sleep(<span class="number">60</span>)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line">    soup = BeautifulSoup(html.text, <span class="string">'lxml'</span>)</div><div class="line">    data_list = []</div><div class="line">    <span class="keyword">for</span> cont <span class="keyword">in</span> soup.find_all(<span class="string">"div"</span>, &#123;<span class="string">"class"</span>:<span class="string">"content"</span>&#125;):</div><div class="line">        raw_data = cont.get_text()</div><div class="line">        data = raw_data.replace(<span class="string">"\n"</span>,<span class="string">""</span>)</div><div class="line">        data_list.append(data)</div><div class="line">    <span class="keyword">return</span> data_list</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    data_list = []</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">2</span>):</div><div class="line">        url = <span class="string">'https://www.qiushibaike.com/text/page/%s/'</span>%str(i)</div><div class="line">        temp_data = getcontent(url)</div><div class="line">        data_list.extend(temp_data)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data_list:</div><div class="line">        print(i)</div><div class="line">        print(<span class="string">'\n\n'</span>)</div><div class="line">main()</div></pre></td></tr></table></figure>
 <h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h3>]]></content>
     
@@ -447,9 +822,9 @@
       <category term="python" scheme="http://andyhui.top/categories/python/"/>
     
     
-      <category term="爬虫" scheme="http://andyhui.top/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="python" scheme="http://andyhui.top/tags/python/"/>
+    
+      <category term="爬虫" scheme="http://andyhui.top/tags/%E7%88%AC%E8%99%AB/"/>
     
       <category term="requests" scheme="http://andyhui.top/tags/requests/"/>
     
@@ -464,7 +839,7 @@
     <link href="http://andyhui.top/2017/08/29/ojrankscan/"/>
     <id>http://andyhui.top/2017/08/29/ojrankscan/</id>
     <published>2017-08-29T07:04:51.000Z</published>
-    <updated>2019-03-04T07:44:12.000Z</updated>
+    <updated>2019-03-04T09:12:55.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>假期俱乐部举办了编程训练营，每个人负责管理15人的营，每天作业会在oj的一个总榜上<br>关于各营营长每天统计很麻烦，所以我写了一个简单的爬虫来节省一部分工作<br><strong> 代码改变世界，使人更高效的完成自己的工作</strong></p>
@@ -475,35 +850,35 @@
 </blockquote>
 <a id="more"></a>
 <h3 id="requests-库安装"><a href="#requests-库安装" class="headerlink" title="requests 库安装"></a>requests 库安装</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install requests</div></pre></td></tr></table></figure>
-<p><img src="http://ov8i0dn6x.bkt.clouddn.com/requests%E5%AE%89%E8%A3%85.png" alt="requests安装"></p>
+<p><img src="http://githubblog.andyhui.top/requests%E5%AE%89%E8%A3%85.png" alt="requests安装"></p>
 <h3 id="分析需求"><a href="#分析需求" class="headerlink" title="分析需求"></a>分析需求</h3><blockquote>
 <p>首先需要统计的 Contest 有3周的作业 加 最后的结课测试</p>
 </blockquote>
-<p><img src="http://ov8i0dn6x.bkt.clouddn.com/ojContestList.png" alt="ojContestList"></p>
+<p><img src="http://githubblog.andyhui.top/ojContestList.png" alt="ojContestList"></p>
 <blockquote>
 <p>每个榜单结构都是一致的，我只需要统计自己营里的<strong>昵称</strong>和<strong>总解决数目</strong>就好</p>
 </blockquote>
-<p><img src="http://ov8i0dn6x.bkt.clouddn.com/oj%E6%A6%9C%E5%8D%95.png" alt="oj榜单"></p>
+<p><img src="http://githubblog.andyhui.top/oj%E6%A6%9C%E5%8D%95.png" alt="oj榜单"></p>
 <blockquote>
 <p>url 是 “<a href="http://oj.acmclub.cn/contestrank.php?cid=" target="_blank" rel="external">http://oj.acmclub.cn/contestrank.php?cid=</a>“ + contestID</p>
 <p>右键查看网页源代码 两个a标签中刚好有我们的数据，用简单正则表达式匹配下就好</p>
 </blockquote>
-<p><img src="http://ov8i0dn6x.bkt.clouddn.com/oj%E6%A6%9C%E5%8D%95%E6%BA%90%E7%A0%81.png" alt="oj榜单源码"></p>
+<p><img src="http://githubblog.andyhui.top/oj%E6%A6%9C%E5%8D%95%E6%BA%90%E7%A0%81.png" alt="oj榜单源码"></p>
 <h3 id="构造request爬取网页"><a href="#构造request爬取网页" class="headerlink" title="构造request爬取网页"></a>构造request爬取网页</h3><blockquote>
 <p>首先拿出一个榜单来处理，由于不需要登陆就可以查看榜单所以我直接抓取榜单html页面</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTMLText</span><span class="params">(url)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        r = requests.get(url, timeout=<span class="number">30</span>)</div><div class="line">        r.raise_for_status()</div><div class="line">        r.encoding = r.apparent_encoding</div><div class="line">        <span class="keyword">return</span> r.text</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">for</span> no <span class="keyword">in</span> range(<span class="number">1166</span>,<span class="number">1169</span>):</div><div class="line">        url = <span class="string">'http://oj.acmclub.cn/contestrank.php?cid='</span>+str(no)</div><div class="line">        html = getHTMLText(url)</div><div class="line">        print(html)</div><div class="line">main()</div></pre></td></tr></table></figure>
-<p><strong>这算一个基本框架了，通过request得到网页源码，中间_r.raise_for<em>status()</em>是错误检查，后面是根据推断的编码类型设置字符编码</strong><br>运行结果如下<br><img src="http://ov8i0dn6x.bkt.clouddn.com/result1.png" alt="result1"></p>
+<p><strong>这算一个基本框架了，通过request得到网页源码，中间<em>r.raise_for_status()</em>是错误检查，后面是根据推断的编码类型设置字符编码</strong><br>运行结果如下<br><img src="http://githubblog.andyhui.top/result1.png" alt="result1"></p>
 <h3 id="对html源码处理"><a href="#对html源码处理" class="headerlink" title="对html源码处理"></a>对html源码处理</h3><blockquote>
 <p>首先看网页源码</p>
 </blockquote>
-<p><img src="http://ov8i0dn6x.bkt.clouddn.com/oj%E6%A6%9C%E5%8D%95%E6%BA%90%E7%A0%81.png" alt="oj榜单源码"></p>
+<p><img src="http://githubblog.andyhui.top/oj%E6%A6%9C%E5%8D%95%E6%BA%90%E7%A0%81.png" alt="oj榜单源码"></p>
 <blockquote>
 <p>这里可以用正则表达式库 <strong>re</strong> 来进行字符匹配，如果昵称符合规范<strong>xx营xx号_Nickname_name</strong>就很容易处理了，匹配两个a标签之间的内容<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rege = <span class="string">r'&lt;a href=.*?&gt;(0&#123;0,1&#125;'</span>+str(num)+<span class="string">'营.*?)&lt;/a&gt;&lt;td&gt;&lt;a href=.*?&gt;([0-9]&#123;1,2&#125;)&lt;/a&gt;'</span></div></pre></td></tr></table></figure></p>
 <p>对html的处理函数也就是很容易写了</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTMLText</span><span class="params">(url)</span>:</span></div><div class="line">    <span class="comment">#省略</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fillscoreList</span><span class="params">(slist, html, num)</span>:</span></div><div class="line">    rege = <span class="string">r'&lt;a href=.*?&gt;(0&#123;0,1&#125;'</span>+str(num)+<span class="string">'营.*?)&lt;/a&gt;&lt;td&gt;&lt;a href=.*?&gt;([0-9]&#123;1,2&#125;)&lt;/a&gt;'</span></div><div class="line">    score = re.findall(rege,html)</div><div class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> score:</div><div class="line">        slist.append(x)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    num = int(input(<span class="string">"请输入营号:"</span>))</div><div class="line">    <span class="keyword">for</span> no <span class="keyword">in</span> range(<span class="number">1166</span>,<span class="number">1169</span>):</div><div class="line">        sinfo = []</div><div class="line">        url = <span class="string">'http://oj.acmclub.cn/contestrank.php?cid='</span>+str(no)</div><div class="line">        html = getHTMLText(url)</div><div class="line">        fillscoreList(sinfo, html, num)</div><div class="line">        <span class="keyword">for</span> (name,solve) <span class="keyword">in</span>  sinfo:</div><div class="line">            print(name,solve)</div><div class="line">main()</div></pre></td></tr></table></figure>
-<p>这样得到的sinfo就是包含元组(name,solve)的列表，程序到这阶段基本算是完工了，但是输出的样式也并不尽人意，比如<em>没有对齐</em>，看起来很乱，而且三周内容<em>挤在一块</em>不好区分，接下来就对这个程序进行优化<br><img src="http://ov8i0dn6x.bkt.clouddn.com/result2.png" alt="result2"></p>
+<p>这样得到的sinfo就是包含元组(name,solve)的列表，程序到这阶段基本算是完工了，但是输出的样式也并不尽人意，比如<em>没有对齐</em>，看起来很乱，而且三周内容<em>挤在一块</em>不好区分，接下来就对这个程序进行优化<br><img src="http://githubblog.andyhui.top/result2.png" alt="result2"></p>
 <h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><blockquote>
 <p>我们想要达到的效果是三周内容清晰可辨，并且有良好的对齐，下面就来是实现下<br>python 的 字符串 有<strong>format函数</strong>，通过这个来达到我们想要的效果<br>对于(xx营xx号_Nickname_name,solve_num)这样一个元组，通过格式限定符来达到<strong>指定字段宽度</strong>和<strong>居中对齐</strong></p>
 </blockquote>
@@ -513,7 +888,7 @@
 <p>所以现在的程序就是这样</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTMLText</span><span class="params">(url)</span>:</span></div><div class="line">    <span class="comment">#省略</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fillscoreList</span><span class="params">(slist, html, num)</span>:</span></div><div class="line">    <span class="comment">#省略</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">printscoreList</span><span class="params">(slist, num)</span>:</span></div><div class="line">    tplt = <span class="string">"&#123;0:20&#125;\t\t&#123;1:^3&#125;"</span></div><div class="line">    print(tplt.format(<span class="string">"xx营xx号_Nickname_name"</span>,<span class="string">"     解决题目数"</span>,chr(<span class="number">12288</span>)))</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(num):</div><div class="line">        u=slist[i]</div><div class="line">        print(tplt.format(u[<span class="number">0</span>],u[<span class="number">1</span>],chr(<span class="number">12288</span>)))</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    num = int(input(<span class="string">"请输入营号:"</span>))</div><div class="line">    <span class="keyword">for</span> no <span class="keyword">in</span> range(<span class="number">1166</span>,<span class="number">1169</span>):</div><div class="line">        sinfo = []</div><div class="line">        url = <span class="string">'http://oj.acmclub.cn/contestrank.php?cid='</span>+str(no)</div><div class="line">        html = getHTMLText(url)</div><div class="line">        fillscoreList(sinfo, html, num)</div><div class="line">        print(<span class="string">"*"</span>*<span class="number">15</span>,<span class="string">"第%d周%d营成绩"</span>%(int(no<span class="number">-1165</span>),num),<span class="string">"*"</span>*<span class="number">18</span>)</div><div class="line">        printscoreList(sinfo, len(sinfo))</div><div class="line">main()</div></pre></td></tr></table></figure>
-<p>运行结果如下<br><img src="http://ov8i0dn6x.bkt.clouddn.com/result3.png" alt="result3"></p>
+<p>运行结果如下<br><img src="http://githubblog.andyhui.top/result3.png" alt="result3"></p>
 <h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h3>]]></content>
     
     <summary type="html">
@@ -531,11 +906,11 @@
       <category term="python" scheme="http://andyhui.top/categories/python/"/>
     
     
+      <category term="python" scheme="http://andyhui.top/tags/python/"/>
+    
       <category term="爬虫" scheme="http://andyhui.top/tags/%E7%88%AC%E8%99%AB/"/>
     
       <category term="oj" scheme="http://andyhui.top/tags/oj/"/>
-    
-      <category term="python" scheme="http://andyhui.top/tags/python/"/>
     
       <category term="requests" scheme="http://andyhui.top/tags/requests/"/>
     
@@ -551,7 +926,7 @@
     <content type="html"><![CDATA[<p>近几天刚刚搭建了博客，用的是Hexo+Next主题，托管在github和codding上，写博文是需要Markdown，所以先学习下Markdown的基本语法，也算是为博客增加一篇博文吧。</p>
 <hr>
 <p>Markdown基础用法与规则：</p>
-<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>使用”#”加空格在首行来创建标题<br>如:<br>&emsp;&emsp; # 一级标题<br>&emsp;&emsp; ## 二级标题<br>&emsp;&emsp; ### 三级标题<br><img src="http://ov8i0dn6x.bkt.clouddn.com/markdown%E6%A0%87%E9%A2%98.png" alt></p>
+<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>使用”#”加空格在首行来创建标题<br>如:<br>&emsp;&emsp; # 一级标题<br>&emsp;&emsp; ## 二级标题<br>&emsp;&emsp; ### 三级标题<br><img src="http://githubblog.andyhui.top/markdown%E6%A0%87%E9%A2%98.png" alt></p>
 <hr>
 <a id="more"></a>
 <h3 id="加粗功能"><a href="#加粗功能" class="headerlink" title="加粗功能"></a>加粗功能</h3><p>使用一组星号”**“或一组下划线”__“来加粗一段文字，用转义符”\“来打出”*“<br>如:<br>&emsp;&emsp; 这是<strong>加粗的文字</strong><br>&emsp;&emsp; 这也是<strong>加粗的文字</strong></p>
@@ -601,7 +976,7 @@ int main()
       &lt;p&gt;近几天刚刚搭建了博客，用的是Hexo+Next主题，托管在github和codding上，写博文是需要Markdown，所以先学习下Markdown的基本语法，也算是为博客增加一篇博文吧。&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Markdown基础用法与规则：&lt;/p&gt;
-&lt;h3 id=&quot;标题&quot;&gt;&lt;a href=&quot;#标题&quot; class=&quot;headerlink&quot; title=&quot;标题&quot;&gt;&lt;/a&gt;标题&lt;/h3&gt;&lt;p&gt;使用”#”加空格在首行来创建标题&lt;br&gt;如:&lt;br&gt;&amp;emsp;&amp;emsp; # 一级标题&lt;br&gt;&amp;emsp;&amp;emsp; ## 二级标题&lt;br&gt;&amp;emsp;&amp;emsp; ### 三级标题&lt;br&gt;&lt;img src=&quot;http://ov8i0dn6x.bkt.clouddn.com/markdown%E6%A0%87%E9%A2%98.png&quot; alt&gt;&lt;/p&gt;
+&lt;h3 id=&quot;标题&quot;&gt;&lt;a href=&quot;#标题&quot; class=&quot;headerlink&quot; title=&quot;标题&quot;&gt;&lt;/a&gt;标题&lt;/h3&gt;&lt;p&gt;使用”#”加空格在首行来创建标题&lt;br&gt;如:&lt;br&gt;&amp;emsp;&amp;emsp; # 一级标题&lt;br&gt;&amp;emsp;&amp;emsp; ## 二级标题&lt;br&gt;&amp;emsp;&amp;emsp; ### 三级标题&lt;br&gt;&lt;img src=&quot;http://githubblog.andyhui.top/markdown%E6%A0%87%E9%A2%98.png&quot; alt&gt;&lt;/p&gt;
 &lt;hr&gt;
     
     </summary>
@@ -620,7 +995,7 @@ int main()
     <link href="http://andyhui.top/2017/08/24/hello-world/"/>
     <id>http://andyhui.top/2017/08/24/hello-world/</id>
     <published>2017-08-24T04:52:25.000Z</published>
-    <updated>2019-03-04T07:44:12.000Z</updated>
+    <updated>2019-03-04T09:07:57.000Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
