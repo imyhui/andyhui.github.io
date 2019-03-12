@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://andyhui.top/"/>
-  <updated>2019-03-05T15:15:05.000Z</updated>
+  <updated>2019-03-11T14:27:03.000Z</updated>
   <id>http://andyhui.top/</id>
   
   <author>
@@ -16,29 +16,266 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>LeetCode[1] 两数之和</title>
-    <link href="http://andyhui.top/2019/03/05/LeetCode-1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
-    <id>http://andyhui.top/2019/03/05/LeetCode-1-两数之和/</id>
-    <published>2019-03-05T14:10:00.000Z</published>
-    <updated>2019-03-05T15:15:05.000Z</updated>
+    <title>剑指Offer 12矩阵中的路径</title>
+    <link href="http://andyhui.top/2019/03/11/%E5%89%91%E6%8C%87Offer-12%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/"/>
+    <id>http://andyhui.top/2019/03/11/剑指Offer-12矩阵中的路径/</id>
+    <published>2019-03-11T14:03:23.000Z</published>
+    <updated>2019-03-11T14:27:03.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="[1] 两数之和"></a>[1] <a href="https://leetcode-cn.com/problems/two-sum/description/" target="_blank" rel="external">两数之和</a></h2><blockquote>
+    <content type="html"><![CDATA[<h2 id="矩阵中的路径"><a href="#矩阵中的路径" class="headerlink" title="矩阵中的路径"></a><a href="https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&amp;tqId=11218&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="external">矩阵中的路径</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则之后不能再次进入这个格子。 例如 a b c e s f c s a d e e 这样的3 X 4 矩阵中包含一条字符串”bcced”的路径，但是矩阵中不包含”abcb”路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>首先应将字符串转为二维数组，然后对于每个字母作为起始字母<code>DFS</code>扫描一遍即可，注意搜索的写法。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hasPath</span><span class="params">(self, matrix, rows, cols, path)</span>:</span></div><div class="line">        <span class="comment"># write code here</span></div><div class="line">        <span class="keyword">if</span> rows == <span class="number">0</span> <span class="keyword">or</span> cols == <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        self.build_matrix(matrix, rows, cols)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(rows):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(cols):</div><div class="line">                <span class="keyword">if</span> self.find(i, j, <span class="number">0</span>, rows, cols, path):</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find</span><span class="params">(self, i, j, l, rows, cols, path)</span>:</span></div><div class="line">        <span class="keyword">if</span> l == len(path):</div><div class="line">            <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        <span class="keyword">if</span> i &lt; <span class="number">0</span> <span class="keyword">or</span> i &gt;= rows <span class="keyword">or</span> j &lt; <span class="number">0</span> <span class="keyword">or</span> j &gt;= cols <span class="keyword">or</span> self.flag[i][j] <span class="keyword">or</span> self.new_matrix[i][j] != path[l]:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        self.flag[i][j] = <span class="number">1</span></div><div class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> [[<span class="number">-1</span>, <span class="number">0</span>], [<span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">-1</span>], [<span class="number">0</span>, <span class="number">1</span>]]:</div><div class="line">            <span class="keyword">if</span> self.find(i+n[<span class="number">0</span>], j+n[<span class="number">1</span>], l+<span class="number">1</span>, rows, cols, path):</div><div class="line">                <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        self.flag[i][j] = <span class="number">0</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build_matrix</span><span class="params">(self, matrix, rows, cols)</span>:</span></div><div class="line">        self.flag = []</div><div class="line">        self.new_matrix = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(rows):</div><div class="line">            self.flag.append([<span class="number">0</span>]*cols)</div><div class="line">            self.new_matrix.append(list(matrix[i*cols:cols+i*cols]))</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># s = Solution()</span></div><div class="line"><span class="comment"># print(s.hasPath("ABCESFCSADEE", 3, 4, "ABCCED"))</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;矩阵中的路径&quot;&gt;&lt;a href=&quot;#矩阵中的路径&quot; class=&quot;headerlink&quot; title=&quot;矩阵中的路径&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&amp;amp;tqId=11218&amp;amp;tPage=1&amp;amp;rp=1&amp;amp;ru=/ta/coding-interviews&amp;amp;qru=/ta/coding-interviews/question-ranking&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;矩阵中的路径&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则之后不能再次进入这个格子。 例如 a b c e s f c s a d e e 这样的3 X 4 矩阵中包含一条字符串”bcced”的路径，但是矩阵中不包含”abcb”路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="剑指Offer" scheme="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+    
+    
+      <category term="algorithms" scheme="http://andyhui.top/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指Offer 7重建二叉树</title>
+    <link href="http://andyhui.top/2019/03/10/%E5%89%91%E6%8C%87Offer-7%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <id>http://andyhui.top/2019/03/10/剑指Offer-7重建二叉树/</id>
+    <published>2019-03-10T15:43:46.000Z</published>
+    <updated>2019-03-10T16:03:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="重建二叉树"><a href="#重建二叉树" class="headerlink" title="重建二叉树"></a><a href="https://www.nowcoder.com/practice/8a19cbe657394eeaac2f6ea9b0f6fcf6?tpId=13&amp;tqId=11157&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="external">重建二叉树</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>前序遍历取出根节点，可根据此将中序遍历结果分为左右子树两部分，递归实现此过程即可</p>
+</blockquote>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></div><div class="line">        self.val = x</div><div class="line">        self.left = <span class="keyword">None</span></div><div class="line">        self.right = <span class="keyword">None</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="comment"># 返回构造的TreeNode根节点</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reConstructBinaryTree</span><span class="params">(self, pre, tin)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> pre <span class="keyword">or</span> <span class="keyword">not</span> tin:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line">        root = TreeNode(pre.pop(<span class="number">0</span>))</div><div class="line">        index = tin.index(root.val)</div><div class="line">        root.left = self.reConstructBinaryTree(pre, tin[:index])</div><div class="line">        root.right = self.reConstructBinaryTree(pre, tin[index + <span class="number">1</span>:])</div><div class="line">        <span class="keyword">return</span> root</div></pre></td></tr></table></figure>
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p><a href="https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/" target="_blank" rel="external">LeetCode 1008. 先序遍历构造二叉搜索树</a></p>
+<blockquote>
+<p>返回与给定先序遍历 <code>preorder</code> 相匹配的二叉搜索树（binary <strong>search</strong> tree）的根结点。</p>
+<p><em>(回想一下，二叉搜索树是二叉树的一种，其每个节点都满足以下规则，对于 node.left 的任何后代，值总 &lt; node.val，而 node.right 的任何后代，值总 &gt; node.val。此外，先序遍历首先显示节点的值，然后遍历 node.left，接着遍历 node.right。）</em></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">输入：[8,5,1,7,10,12]</div><div class="line">输出：[8,5,10,1,7,null,12]</div></pre></td></tr></table></figure>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/03/08/1266.png" alt="img"></p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bstFromPreorder</span><span class="params">(self, preorder)</span> -&gt; TreeNode:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> preorder:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line">        root = TreeNode(preorder[<span class="number">0</span>])</div><div class="line">        itr = <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> itr &lt; len(preorder) <span class="keyword">and</span> preorder[itr] &lt; preorder[<span class="number">0</span>]:</div><div class="line">            itr += <span class="number">1</span></div><div class="line">        root.left = self.bstFromPreorder(preorder[<span class="number">1</span>: itr])</div><div class="line">        root.right = self.bstFromPreorder(preorder[itr:])</div><div class="line">        <span class="keyword">return</span> root</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;重建二叉树&quot;&gt;&lt;a href=&quot;#重建二叉树&quot; class=&quot;headerlink&quot; title=&quot;重建二叉树&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.nowcoder.com/practice/8a19cbe657394eeaac2f6ea9b0f6fcf6?tpId=13&amp;amp;tqId=11157&amp;amp;tPage=1&amp;amp;rp=1&amp;amp;ru=/ta/coding-interviews&amp;amp;qru=/ta/coding-interviews/question-ranking&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;重建二叉树&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="剑指Offer" scheme="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+    
+    
+      <category term="algorithms" scheme="http://andyhui.top/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指Offer15 二进制中1的个数</title>
+    <link href="http://andyhui.top/2019/03/09/%E5%89%91%E6%8C%87Offer15-%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0/"/>
+    <id>http://andyhui.top/2019/03/09/剑指Offer15-二进制中1的个数/</id>
+    <published>2019-03-09T15:46:00.000Z</published>
+    <updated>2019-03-09T16:24:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="二进制中1的个数"><a href="#二进制中1的个数" class="headerlink" title="二进制中1的个数"></a><a href="https://www.nowcoder.com/practice/8ee967e43c2c4ec193b040ea7fbb10b8?tpId=13&amp;tqId=11164&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&amp;tPage=1" target="_blank" rel="external">二进制中1的个数</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="思路1"><a href="#思路1" class="headerlink" title="思路1"></a>思路1</h3><blockquote>
+<p>32位整数取出每一位，与1做<code>&amp;</code>，求和即可</p>
+</blockquote>
+<h3 id="代码1"><a href="#代码1" class="headerlink" title="代码1"></a>代码1</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">NumberOf1</span><span class="params">(self, n)</span>:</span></div><div class="line">        <span class="comment"># move n</span></div><div class="line">        count = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">32</span>):</div><div class="line">            count += n &amp; <span class="number">1</span></div><div class="line">            n = n &gt;&gt; <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> count</div></pre></td></tr></table></figure>
+<h3 id="思路2"><a href="#思路2" class="headerlink" title="思路2"></a>思路2</h3><blockquote>
+<p>对比思路一，不对n做移位，而是用一个变量，实现一个过滤器的作用来取每一位</p>
+</blockquote>
+<h3 id="代码2"><a href="#代码2" class="headerlink" title="代码2"></a>代码2</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">NumberOf1</span><span class="params">(self, n)</span>:</span></div><div class="line">    <span class="comment"># move flag</span></div><div class="line">    count = <span class="number">0</span></div><div class="line">    flag = <span class="number">1</span></div><div class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">32</span>):</div><div class="line">        <span class="keyword">if</span> n &amp; flag:</div><div class="line">            count += <span class="number">1</span></div><div class="line">        flag &lt;&lt;=<span class="number">1</span></div><div class="line">    <span class="keyword">return</span> count</div></pre></td></tr></table></figure>
+<h3 id="思路3"><a href="#思路3" class="headerlink" title="思路3"></a>思路3</h3><blockquote>
+<p>对于一个数n, <code>n&amp;(n-1)</code>结果即消掉末尾1的结果，如8 = <script type="math/tex">(1100)_{2}</script>，8-1 = 7 = <script type="math/tex">(1011)_{2}</script></p>
+<p>1100 &amp; 1011 = 1000</p>
+<p>即消去了末尾的1</p>
+<p><strong>注意</strong></p>
+<p>由于Python 的动态类型，导致数字不会像<code>C++</code>那样溢出<code>int</code>范围变为0，因此要先做一步处理，若为负数则加上 2*32次方，转为补码，再进行统计</p>
+</blockquote>
+<h3 id="代码3"><a href="#代码3" class="headerlink" title="代码3"></a>代码3</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">NumberOf12</span><span class="params">(self, n)</span>:</span></div><div class="line">    <span class="comment"># not run if n&lt;0</span></div><div class="line">    <span class="keyword">if</span> n&lt;<span class="number">0</span>:</div><div class="line">        n += <span class="number">2</span>**<span class="number">32</span></div><div class="line">    count = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span> n != <span class="number">0</span>:</div><div class="line">        count += <span class="number">1</span></div><div class="line">        n = n &amp; (n<span class="number">-1</span>)</div><div class="line">    <span class="keyword">return</span> count</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;二进制中1的个数&quot;&gt;&lt;a href=&quot;#二进制中1的个数&quot; class=&quot;headerlink&quot; title=&quot;二进制中1的个数&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.nowcoder.com/practice/8ee967e43c2c4ec193b040ea7fbb10b8?tpId=13&amp;amp;tqId=11164&amp;amp;rp=1&amp;amp;ru=%2Fta%2Fcoding-interviews&amp;amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&amp;amp;tPage=1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;二进制中1的个数&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="剑指Offer" scheme="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+    
+    
+      <category term="algorithms" scheme="http://andyhui.top/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指Offer03 数组中重复的数字</title>
+    <link href="http://andyhui.top/2019/03/07/%E5%89%91%E6%8C%87Offer03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/"/>
+    <id>http://andyhui.top/2019/03/07/剑指Offer03-数组中重复的数字/</id>
+    <published>2019-03-07T15:55:00.000Z</published>
+    <updated>2019-03-07T16:40:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="数组中重复的数字"><a href="#数组中重复的数字" class="headerlink" title="数组中重复的数字"></a><a href="https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=0&amp;tqId=0&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="external">数组中重复的数字</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>排序后两两比较需要<script type="math/tex">O(nlogn)</script>时间，哈希表存储可以<script type="math/tex">O(1)</script> 查找，整体时间复杂度<script type="math/tex">O(n)</script> ，同时空间复杂度也为<script type="math/tex">O(n)</script>，若允许修改原数组，可以用原数组数的值和下标的对应关系来解，扫描到下标为i的数字m，若该m与i不同，则找数组中m位置对应的数字，若该数字与m相同，则重复，若不同则交换两数字位置，这种解法时间复杂度<script type="math/tex">O(n)</script>，空间复杂度<script type="math/tex">O(1)</script>。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="comment"># 这里要特别注意~找到任意重复的一个值并赋值到duplication[0]</span></div><div class="line">    <span class="comment"># 函数返回True/False</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">duplicate</span><span class="params">(self, numbers, duplication)</span>:</span></div><div class="line">        <span class="comment"># 允许修改数组 不允许额外空间</span></div><div class="line">        n = len(numbers)</div><div class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">            <span class="keyword">if</span> numbers[i] &lt; <span class="number">0</span> <span class="keyword">or</span> numbers[i] &gt; n - <span class="number">1</span>:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">            <span class="keyword">if</span> numbers[i] != i:</div><div class="line">                <span class="keyword">if</span> numbers[numbers[i]] == numbers[i]:</div><div class="line">                    duplication[<span class="number">0</span>] = numbers[i]</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">                tmp = numbers[numbers[i]]</div><div class="line">                numbers[numbers[i]] = numbers[i]</div><div class="line">                numbers[i] = tmp</div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line">s = Solution()</div><div class="line">x = [<span class="number">0</span>]</div><div class="line">print(s.duplicate([<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">3</span>],x))</div><div class="line">print(x)</div></pre></td></tr></table></figure>
+<h2 id="数组中重复数字2"><a href="#数组中重复数字2" class="headerlink" title="数组中重复数字2"></a>数组中重复数字2</h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>在一个长度为n+1的数组里的所有数字都在1~n的范围内，所以数组中至少有一个数字是重复的。请找出数组中任意一个重复的数字，但<strong>不能修改输入的数组</strong>。例如，如果输入长度为8的数组{2, 3, 5, 4, 3, 2, 6, 7}，那么对应的输出是重复的数字2或者3。</p>
+</blockquote>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>不修改数组，可以开一个大小为n的数组，与上题思路一致，若不适用额外空间，可采取二分统计数字，若一个s到e的范围内数字超过e-s + 1，则该范围内可能有重复的数字，采取二分查找即可。n个数字<code>count_range</code>被调用<script type="math/tex">O(log(n))</script>次，每次需<script type="math/tex">O(n)</script>时间，所以时间复杂度为<script type="math/tex">O(nlogn)</script>，空间复杂度为<script type="math/tex">O(1)</script></p>
+</blockquote>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><blockquote>
+<p>本题数组限制为<strong>长度为n+1的数组里的所有数字都在1~n的范围内</strong>，若没有这个条件可能解答会不成立</p>
+</blockquote>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"> <span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="comment"># 函数返回True/False</span></div><div class="line">     <span class="function"><span class="keyword">def</span> <span class="title">duplicate</span><span class="params">(self, numbers, duplication)</span>:</span></div><div class="line">            <span class="comment"># 不允许修改数组</span></div><div class="line">            n = len(numbers)</div><div class="line">            <span class="keyword">if</span> n == <span class="number">0</span>:</div><div class="line">                <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">            start, end = <span class="number">1</span>, n - <span class="number">1</span></div><div class="line">            <span class="keyword">while</span> start &lt;= end:</div><div class="line">                mid =  start + ((end-start)&gt;&gt;<span class="number">1</span>)</div><div class="line">                print(start,mid,end)</div><div class="line">                count = self.count_range(numbers, start, mid)</div><div class="line">                <span class="keyword">if</span> start == end:</div><div class="line">                    <span class="keyword">if</span> count &gt; <span class="number">1</span>:</div><div class="line">                        <span class="keyword">return</span> start</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        <span class="keyword">break</span></div><div class="line">                <span class="keyword">if</span> count &gt; mid - start + <span class="number">1</span>:</div><div class="line">                    end = mid</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    start = mid + <span class="number">1</span></div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span></div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">count_range</span><span class="params">(self, numbers, start, end)</span>:</span></div><div class="line">            <span class="keyword">if</span> len(numbers) == <span class="number">0</span>:</div><div class="line">                <span class="keyword">return</span> <span class="number">0</span></div><div class="line">            count = <span class="number">0</span></div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> numbers:</div><div class="line">                <span class="keyword">if</span> i &gt;= start <span class="keyword">and</span> i &lt;= end:</div><div class="line">                    count += <span class="number">1</span></div><div class="line">            <span class="keyword">return</span> count</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;数组中重复的数字&quot;&gt;&lt;a href=&quot;#数组中重复的数字&quot; class=&quot;headerlink&quot; title=&quot;数组中重复的数字&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=0&amp;amp;tqId=0&amp;amp;rp=1&amp;amp;ru=/ta/coding-interviews&amp;amp;qru=/ta/coding-interviews/question-ranking&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;数组中重复的数字&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="剑指Offer" scheme="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+    
+    
+      <category term="algorithms" scheme="http://andyhui.top/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python 练习册，每天一个小程序</title>
+    <link href="http://andyhui.top/2019/03/06/Python-%E7%BB%83%E4%B9%A0%E5%86%8C%EF%BC%8C%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    <id>http://andyhui.top/2019/03/06/Python-练习册，每天一个小程序/</id>
+    <published>2019-03-06T15:23:00.000Z</published>
+    <updated>2019-03-06T16:02:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>Talk is cheap. Show me the code.—Linus Torvalds</p>
+</blockquote>
+<p>最近发现一个有趣的项目——<a href="https://github.com/Yixiaohan/show-me-the-code" target="_blank" rel="external"><strong>show-me-the-code</strong></a>，25道<code>python</code>, 题目，涵盖各个方面，同时兼具挑战性，考察编码能力和资料搜集学习能力。</p>
+<a id="more"></a>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>完整代码在<a href="https://github.com/imyhui/show-me-the-code/" target="_blank" rel="external">这里</a>更新，为了不污染全局Python环境，使用了<a href="https://github.com/pypa/pipenv" target="_blank" rel="external"><code>pipenv</code></a>管理依赖，要运行代码只需只需</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">pipenv install</div><div class="line">pipenv shell</div><div class="line">python xxx.py</div></pre></td></tr></table></figure>
+<h2 id="0000"><a href="#0000" class="headerlink" title="0000"></a>0000</h2><blockquote>
+<p>将你的 QQ 头像（或者微博头像）右上角加上红色的数字，类似于微信未读信息数量那种提示效果。 </p>
+</blockquote>
+<p>查资料得知，<code>Python3</code>图像处理库为Pillow，于是看到了<em>廖雪峰</em>老师的<a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014320027235877860c87af5544f25a8deeb55141d60c5000" target="_blank" rel="external">教程</a>，简单看了下几个例子及<a href="https://pillow.readthedocs.io/en/stable/index.html" target="_blank" rel="external">Pillow文档</a>，代码便很容易写了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, ImageDraw, ImageFont</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment"># 打开图片，获取图片宽度和高度</span></div><div class="line">    im = Image.open(<span class="string">'avatar.jpg'</span>)</div><div class="line">    w, h = im.size</div><div class="line">    </div><div class="line">    <span class="comment"># 创建Draw对象</span></div><div class="line">    draw = ImageDraw.Draw(im)</div><div class="line">    <span class="comment"># 导入字体创建Font对象</span></div><div class="line">    font = ImageFont.truetype(<span class="string">'Arial.ttf'</span>, <span class="number">36</span>)</div><div class="line">    <span class="comment"># 图片左上角为(0, 0), 绘制文本为'99+', 字体为导入的字体，填充颜色为红色</span></div><div class="line">    draw.text((w*<span class="number">0.90</span>, h*<span class="number">0.01</span>),<span class="string">'99+'</span>, font=font,fill=<span class="string">'#FF0000'</span>)</div><div class="line"></div><div class="line">    im.show()</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    main()</div></pre></td></tr></table></figure>
+<p>运行效果</p>
+<p><img src="http://githubblog.andyhui.top/add_num.png" alt="add_num_pic"></p>
+<p>未完待续。。。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;Talk is cheap. Show me the code.—Linus Torvalds&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;最近发现一个有趣的项目——&lt;a href=&quot;https://github.com/Yixiaohan/show-me-the-code&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;strong&gt;show-me-the-code&lt;/strong&gt;&lt;/a&gt;，25道&lt;code&gt;python&lt;/code&gt;, 题目，涵盖各个方面，同时兼具挑战性，考察编码能力和资料搜集学习能力。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="python" scheme="http://andyhui.top/categories/python/"/>
+    
+    
+      <category term="python" scheme="http://andyhui.top/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode 两数之和系列</title>
+    <link href="http://andyhui.top/2019/03/05/LeetCode%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
+    <id>http://andyhui.top/2019/03/05/LeetCode 两数之和/</id>
+    <published>2019-03-05T14:10:00.000Z</published>
+    <updated>2019-03-06T14:29:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="[1] 两数之和"></a>[1] <a href="https://leetcode-cn.com/problems/two-sum/description/" target="_blank" rel="external">两数之和</a></h2><h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><blockquote>
 <p> 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
 <p>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h2><blockquote>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h3><blockquote>
 <p>给定 nums = [2, 7, 11, 15], target = 9</p>
 <p>因为 nums[0] + nums[1] = 2 + 7 = 9<br> 所以返回 [0, 1]</p>
 </blockquote>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><blockquote>
-<p>对于本题，给出的数组是未排序的，若两两求和需要<script type="math/tex">n^{2}</script></p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>对于本题，给出的数组是未排序的，若两两求和需要<script type="math/tex">O(n^{2})</script>, 如果排序后再双指针遍历，则需要<script type="math/tex">O(nlogn + n)</script>, 考虑到<code>HashMap</code>，可以<script type="math/tex">O(1)</script> 查找，因此对于一个数字nums[i],如果target-nums[i]出现过，则输出对应位置，若不存在则记录该数字与位置。</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums, target)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type nums: List[int]</span></div><div class="line"><span class="string">        :type target: int</span></div><div class="line"><span class="string">        :rtype: List[int]</span></div><div class="line"><span class="string">        """</span></div><div class="line">        <span class="keyword">if</span> len(nums) &lt; <span class="number">2</span>:</div><div class="line">            <span class="keyword">return</span> [<span class="number">-1</span>, <span class="number">-1</span>]</div><div class="line">        map = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</div><div class="line">            <span class="keyword">if</span> target - nums[i] <span class="keyword">in</span> map:</div><div class="line">                <span class="keyword">return</span> [i, map[target - nums[i]]]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                map[nums[i]] = i</div><div class="line"></div><div class="line">s = Solution()</div><div class="line">print(s.twoSum([<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>],<span class="number">9</span>))</div></pre></td></tr></table></figure>]]></content>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums, target)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type nums: List[int]</span></div><div class="line"><span class="string">        :type target: int</span></div><div class="line"><span class="string">        :rtype: List[int]</span></div><div class="line"><span class="string">        """</span></div><div class="line">        <span class="keyword">if</span> len(nums) &lt; <span class="number">2</span>:</div><div class="line">            <span class="keyword">return</span> [<span class="number">-1</span>, <span class="number">-1</span>]</div><div class="line">        map = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</div><div class="line">            <span class="keyword">if</span> target - nums[i] <span class="keyword">in</span> map:</div><div class="line">                <span class="keyword">return</span> [i, map[target - nums[i]]]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                map[nums[i]] = i</div><div class="line"></div><div class="line">s = Solution()</div><div class="line">print(s.twoSum([<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>],<span class="number">9</span>))</div></pre></td></tr></table></figure>
+<h2 id="167-两数之和-II-输入有序数组"><a href="#167-两数之和-II-输入有序数组" class="headerlink" title="[167] 两数之和 II - 输入有序数组"></a>[167] <a href="https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/description/" target="_blank" rel="external">两数之和 II - 输入有序数组</a></h2><h3 id="描述-1"><a href="#描述-1" class="headerlink" title="描述"></a>描述</h3><blockquote>
+<p> 给定一个已按照升序排列 的有序数组，找到两个数使得它们相加之和等于目标数。</p>
+<p> 函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2。</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h3><p> 返回的下标值（index1 和 index2）不是从零开始的。</p>
+<p> 你可以假设每个输入只对应唯一的答案，而且你不可以重复使用相同的元素。</p>
+</blockquote>
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例:"></a>示例:</h3><blockquote>
+<p>输入: numbers = [2, 7, 11, 15], target = 9</p>
+<p>输出: [1,2]</p>
+<p>解释: 2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。</p>
+</blockquote>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>双指针i,j，i指向较小元素，j指向较大元素，</p>
+<p>令 sum = numbers[i]+numbers[j]</p>
+<p>若sum &lt; target,  i+= 1, 使 sum 变大</p>
+<p>若sum &gt; target, j -=  1，使 sum 变小</p>
+</blockquote>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, numbers, target)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type numbers: List[int]</span></div><div class="line"><span class="string">        :type target: int</span></div><div class="line"><span class="string">        :rtype: List[int]</span></div><div class="line"><span class="string">        """</span></div><div class="line">        i = <span class="number">0</span></div><div class="line">        j = len(numbers) - <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> i &lt; j:</div><div class="line">            sum = numbers[i] + numbers[j]</div><div class="line">            <span class="keyword">if</span> sum == target:</div><div class="line">                <span class="keyword">return</span> [i+<span class="number">1</span>, j+<span class="number">1</span>]</div><div class="line">            <span class="keyword">elif</span> sum &lt; target:</div><div class="line">                i += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                j -= <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> [<span class="number">-1</span>, <span class="number">-1</span>]</div><div class="line">            </div><div class="line">s = Solution()</div><div class="line">print(s.twoSum([<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>], <span class="number">9</span>))</div></pre></td></tr></table></figure>
+<h2 id="653-两数之和-IV-输入-BST"><a href="#653-两数之和-IV-输入-BST" class="headerlink" title="[653] 两数之和 IV - 输入 BST"></a>[653] <a href="https://leetcode-cn.com/problems/two-sum-iv-input-is-a-bst/description/" target="_blank" rel="external">两数之和 IV - 输入 BST</a></h2><h3 id="描述-2"><a href="#描述-2" class="headerlink" title="描述"></a>描述</h3><blockquote>
+<p> 给定一个二叉搜索树和一个目标结果，如果 BST 中存在两个元素且它们的和等于给定的目标结果，则返回 true。</p>
+<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例:"></a>示例:</h3></blockquote>
+<h4 id="案例-1"><a href="#案例-1" class="headerlink" title="案例 1:"></a>案例 1:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">输入: </div><div class="line">⁠   5</div><div class="line">⁠  / \</div><div class="line">⁠ 3   6</div><div class="line">⁠/ \   \</div><div class="line">2   4   7</div><div class="line"></div><div class="line">Target = 9</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">输出:</div><div class="line">True</div></pre></td></tr></table></figure>
+<h4 id="案例-2"><a href="#案例-2" class="headerlink" title="案例 2:"></a>案例 2:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">输入: </div><div class="line">⁠   5</div><div class="line">⁠  / \</div><div class="line">⁠ 3   6</div><div class="line">⁠/ \   \</div><div class="line">2   4   7</div><div class="line"></div><div class="line">Target = 28</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">输出:</div><div class="line">False</div></pre></td></tr></table></figure>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>找到两数字存在即可</p>
+<p><strong>思路1</strong></p>
+<p>前序遍历一遍，用<code>HashSet</code>记录访问过节点的值，对于每个值val查target-val是否存在即可，时间空间复杂度均为<script type="math/tex">O(n)​</script></p>
+<p><strong>思路2</strong></p>
+<p>BFS遍历, 对树来说即层序遍历，同样用<code>HashSet</code>记录访问过的节点，与<strong>思路1</strong>不同的地方仅是树的遍历方式，时空复杂度均为<script type="math/tex">O(n)</script></p>
+<p><strong>思路3</strong></p>
+<p>给定的树为<strong>二叉搜索树</strong>，<code>inorder</code>遍历结果即为升序排列的列表，这样就转向了<em><strong>两数之和 II</strong></em>双指针即可完成查找，中序遍历加后面的查找，时空复杂度均为<script type="math/tex">O(n)​</script></p>
+</blockquote>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for a binary tree node.</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></div><div class="line">        self.val = x</div><div class="line">        self.left = <span class="keyword">None</span></div><div class="line">        self.right = <span class="keyword">None</span></div><div class="line"></div><div class="line"><span class="comment"># 思路1</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findTarget</span><span class="params">(self, root, k)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type root: TreeNode</span></div><div class="line"><span class="string">        :type k: int</span></div><div class="line"><span class="string">        :rtype: bool</span></div><div class="line"><span class="string">        """</span></div><div class="line">        dic = &#123;&#125;</div><div class="line">        <span class="keyword">return</span> self.pre_order(root, dic, k)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pre_order</span><span class="params">(self, root, dic, k)</span>:</span></div><div class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        <span class="keyword">if</span> k - root.val <span class="keyword">in</span> dic:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        dic[root.val] = <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> self.pre_order(root.left, dic, k) <span class="keyword">or</span> self.pre_order(root.right, dic, k)</div><div class="line">    </div><div class="line"><span class="comment"># 思路2</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findTarget2</span><span class="params">(self, root, k)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        nodes, dic = [root], set()</div><div class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> nodes:</div><div class="line">            <span class="keyword">if</span> k - node.val <span class="keyword">in</span> dic:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">            dic.add(node.val)</div><div class="line">            <span class="keyword">if</span> node.left:</div><div class="line">                nodes.append(node.left)</div><div class="line">            <span class="keyword">if</span> node.right:</div><div class="line">                nodes.append(node.right)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"><span class="comment"># 思路3</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findTarget</span><span class="params">(self, root, k)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        :type root: TreeNode</span></div><div class="line"><span class="string">        :type k: int</span></div><div class="line"><span class="string">        :rtype: bool</span></div><div class="line"><span class="string">        """</span></div><div class="line">        nums = self.inorder(root)</div><div class="line">        l,r = <span class="number">0</span>,len(nums) - <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> l &lt; r:</div><div class="line">            sum = nums[l] + nums[r]</div><div class="line">            <span class="keyword">if</span> sum == k:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">            <span class="keyword">elif</span> sum &lt; k:</div><div class="line">                l += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                r -= <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inorder</span><span class="params">(self, root)</span>:</span></div><div class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</div><div class="line">            <span class="keyword">return</span> []</div><div class="line">        <span class="keyword">return</span> self.inorder(root.left) + [root.val] + self.inorder(root.right)</div><div class="line">  </div><div class="line">root = TreeNode(<span class="number">5</span>)</div><div class="line">rl = TreeNode(<span class="number">3</span>)</div><div class="line">rr = TreeNode(<span class="number">6</span>)</div><div class="line">root.left = rl</div><div class="line">root.right = rr</div><div class="line">rl.left = TreeNode(<span class="number">2</span>)</div><div class="line">rl.right = TreeNode(<span class="number">4</span>)</div><div class="line">rr.right = TreeNode(<span class="number">7</span>)</div><div class="line">s = Solution()</div><div class="line">print(s.findTarget(root,<span class="number">9</span>))</div></pre></td></tr></table></figure>
+<blockquote>
+<p>拓展 剑指Offer34 二叉树中和为某一值的路径</p>
+</blockquote>
+]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;1-两数之和&quot;&gt;&lt;a href=&quot;#1-两数之和&quot; class=&quot;headerlink&quot; title=&quot;[1] 两数之和&quot;&gt;&lt;/a&gt;[1] &lt;a href=&quot;https://leetcode-cn.com/problems/two-sum/description/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;两数之和&lt;/a&gt;&lt;/h2&gt;&lt;blockquote&gt;
+      &lt;h2 id=&quot;1-两数之和&quot;&gt;&lt;a href=&quot;#1-两数之和&quot; class=&quot;headerlink&quot; title=&quot;[1] 两数之和&quot;&gt;&lt;/a&gt;[1] &lt;a href=&quot;https://leetcode-cn.com/problems/two-sum/description/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;两数之和&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot; title=&quot;描述&quot;&gt;&lt;/a&gt;描述&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt; 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。&lt;/p&gt;
 &lt;p&gt;你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -585,13 +822,13 @@
       <category term="python" scheme="http://andyhui.top/categories/python/"/>
     
     
-      <category term="爬虫" scheme="http://andyhui.top/tags/%E7%88%AC%E8%99%AB/"/>
-    
-      <category term="linux" scheme="http://andyhui.top/tags/linux/"/>
-    
       <category term="python" scheme="http://andyhui.top/tags/python/"/>
     
+      <category term="爬虫" scheme="http://andyhui.top/tags/%E7%88%AC%E8%99%AB/"/>
+    
       <category term="requests" scheme="http://andyhui.top/tags/requests/"/>
+    
+      <category term="linux" scheme="http://andyhui.top/tags/linux/"/>
     
       <category term="BeautifulSoup" scheme="http://andyhui.top/tags/BeautifulSoup/"/>
     
@@ -669,13 +906,13 @@
       <category term="python" scheme="http://andyhui.top/categories/python/"/>
     
     
-      <category term="爬虫" scheme="http://andyhui.top/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="python" scheme="http://andyhui.top/tags/python/"/>
     
-      <category term="requests" scheme="http://andyhui.top/tags/requests/"/>
+      <category term="爬虫" scheme="http://andyhui.top/tags/%E7%88%AC%E8%99%AB/"/>
     
       <category term="oj" scheme="http://andyhui.top/tags/oj/"/>
+    
+      <category term="requests" scheme="http://andyhui.top/tags/requests/"/>
     
   </entry>
   

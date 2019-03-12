@@ -1,9 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[LeetCode[1] 两数之和]]></title>
-    <url>%2F2019%2F03%2F05%2FLeetCode-1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C%2F</url>
-    <content type="text"><![CDATA[[1] 两数之和 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例: 给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1] = 2 + 7 = 9 所以返回 [0, 1] 思路 对于本题，给出的数组是未排序的，若两两求和需要n^{2} 123456789101112131415161718class Solution(object): def twoSum(self, nums, target): """ :type nums: List[int] :type target: int :rtype: List[int] """ if len(nums) &lt; 2: return [-1, -1] map = &#123;&#125; for i in range(len(nums)): if target - nums[i] in map: return [i, map[target - nums[i]]] else: map[nums[i]] = is = Solution()print(s.twoSum([2, 7, 11, 15],9))]]></content>
+    <title><![CDATA[剑指Offer 12矩阵中的路径]]></title>
+    <url>%2F2019%2F03%2F11%2F%E5%89%91%E6%8C%87Offer-12%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84%2F</url>
+    <content type="text"><![CDATA[矩阵中的路径题目描述 请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则之后不能再次进入这个格子。 例如 a b c e s f c s a d e e 这样的3 X 4 矩阵中包含一条字符串”bcced”的路径，但是矩阵中不包含”abcb”路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。 思路 首先应将字符串转为二维数组，然后对于每个字母作为起始字母DFS扫描一遍即可，注意搜索的写法。 代码1234567891011121314151617181920212223242526272829303132333435# -*- coding:utf-8 -*-class Solution: def hasPath(self, matrix, rows, cols, path): # write code here if rows == 0 or cols == 0: return False self.build_matrix(matrix, rows, cols) for i in range(rows): for j in range(cols): if self.find(i, j, 0, rows, cols, path): return True return False def find(self, i, j, l, rows, cols, path): if l == len(path): return True if i &lt; 0 or i &gt;= rows or j &lt; 0 or j &gt;= cols or self.flag[i][j] or self.new_matrix[i][j] != path[l]: return False self.flag[i][j] = 1 for n in [[-1, 0], [1, 0], [0, -1], [0, 1]]: if self.find(i+n[0], j+n[1], l+1, rows, cols, path): return True self.flag[i][j] = 0 return False def build_matrix(self, matrix, rows, cols): self.flag = [] self.new_matrix = [] for i in range(rows): self.flag.append([0]*cols) self.new_matrix.append(list(matrix[i*cols:cols+i*cols]))# s = Solution()# print(s.hasPath("ABCESFCSADEE", 3, 4, "ABCCED"))]]></content>
+      <categories>
+        <category>剑指Offer</category>
+      </categories>
+      <tags>
+        <tag>algorithms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指Offer 7重建二叉树]]></title>
+    <url>%2F2019%2F03%2F10%2F%E5%89%91%E6%8C%87Offer-7%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[重建二叉树题目描述 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。 思路 前序遍历取出根节点，可根据此将中序遍历结果分为左右子树两部分，递归实现此过程即可 代码12345678910111213141516# -*- coding:utf-8 -*-class TreeNode: def __init__(self, x): self.val = x self.left = None self.right = Noneclass Solution: # 返回构造的TreeNode根节点 def reConstructBinaryTree(self, pre, tin): if not pre or not tin: return None root = TreeNode(pre.pop(0)) index = tin.index(root.val) root.left = self.reConstructBinaryTree(pre, tin[:index]) root.right = self.reConstructBinaryTree(pre, tin[index + 1:]) return root 拓展LeetCode 1008. 先序遍历构造二叉搜索树 返回与给定先序遍历 preorder 相匹配的二叉搜索树（binary search tree）的根结点。 (回想一下，二叉搜索树是二叉树的一种，其每个节点都满足以下规则，对于 node.left 的任何后代，值总 &lt; node.val，而 node.right 的任何后代，值总 &gt; node.val。此外，先序遍历首先显示节点的值，然后遍历 node.left，接着遍历 node.right。） 12输入：[8,5,1,7,10,12]输出：[8,5,10,1,7,null,12] 代码1234567891011class Solution: def bstFromPreorder(self, preorder) -&gt; TreeNode: if not preorder: return None root = TreeNode(preorder[0]) itr = 1 while itr &lt; len(preorder) and preorder[itr] &lt; preorder[0]: itr += 1 root.left = self.bstFromPreorder(preorder[1: itr]) root.right = self.bstFromPreorder(preorder[itr:]) return root]]></content>
+      <categories>
+        <category>剑指Offer</category>
+      </categories>
+      <tags>
+        <tag>algorithms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指Offer15 二进制中1的个数]]></title>
+    <url>%2F2019%2F03%2F09%2F%E5%89%91%E6%8C%87Offer15-%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[二进制中1的个数题目描述 输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。 思路1 32位整数取出每一位，与1做&amp;，求和即可 代码112345678class Solution: def NumberOf1(self, n): # move n count = 0 for _ in range(32): count += n &amp; 1 n = n &gt;&gt; 1 return count 思路2 对比思路一，不对n做移位，而是用一个变量，实现一个过滤器的作用来取每一位 代码2123456789def NumberOf1(self, n): # move flag count = 0 flag = 1 for _ in range(32): if n &amp; flag: count += 1 flag &lt;&lt;=1 return count 思路3 对于一个数n, n&amp;(n-1)结果即消掉末尾1的结果，如8 = (1100)_{2}，8-1 = 7 = (1011)_{2} 1100 &amp; 1011 = 1000 即消去了末尾的1 注意 由于Python 的动态类型，导致数字不会像C++那样溢出int范围变为0，因此要先做一步处理，若为负数则加上 2*32次方，转为补码，再进行统计 代码3123456789def NumberOf12(self, n): # not run if n&lt;0 if n&lt;0: n += 2**32 count = 0 while n != 0: count += 1 n = n &amp; (n-1) return count]]></content>
+      <categories>
+        <category>剑指Offer</category>
+      </categories>
+      <tags>
+        <tag>algorithms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指Offer03 数组中重复的数字]]></title>
+    <url>%2F2019%2F03%2F07%2F%E5%89%91%E6%8C%87Offer03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97%2F</url>
+    <content type="text"><![CDATA[数组中重复的数字题目描述 在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。 思路 排序后两两比较需要O(nlogn)时间，哈希表存储可以O(1) 查找，整体时间复杂度O(n) ，同时空间复杂度也为O(n)，若允许修改原数组，可以用原数组数的值和下标的对应关系来解，扫描到下标为i的数字m，若该m与i不同，则找数组中m位置对应的数字，若该数字与m相同，则重复，若不同则交换两数字位置，这种解法时间复杂度O(n)，空间复杂度O(1)。 代码1234567891011121314151617181920212223242526# -*- coding:utf-8 -*-class Solution: # 这里要特别注意~找到任意重复的一个值并赋值到duplication[0] # 函数返回True/False def duplicate(self, numbers, duplication): # 允许修改数组 不允许额外空间 n = len(numbers) if n == 0: return False for i in range(n): if numbers[i] &lt; 0 or numbers[i] &gt; n - 1: return False for i in range(n): if numbers[i] != i: if numbers[numbers[i]] == numbers[i]: duplication[0] = numbers[i] return True tmp = numbers[numbers[i]] numbers[numbers[i]] = numbers[i] numbers[i] = tmp return Falses = Solution()x = [0]print(s.duplicate([2,3,1,0,2,5,3],x))print(x) 数组中重复数字2题目描述 在一个长度为n+1的数组里的所有数字都在1~n的范围内，所以数组中至少有一个数字是重复的。请找出数组中任意一个重复的数字，但不能修改输入的数组。例如，如果输入长度为8的数组{2, 3, 5, 4, 3, 2, 6, 7}，那么对应的输出是重复的数字2或者3。 思路 不修改数组，可以开一个大小为n的数组，与上题思路一致，若不适用额外空间，可采取二分统计数字，若一个s到e的范围内数字超过e-s + 1，则该范围内可能有重复的数字，采取二分查找即可。n个数字count_range被调用O(log(n))次，每次需O(n)时间，所以时间复杂度为O(nlogn)，空间复杂度为O(1) 注意 本题数组限制为长度为n+1的数组里的所有数字都在1~n的范围内，若没有这个条件可能解答会不成立 代码1234567891011121314151617181920212223242526272829303132 # -*- coding:utf-8 -*-class Solution: # 函数返回True/False def duplicate(self, numbers, duplication): # 不允许修改数组 n = len(numbers) if n == 0: return -1 start, end = 1, n - 1 while start &lt;= end: mid = start + ((end-start)&gt;&gt;1) print(start,mid,end) count = self.count_range(numbers, start, mid) if start == end: if count &gt; 1: return start else: break if count &gt; mid - start + 1: end = mid else: start = mid + 1 return -1 def count_range(self, numbers, start, end): if len(numbers) == 0: return 0 count = 0 for i in numbers: if i &gt;= start and i &lt;= end: count += 1 return count]]></content>
+      <categories>
+        <category>剑指Offer</category>
+      </categories>
+      <tags>
+        <tag>algorithms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python 练习册，每天一个小程序]]></title>
+    <url>%2F2019%2F03%2F06%2FPython-%E7%BB%83%E4%B9%A0%E5%86%8C%EF%BC%8C%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F%2F</url>
+    <content type="text"><![CDATA[Talk is cheap. Show me the code.—Linus Torvalds 最近发现一个有趣的项目——show-me-the-code，25道python, 题目，涵盖各个方面，同时兼具挑战性，考察编码能力和资料搜集学习能力。 写在前面完整代码在这里更新，为了不污染全局Python环境，使用了pipenv管理依赖，要运行代码只需只需 123pipenv installpipenv shellpython xxx.py 0000 将你的 QQ 头像（或者微博头像）右上角加上红色的数字，类似于微信未读信息数量那种提示效果。 查资料得知，Python3图像处理库为Pillow，于是看到了廖雪峰老师的教程，简单看了下几个例子及Pillow文档，代码便很容易写了 1234567891011121314151617from PIL import Image, ImageDraw, ImageFontdef main(): # 打开图片，获取图片宽度和高度 im = Image.open('avatar.jpg') w, h = im.size # 创建Draw对象 draw = ImageDraw.Draw(im) # 导入字体创建Font对象 font = ImageFont.truetype('Arial.ttf', 36) # 图片左上角为(0, 0), 绘制文本为'99+', 字体为导入的字体，填充颜色为红色 draw.text((w*0.90, h*0.01),'99+', font=font,fill='#FF0000') im.show()if __name__ == "__main__": main() 运行效果 未完待续。。。]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 两数之和系列]]></title>
+    <url>%2F2019%2F03%2F05%2FLeetCode%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C%2F</url>
+    <content type="text"><![CDATA[[1] 两数之和描述 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例: 给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1] = 2 + 7 = 9 所以返回 [0, 1] 思路 对于本题，给出的数组是未排序的，若两两求和需要O(n^{2}), 如果排序后再双指针遍历，则需要O(nlogn + n), 考虑到HashMap，可以O(1) 查找，因此对于一个数字nums[i],如果target-nums[i]出现过，则输出对应位置，若不存在则记录该数字与位置。 代码123456789101112131415161718class Solution(object): def twoSum(self, nums, target): """ :type nums: List[int] :type target: int :rtype: List[int] """ if len(nums) &lt; 2: return [-1, -1] map = &#123;&#125; for i in range(len(nums)): if target - nums[i] in map: return [i, map[target - nums[i]]] else: map[nums[i]] = is = Solution()print(s.twoSum([2, 7, 11, 15],9)) [167] 两数之和 II - 输入有序数组描述 给定一个已按照升序排列 的有序数组，找到两个数使得它们相加之和等于目标数。 函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2。 说明: 返回的下标值（index1 和 index2）不是从零开始的。 你可以假设每个输入只对应唯一的答案，而且你不可以重复使用相同的元素。 示例: 输入: numbers = [2, 7, 11, 15], target = 9 输出: [1,2] 解释: 2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。 思路 双指针i,j，i指向较小元素，j指向较大元素， 令 sum = numbers[i]+numbers[j] 若sum &lt; target, i+= 1, 使 sum 变大 若sum &gt; target, j -= 1，使 sum 变小 代码123456789101112131415161718192021class Solution(object): def twoSum(self, numbers, target): """ :type numbers: List[int] :type target: int :rtype: List[int] """ i = 0 j = len(numbers) - 1 while i &lt; j: sum = numbers[i] + numbers[j] if sum == target: return [i+1, j+1] elif sum &lt; target: i += 1 else: j -= 1 return [-1, -1] s = Solution()print(s.twoSum([2, 7, 11, 15], 9)) [653] 两数之和 IV - 输入 BST描述 给定一个二叉搜索树和一个目标结果，如果 BST 中存在两个元素且它们的和等于给定的目标结果，则返回 true。 示例: 案例 1:12345678输入: ⁠ 5⁠ / \⁠ 3 6⁠/ \ \2 4 7Target = 9 12输出:True 案例 2:12345678输入: ⁠ 5⁠ / \⁠ 3 6⁠/ \ \2 4 7Target = 28 12输出:False 思路 找到两数字存在即可 思路1 前序遍历一遍，用HashSet记录访问过节点的值，对于每个值val查target-val是否存在即可，时间空间复杂度均为O(n)​ 思路2 BFS遍历, 对树来说即层序遍历，同样用HashSet记录访问过的节点，与思路1不同的地方仅是树的遍历方式，时空复杂度均为O(n) 思路3 给定的树为二叉搜索树，inorder遍历结果即为升序排列的列表，这样就转向了两数之和 II双指针即可完成查找，中序遍历加后面的查找，时空复杂度均为O(n)​ 代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172# Definition for a binary tree node.class TreeNode(object): def __init__(self, x): self.val = x self.left = None self.right = None# 思路1class Solution(object): def findTarget(self, root, k): """ :type root: TreeNode :type k: int :rtype: bool """ dic = &#123;&#125; return self.pre_order(root, dic, k) def pre_order(self, root, dic, k): if root == None: return False if k - root.val in dic: return True dic[root.val] = 1 return self.pre_order(root.left, dic, k) or self.pre_order(root.right, dic, k) # 思路2 def findTarget2(self, root, k): if not root: return False nodes, dic = [root], set() for node in nodes: if k - node.val in dic: return True dic.add(node.val) if node.left: nodes.append(node.left) if node.right: nodes.append(node.right) return False# 思路3 def findTarget(self, root, k): """ :type root: TreeNode :type k: int :rtype: bool """ nums = self.inorder(root) l,r = 0,len(nums) - 1 while l &lt; r: sum = nums[l] + nums[r] if sum == k: return True elif sum &lt; k: l += 1 else: r -= 1 return False def inorder(self, root): if root == None: return [] return self.inorder(root.left) + [root.val] + self.inorder(root.right) root = TreeNode(5)rl = TreeNode(3)rr = TreeNode(6)root.left = rlroot.right = rrrl.left = TreeNode(2)rl.right = TreeNode(4)rr.right = TreeNode(7)s = Solution()print(s.findTarget(root,9)) 拓展 剑指Offer34 二叉树中和为某一值的路径]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -77,10 +132,10 @@
         <category>python</category>
       </categories>
       <tags>
-        <tag>爬虫</tag>
-        <tag>linux</tag>
         <tag>python</tag>
+        <tag>爬虫</tag>
         <tag>requests</tag>
+        <tag>linux</tag>
         <tag>BeautifulSoup</tag>
       </tags>
   </entry>
@@ -92,10 +147,10 @@
         <category>python</category>
       </categories>
       <tags>
-        <tag>爬虫</tag>
         <tag>python</tag>
-        <tag>requests</tag>
+        <tag>爬虫</tag>
         <tag>oj</tag>
+        <tag>requests</tag>
       </tags>
   </entry>
   <entry>
