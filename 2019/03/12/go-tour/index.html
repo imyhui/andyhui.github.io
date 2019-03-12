@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="python," />
+  <meta name="keywords" content="golang," />
 
 
 
@@ -101,20 +101,21 @@
 
 
 
-<meta name="description" content="Talk is cheap. Show me the code.—Linus Torvalds  最近发现一个有趣的项目——show-me-the-code，25道python, 题目，涵盖各个方面，同时兼具挑战性，考察编码能力和资料搜集学习能力。">
-<meta name="keywords" content="python">
+<meta name="description" content="Go 指南 Go语言官方给出了一份教程，基本涵盖了涵盖了该语言的大部分重要特性 形式是知识点 + 代码的形式，很喜欢这样的学习方式 这篇博客记录下每道练习题的自己的解答及官方解答。">
+<meta name="keywords" content="golang">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python 练习册，每天一个小程序">
-<meta property="og:url" content="http://andyhui.top/2019/03/06/Python-练习册，每天一个小程序/index.html">
+<meta property="og:title" content="Go 指南练习">
+<meta property="og:url" content="http://andyhui.top/2019/03/12/go-tour/index.html">
 <meta property="og:site_name" content="andyhui&#39;s blog">
-<meta property="og:description" content="Talk is cheap. Show me the code.—Linus Torvalds  最近发现一个有趣的项目——show-me-the-code，25道python, 题目，涵盖各个方面，同时兼具挑战性，考察编码能力和资料搜集学习能力。">
+<meta property="og:description" content="Go 指南 Go语言官方给出了一份教程，基本涵盖了涵盖了该语言的大部分重要特性 形式是知识点 + 代码的形式，很喜欢这样的学习方式 这篇博客记录下每道练习题的自己的解答及官方解答。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://githubblog.andyhui.top/add_num.png">
-<meta property="og:updated_time" content="2019-03-06T16:02:09.000Z">
+<meta property="og:image" content="http://githubblog.andyhui.top/image/go/slice.png">
+<meta property="og:image" content="http://githubblog.andyhui.top/image/go/slice2.png">
+<meta property="og:updated_time" content="2019-03-12T15:41:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python 练习册，每天一个小程序">
-<meta name="twitter:description" content="Talk is cheap. Show me the code.—Linus Torvalds  最近发现一个有趣的项目——show-me-the-code，25道python, 题目，涵盖各个方面，同时兼具挑战性，考察编码能力和资料搜集学习能力。">
-<meta name="twitter:image" content="http://githubblog.andyhui.top/add_num.png">
+<meta name="twitter:title" content="Go 指南练习">
+<meta name="twitter:description" content="Go 指南 Go语言官方给出了一份教程，基本涵盖了涵盖了该语言的大部分重要特性 形式是知识点 + 代码的形式，很喜欢这样的学习方式 这篇博客记录下每道练习题的自己的解答及官方解答。">
+<meta name="twitter:image" content="http://githubblog.andyhui.top/image/go/slice.png">
 
 
 
@@ -144,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://andyhui.top/2019/03/06/Python-练习册，每天一个小程序/"/>
+  <link rel="canonical" href="http://andyhui.top/2019/03/12/go-tour/"/>
 
 
 
 
 
-  <title>Python 练习册，每天一个小程序 | andyhui's blog</title>
+  <title>Go 指南练习 | andyhui's blog</title>
   
 
 
@@ -311,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://andyhui.top/2019/03/06/Python-练习册，每天一个小程序/">
+    <link itemprop="mainEntityOfPage" href="http://andyhui.top/2019/03/12/go-tour/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="andyhui">
@@ -328,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Python 练习册，每天一个小程序</h1>
+          <h1 class="post-title" itemprop="name headline">Go 指南练习</h1>
         
 
         <div class="post-meta">
@@ -340,8 +341,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-06T23:23:00+08:00">
-                2019-03-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-12T22:42:00+08:00">
+                2019-03-12
               </time>
             
 
@@ -363,8 +364,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/categories/Go/" itemprop="url" rel="index">
+                    <span itemprop="name">Go</span>
                   </a>
                 </span>
 
@@ -381,9 +382,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/03/06/Python-练习册，每天一个小程序/#comments" itemprop="discussionUrl">
+                <a href="/2019/03/12/go-tour/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/03/06/Python-练习册，每天一个小程序/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2019/03/12/go-tour/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -391,7 +392,7 @@
 
           
           
-             <span id="/2019/03/06/Python-练习册，每天一个小程序/" class="leancloud_visitors" data-flag-title="Python 练习册，每天一个小程序">
+             <span id="/2019/03/12/go-tour/" class="leancloud_visitors" data-flag-title="Go 指南练习">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -423,22 +424,49 @@
       
 
       
-        <blockquote>
-<p>Talk is cheap. Show me the code.—Linus Torvalds</p>
+        <h2 id="Go-指南"><a href="#Go-指南" class="headerlink" title="Go 指南"></a><a href="https://tour.go-zh.org/list" target="_blank" rel="external">Go 指南</a></h2><blockquote>
+<p>Go语言官方给出了一份教程，基本涵盖了涵盖了该语言的大部分重要特性</p>
+<p>形式是<code>知识点 + 代码</code>的形式，很喜欢这样的学习方式</p>
+<p>这篇博客记录下每道练习题的自己的解答及官方解答。</p>
 </blockquote>
-<p>最近发现一个有趣的项目——<a href="https://github.com/Yixiaohan/show-me-the-code" target="_blank" rel="external"><strong>show-me-the-code</strong></a>，25道<code>python</code>, 题目，涵盖各个方面，同时兼具挑战性，考察编码能力和资料搜集学习能力。</p>
 <a id="more"></a>
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>完整代码在<a href="https://github.com/imyhui/show-me-the-code/" target="_blank" rel="external">这里</a>更新，为了不污染全局Python环境，使用了<a href="https://github.com/pypa/pipenv" target="_blank" rel="external"><code>pipenv</code></a>管理依赖，要运行代码只需只需</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">pipenv install</div><div class="line">pipenv shell</div><div class="line">python xxx.py</div></pre></td></tr></table></figure>
-<h2 id="0000"><a href="#0000" class="headerlink" title="0000"></a>0000</h2><blockquote>
-<p>将你的 QQ 头像（或者微博头像）右上角加上红色的数字，类似于微信未读信息数量那种提示效果。 </p>
+<h3 id="练习：循环与函数"><a href="#练习：循环与函数" class="headerlink" title="练习：循环与函数"></a><a href="https://tour.go-zh.org/flowcontrol/8" target="_blank" rel="external">练习：循环与函数</a></h3><blockquote>
+<p>作为练习函数和循环的简单途径，用牛顿法实现开方函数。</p>
+<p>在这个例子中，牛顿法是通过选择一个初始点 <em>z</em> 然后重复这一过程求 <code>Sqrt(x)</code> 的近似值：</p>
+<h4 id="z-z-frac-z-2-x-2z"><a href="#z-z-frac-z-2-x-2z" class="headerlink" title="$z=z-\frac{z^{2}-x}{2z}$"></a>$z=z-\frac{z^{2}-x}{2z}$</h4><p>为了做到这个，只需要重复计算 10 次，并且观察不同的值（1，2，3，……）是如何逐步逼近结果的。 然后，修改循环条件，使得当值停止改变（或改变非常小）的时候退出循环。观察迭代次数是否变化</p>
+<p>提示：定义并初始化一个浮点值，向其提供一个浮点语法或使用转换：</p>
 </blockquote>
-<p>查资料得知，<code>Python3</code>图像处理库为Pillow，于是看到了<em>廖雪峰</em>老师的<a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014320027235877860c87af5544f25a8deeb55141d60c5000" target="_blank" rel="external">教程</a>，简单看了下几个例子及<a href="https://pillow.readthedocs.io/en/stable/index.html" target="_blank" rel="external">Pillow文档</a>，代码便很容易写了</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, ImageDraw, ImageFont</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment"># 打开图片，获取图片宽度和高度</span></div><div class="line">    im = Image.open(<span class="string">'avatar.jpg'</span>)</div><div class="line">    w, h = im.size</div><div class="line">    </div><div class="line">    <span class="comment"># 创建Draw对象</span></div><div class="line">    draw = ImageDraw.Draw(im)</div><div class="line">    <span class="comment"># 导入字体创建Font对象</span></div><div class="line">    font = ImageFont.truetype(<span class="string">'Arial.ttf'</span>, <span class="number">36</span>)</div><div class="line">    <span class="comment"># 图片左上角为(0, 0), 绘制文本为'99+', 字体为导入的字体，填充颜色为红色</span></div><div class="line">    draw.text((w*<span class="number">0.90</span>, h*<span class="number">0.01</span>),<span class="string">'99+'</span>, font=font,fill=<span class="string">'#FF0000'</span>)</div><div class="line"></div><div class="line">    im.show()</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    main()</div></pre></td></tr></table></figure>
-<p>运行效果</p>
-<p><img src="http://githubblog.andyhui.top/add_num.png" alt="add_num_pic"></p>
-<p>未完待续。。。</p>
-
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">z := <span class="keyword">float64</span>(<span class="number">1</span>)</div><div class="line">z := <span class="number">1.0</span></div></pre></td></tr></table></figure>
+<h4 id="my-solution"><a href="#my-solution" class="headerlink" title="my solution"></a>my solution</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"math"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sqrt</span><span class="params">(x <span class="keyword">float64</span>)</span> <span class="title">float64</span></span> &#123;</div><div class="line">	z := <span class="keyword">float64</span>(x/<span class="number">2</span>)</div><div class="line">	<span class="keyword">for</span> s := <span class="number">1</span>; s &lt;= <span class="number">1</span>&lt;&lt;<span class="number">20</span>; s++ &#123;</div><div class="line">		z -= (z*z - x) / <span class="number">2</span> * z</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> z</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	n := <span class="number">2</span></div><div class="line">	fmt.Println(Sqrt(<span class="keyword">float64</span>(n)))</div><div class="line">	fmt.Println(math.Sqrt(<span class="keyword">float64</span>(n)))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="go-Team-solution"><a href="#go-Team-solution" class="headerlink" title="go Team solution"></a>go Team solution</h4><p>loops.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"math"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">const</span> delta = <span class="number">1e-6</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sqrt</span><span class="params">(x <span class="keyword">float64</span>)</span> <span class="title">float64</span></span> &#123;</div><div class="line">	z := x</div><div class="line">	n := <span class="number">0.0</span></div><div class="line">	<span class="keyword">for</span> math.Abs(n-z) &gt; delta &#123;</div><div class="line">		n, z = z, z-(z*z-x)/(<span class="number">2</span>*z)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> z</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">const</span> x = <span class="number">2</span></div><div class="line">	mine, theirs := Sqrt(x), math.Sqrt(x)</div><div class="line">	fmt.Println(mine, theirs, mine-theirs)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="练习：slice"><a href="#练习：slice" class="headerlink" title="练习：slice"></a><a href="https://tour.go-zh.org/moretypes/18" target="_blank" rel="external">练习：slice</a></h3><blockquote>
+<p>实现 <code>Pic</code>。它返回一个 slice 的长度 <code>dy</code>，和 slice 中每个元素的长度的 8 位无符号整数 <code>dx</code>。当执行这个程序，它会将整数转换为灰度（好吧，蓝度）图片进行展示。</p>
+<p>图片的实现已经完成。可能用到的函数包括 <code>(x+y)/2</code>、 <code>x*y</code> 和 <code>x^y</code>（使用 <a href="http://golang.org/pkg/math/#Pow" target="_blank" rel="external"><code>math.Pow</code></a>计算最后的函数）。</p>
+<p>（需要使用循环来分配 <code>[][]uint8</code> 中的每个 <code>[]uint8</code>。）</p>
+<p>（使用 <code>uint8(intValue)</code> 在类型之间进行转换。）</p>
+</blockquote>
+<h4 id="my-solution-1"><a href="#my-solution-1" class="headerlink" title="my solution"></a>my solution</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"golang.org/x/tour/pic"</span></div><div class="line">	<span class="string">"math"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">cal</span><span class="params">(x, y, n <span class="keyword">int</span>)</span> <span class="title">uint8</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> res <span class="keyword">uint8</span></div><div class="line">	<span class="keyword">switch</span> n &#123;</div><div class="line">	<span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">		res = <span class="keyword">uint8</span>((x + y) / <span class="number">2</span>)</div><div class="line">	<span class="keyword">case</span> <span class="number">2</span>:</div><div class="line">		res = <span class="keyword">uint8</span>(x * y)</div><div class="line">	<span class="keyword">case</span> <span class="number">3</span>:</div><div class="line">		res = <span class="keyword">uint8</span>(x ^ y)</div><div class="line">	<span class="keyword">case</span> <span class="number">4</span>:</div><div class="line">		res = <span class="keyword">uint8</span>(x * <span class="keyword">int</span>(math.Log(<span class="keyword">float64</span>(y))))</div><div class="line">	<span class="keyword">case</span> <span class="number">5</span>:</div><div class="line">		res = <span class="keyword">uint8</span>(x % (y + <span class="number">1</span>))</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> res</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Pic</span><span class="params">(dx, dy <span class="keyword">int</span>)</span> [][]<span class="title">uint8</span></span> &#123;</div><div class="line">	res := <span class="built_in">make</span>([][]<span class="keyword">uint8</span>, dy)</div><div class="line">	<span class="keyword">for</span> y := <span class="keyword">range</span> res &#123;</div><div class="line">		res[y] = <span class="built_in">make</span>([]<span class="keyword">uint8</span>, dx)</div><div class="line">		<span class="keyword">for</span> x := <span class="keyword">range</span> res[y] &#123;</div><div class="line">			res[y][x] = cal(x,y,<span class="number">5</span>)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> res</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	pic.Show(Pic)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行结果</p>
+<p><img src="http://githubblog.andyhui.top/image/go/slice.png" alt="结果"></p>
+<h4 id="go-Team-solution-1"><a href="#go-Team-solution-1" class="headerlink" title="go Team solution"></a>go Team solution</h4><p>slices.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"golang.org/x/tour/pic"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Pic</span><span class="params">(dx, dy <span class="keyword">int</span>)</span> [][]<span class="title">uint8</span></span> &#123;</div><div class="line">	p := <span class="built_in">make</span>([][]<span class="keyword">uint8</span>, dy)</div><div class="line">	<span class="keyword">for</span> i := <span class="keyword">range</span> p &#123;</div><div class="line">		p[i] = <span class="built_in">make</span>([]<span class="keyword">uint8</span>, dx)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">for</span> y, row := <span class="keyword">range</span> p &#123;</div><div class="line">		<span class="keyword">for</span> x := <span class="keyword">range</span> row &#123;</div><div class="line">			row[x] = <span class="keyword">uint8</span>(x * y)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> p</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	pic.Show(Pic)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://githubblog.andyhui.top/image/go/slice2.png" alt="结果"></p>
+<h3 id="练习：map"><a href="#练习：map" class="headerlink" title="练习：map"></a><a href>练习：map</a></h3><blockquote>
+<p>实现 <code>WordCount</code>。它应当返回一个含有 <code>s</code>中每个 “词” 个数的 map。函数 <code>wc.Test</code>针对这个函数执行一个测试用例，并输出成功还是失败。</p>
+<p>你会发现 <a href="http://golang.org/pkg/strings/#Fields" target="_blank" rel="external">strings.Fields</a> 很有帮助。</p>
+</blockquote>
+<h4 id="my-solution-go-Team-solution"><a href="#my-solution-go-Team-solution" class="headerlink" title="my solution == go Team solution"></a>my solution == go Team solution</h4><p>maps.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"strings"</span></div><div class="line">	<span class="string">"golang.org/x/tour/wc"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">WordCount</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">map</span>[<span class="title">string</span>]<span class="title">int</span></span> &#123;</div><div class="line">	count := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>)</div><div class="line">	<span class="keyword">for</span> _, word := <span class="keyword">range</span> strings.Fields(s) &#123;</div><div class="line">		count[word]++</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> count</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	wc.Test(WordCount)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="https://tour.go-zh.org/moretypes/26" target="_blank" rel="external">练习：斐波纳契闭包</a></p>
+<blockquote>
+<p>现在来通过函数做些有趣的事情。</p>
+<p>实现一个<code>fibonacci</code> 函数，返回一个函数（一个闭包）可以返回连续的<a href="https://zh.wikipedia.org/wiki/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97" target="_blank" rel="external">斐波纳契数列</a> <code>(0, 1, 1, 2, 3, 5, ...)</code>。</p>
+</blockquote>
+<h4 id="my-solution-2"><a href="#my-solution-2" class="headerlink" title="my solution"></a>my solution</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"></div><div class="line"><span class="comment">// fibonacci is a function that returns</span></div><div class="line"><span class="comment">// a function that returns an int.</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">fibonacci</span><span class="params">()</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	dp := []<span class="keyword">int</span>&#123;<span class="number">0</span>, <span class="number">1</span>&#125;</div><div class="line">	<span class="keyword">for</span> i := <span class="number">2</span>; i &lt; <span class="number">100</span>; i++ &#123;</div><div class="line">		dp = <span class="built_in">append</span>(dp, dp[i<span class="number">-1</span>] + dp[i<span class="number">-2</span>])</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">(x <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">		<span class="keyword">return</span> dp[x]</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	f := fibonacci()</div><div class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</div><div class="line">		fmt.Println(f(i))</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="go-Team-solution-2"><a href="#go-Team-solution-2" class="headerlink" title="go Team solution"></a>go Team solution</h4><p>fib.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"></div><div class="line"><span class="comment">// fibonacci is a function that returns</span></div><div class="line"><span class="comment">// a function that returns an int.</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">fibonacci</span><span class="params">()</span> <span class="title">func</span><span class="params">()</span> <span class="title">int</span></span> &#123;</div><div class="line">	f, g := <span class="number">1</span>, <span class="number">0</span></div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">()</span> <span class="title">int</span></span> &#123;</div><div class="line">		f, g = g, f+g</div><div class="line">		<span class="keyword">return</span> f</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	f := fibonacci()</div><div class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</div><div class="line">		fmt.Println(f())</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="To-be-continue…"><a href="#To-be-continue…" class="headerlink" title="To be continue…"></a>To be continue…</h3>
       
     </div>
     
@@ -455,7 +483,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+            <a href="/tags/golang/" rel="tag"><i class="fa fa-tag"></i> golang</a>
           
         </div>
       
@@ -468,8 +496,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/05/LeetCode 两数之和/" rel="next" title="LeetCode 两数之和系列">
-                <i class="fa fa-chevron-left"></i> LeetCode 两数之和系列
+              <a href="/2019/03/11/剑指Offer-12矩阵中的路径/" rel="next" title="剑指Offer 12矩阵中的路径">
+                <i class="fa fa-chevron-left"></i> 剑指Offer 12矩阵中的路径
               </a>
             
           </div>
@@ -477,10 +505,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/07/剑指Offer03-数组中重复的数字/" rel="prev" title="剑指Offer03 数组中重复的数字">
-                剑指Offer03 数组中重复的数字 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -658,7 +682,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0000"><span class="nav-number">2.</span> <span class="nav-text">0000</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Go-指南"><span class="nav-number">1.</span> <span class="nav-text">Go 指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#练习：循环与函数"><span class="nav-number">1.1.</span> <span class="nav-text">练习：循环与函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#z-z-frac-z-2-x-2z"><span class="nav-number">1.1.1.</span> <span class="nav-text">$z=z-\frac{z^{2}-x}{2z}$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#my-solution"><span class="nav-number">1.1.2.</span> <span class="nav-text">my solution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-Team-solution"><span class="nav-number">1.1.3.</span> <span class="nav-text">go Team solution</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#练习：slice"><span class="nav-number">1.2.</span> <span class="nav-text">练习：slice</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#my-solution-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">my solution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-Team-solution-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">go Team solution</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#练习：map"><span class="nav-number">1.3.</span> <span class="nav-text">练习：map</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#my-solution-go-Team-solution"><span class="nav-number">1.3.1.</span> <span class="nav-text">my solution == go Team solution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#my-solution-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">my solution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-Team-solution-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">go Team solution</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#To-be-continue…"><span class="nav-number">1.4.</span> <span class="nav-text">To be continue…</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -823,9 +847,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://andyhui.top/2019/03/06/Python-练习册，每天一个小程序/';
-          this.page.identifier = '2019/03/06/Python-练习册，每天一个小程序/';
-          this.page.title = 'Python 练习册，每天一个小程序';
+          this.page.url = 'http://andyhui.top/2019/03/12/go-tour/';
+          this.page.identifier = '2019/03/12/go-tour/';
+          this.page.title = 'Go 指南练习';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://andyhui.disqus.com/embed.js';
