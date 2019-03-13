@@ -1,10 +1,12 @@
 title: 剑指Offer15 二进制中1的个数
 author: andyhui
 tags:
+
   - algorithms
 categories:
   - 剑指Offer
 date: 2019-03-09 23:46:00
+update: 2019-03-13 22:35:00
 
 ---
 
@@ -83,5 +85,22 @@ class Solution:
             count += 1
             n = n & (n-1)
         return count
+```
+
+
+
+### 思路4
+
+> 转为二进制，直接统计1的个数
+
+### 代码4
+
+```python
+    def NumberOf14(self, n):
+        # bitcount
+        if n<0:
+            n += 2**32
+        count = bin(n).count('1')
+        return count 
 ```
 

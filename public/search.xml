@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Go 指南练习]]></title>
+    <url>%2F2019%2F03%2F12%2Fgo-tour%2F</url>
+    <content type="text"><![CDATA[Go 指南 Go语言官方给出了一份教程，基本涵盖了涵盖了该语言的大部分重要特性 形式是知识点 + 代码的形式，很喜欢这样的学习方式 这篇博客记录下每道练习题的自己的解答及官方解答。 练习：循环与函数 作为练习函数和循环的简单途径，用牛顿法实现开方函数。 在这个例子中，牛顿法是通过选择一个初始点 z 然后重复这一过程求 Sqrt(x) 的近似值： $z=z-\frac{z^{2}-x}{2z}$为了做到这个，只需要重复计算 10 次，并且观察不同的值（1，2，3，……）是如何逐步逼近结果的。 然后，修改循环条件，使得当值停止改变（或改变非常小）的时候退出循环。观察迭代次数是否变化 提示：定义并初始化一个浮点值，向其提供一个浮点语法或使用转换： 12z := float64(1)z := 1.0 my solution1234567891011121314151617181920package mainimport ( "fmt" "math")func Sqrt(x float64) float64 &#123; z := float64(x/2) for s := 1; s &lt;= 1&lt;&lt;20; s++ &#123; z -= (z*z - x) / 2 * z &#125; return z&#125;func main() &#123; n := 2 fmt.Println(Sqrt(float64(n))) fmt.Println(math.Sqrt(float64(n)))&#125; go Team solutionloops.go 1234567891011121314151617181920212223package mainimport ( "fmt" "math")const delta = 1e-6func Sqrt(x float64) float64 &#123; z := x n := 0.0 for math.Abs(n-z) &gt; delta &#123; n, z = z, z-(z*z-x)/(2*z) &#125; return z&#125;func main() &#123; const x = 2 mine, theirs := Sqrt(x), math.Sqrt(x) fmt.Println(mine, theirs, mine-theirs)&#125; 练习：slice 实现 Pic。它返回一个 slice 的长度 dy，和 slice 中每个元素的长度的 8 位无符号整数 dx。当执行这个程序，它会将整数转换为灰度（好吧，蓝度）图片进行展示。 图片的实现已经完成。可能用到的函数包括 (x+y)/2、 x*y 和 x^y（使用 math.Pow计算最后的函数）。 （需要使用循环来分配 [][]uint8 中的每个 []uint8。） （使用 uint8(intValue) 在类型之间进行转换。） my solution12345678910111213141516171819202122232425262728293031323334353637package mainimport ( "golang.org/x/tour/pic" "math")func cal(x, y, n int) uint8 &#123; var res uint8 switch n &#123; case 1: res = uint8((x + y) / 2) case 2: res = uint8(x * y) case 3: res = uint8(x ^ y) case 4: res = uint8(x * int(math.Log(float64(y)))) case 5: res = uint8(x % (y + 1)) &#125; return res&#125;func Pic(dx, dy int) [][]uint8 &#123; res := make([][]uint8, dy) for y := range res &#123; res[y] = make([]uint8, dx) for x := range res[y] &#123; res[y][x] = cal(x,y,5) &#125; &#125; return res&#125;func main() &#123; pic.Show(Pic)&#125; 运行结果 go Team solutionslices.go 12345678910111213141516171819202122package mainimport "golang.org/x/tour/pic"func Pic(dx, dy int) [][]uint8 &#123; p := make([][]uint8, dy) for i := range p &#123; p[i] = make([]uint8, dx) &#125; for y, row := range p &#123; for x := range row &#123; row[x] = uint8(x * y) &#125; &#125; return p&#125;func main() &#123; pic.Show(Pic)&#125; 练习：map 实现 WordCount。它应当返回一个含有 s中每个 “词” 个数的 map。函数 wc.Test针对这个函数执行一个测试用例，并输出成功还是失败。 你会发现 strings.Fields 很有帮助。 my solution == go Team solutionmaps.go 123456789101112131415161718package mainimport ( "strings" "golang.org/x/tour/wc")func WordCount(s string) map[string]int &#123; count := make(map[string]int) for _, word := range strings.Fields(s) &#123; count[word]++ &#125; return count&#125;func main() &#123; wc.Test(WordCount)&#125; 练习：斐波纳契闭包 现在来通过函数做些有趣的事情。 实现一个fibonacci 函数，返回一个函数（一个闭包）可以返回连续的斐波纳契数列 (0, 1, 1, 2, 3, 5, ...)。 my solution123456789101112131415161718192021package mainimport "fmt"// fibonacci is a function that returns// a function that returns an int.func fibonacci() func(int) int &#123; dp := []int&#123;0, 1&#125; for i := 2; i &lt; 100; i++ &#123; dp = append(dp, dp[i-1] + dp[i-2]) &#125; return func(x int) int &#123; return dp[x] &#125;&#125;func main() &#123; f := fibonacci() for i := 0; i &lt; 10; i++ &#123; fmt.Println(f(i)) &#125;&#125; go Team solutionfib.go 1234567891011121314151617181920package mainimport "fmt"// fibonacci is a function that returns// a function that returns an int.func fibonacci() func() int &#123; f, g := 1, 0 return func() int &#123; f, g = g, f+g return f &#125;&#125;func main() &#123; f := fibonacci() for i := 0; i &lt; 10; i++ &#123; fmt.Println(f()) &#125;&#125; To be continue…]]></content>
+      <categories>
+        <category>Go</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[剑指Offer 12矩阵中的路径]]></title>
     <url>%2F2019%2F03%2F11%2F%E5%89%91%E6%8C%87Offer-12%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84%2F</url>
     <content type="text"><![CDATA[矩阵中的路径题目描述 请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则之后不能再次进入这个格子。 例如 a b c e s f c s a d e e 这样的3 X 4 矩阵中包含一条字符串”bcced”的路径，但是矩阵中不包含”abcb”路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。 思路 首先应将字符串转为二维数组，然后对于每个字母作为起始字母DFS扫描一遍即可，注意搜索的写法。 代码1234567891011121314151617181920212223242526272829303132333435# -*- coding:utf-8 -*-class Solution: def hasPath(self, matrix, rows, cols, path): # write code here if rows == 0 or cols == 0: return False self.build_matrix(matrix, rows, cols) for i in range(rows): for j in range(cols): if self.find(i, j, 0, rows, cols, path): return True return False def find(self, i, j, l, rows, cols, path): if l == len(path): return True if i &lt; 0 or i &gt;= rows or j &lt; 0 or j &gt;= cols or self.flag[i][j] or self.new_matrix[i][j] != path[l]: return False self.flag[i][j] = 1 for n in [[-1, 0], [1, 0], [0, -1], [0, 1]]: if self.find(i+n[0], j+n[1], l+1, rows, cols, path): return True self.flag[i][j] = 0 return False def build_matrix(self, matrix, rows, cols): self.flag = [] self.new_matrix = [] for i in range(rows): self.flag.append([0]*cols) self.new_matrix.append(list(matrix[i*cols:cols+i*cols]))# s = Solution()# print(s.hasPath("ABCESFCSADEE", 3, 4, "ABCCED"))]]></content>
@@ -134,8 +145,8 @@
       <tags>
         <tag>python</tag>
         <tag>爬虫</tag>
-        <tag>requests</tag>
         <tag>linux</tag>
+        <tag>requests</tag>
         <tag>BeautifulSoup</tag>
       </tags>
   </entry>
@@ -149,8 +160,8 @@
       <tags>
         <tag>python</tag>
         <tag>爬虫</tag>
-        <tag>oj</tag>
         <tag>requests</tag>
+        <tag>oj</tag>
       </tags>
   </entry>
   <entry>

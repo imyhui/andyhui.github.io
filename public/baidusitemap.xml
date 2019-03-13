@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://andyhui.top/2019/03/12/go-tour/</loc>
+    <lastmod>2019-03-12T15:41:05.000Z</lastmod>
+    <data>
+        <display>
+        <title>Go 指南练习</title>
+        <pubTime>2019-03-12T14:42:00.000Z</pubTime>
+        
+        <tag>golang</tag>
+         
+         
+           
+             
+              <breadCrumb title="Go" url="http://andyhui.top/categories/Go/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://andyhui.top/2019/03/11/%E5%89%91%E6%8C%87Offer-12%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/</loc>
     <lastmod>2019-03-11T14:27:03.000Z</lastmod>
     <data>
@@ -201,9 +221,9 @@
          
         <tag>爬虫</tag>
          
-        <tag>oj</tag>
-         
         <tag>requests</tag>
+         
+        <tag>oj</tag>
          
          
            
@@ -249,9 +269,9 @@
          
         <tag>爬虫</tag>
          
-        <tag>requests</tag>
-         
         <tag>linux</tag>
+         
+        <tag>requests</tag>
          
         <tag>BeautifulSoup</tag>
          
