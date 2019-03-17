@@ -5,6 +5,7 @@ tags:
 categories:
   - Go
 date: 2019-03-12 22:42:00
+update: 2019-03-18 12:10:00
 ---
 ## [Go 指南](https://tour.go-zh.org/list)
 > Go语言官方给出了一份教程，基本涵盖了涵盖了该语言的大部分重要特性
@@ -184,7 +185,7 @@ func main() {
 
 
 
-### [练习：map]()
+### [练习：map](https://tour.go-zh.org/moretypes/23)
 
 > 实现 `WordCount`。它应当返回一个含有 `s`中每个 “词” 个数的 map。函数 `wc.Test`针对这个函数执行一个测试用例，并输出成功还是失败。
 
@@ -219,7 +220,7 @@ func main() {
 
 
 
-[练习：斐波纳契闭包](https://tour.go-zh.org/moretypes/26)
+### [练习：斐波纳契闭包](https://tour.go-zh.org/moretypes/26)
 
 > 现在来通过函数做些有趣的事情。
 
@@ -280,6 +281,42 @@ func main() {
 
 
 
+### [练习：Stringer](https://tour.go-zh.org/methods/18)
 
+> 通过让 `IPAddr` 类型实现 `fmt.Stringer` 来打印点号分隔的地址。
+>
+> 例如，`IPAddr{1, 2, 3, 4}`应当打印为 `"1.2.3.4"`。
+
+#### my solution == go Team solution
+
+stringers.go
+
+```go
+package main
+
+import "fmt"
+
+type IPAddr [4]byte
+
+func (ip IPAddr) String() string{
+	return fmt.Sprintf("%d.%d.%d.%d", ip[0],ip[1],ip[2],ip[3])}
+
+func main() {
+	hosts := map[string]IPAddr{
+		"loopback":  {127, 0, 0, 1},
+		"googleDNS": {8, 8, 8, 8},
+	}
+	for name, ip := range hosts {
+		fmt.Printf("%v: %v\n", name, ip)
+	}
+}
+```
+
+#### result
+
+```shell
+loopback: 127.0.0.1
+googleDNS: 8.8.8.8
+```
 
 ### To be continue...
