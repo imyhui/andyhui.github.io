@@ -4,139 +4,17 @@
 
     
   <url>
-    <loc>http://andyhui.top/2019/03/12/go-tour/</loc>
-    <lastmod>2019-03-12T15:41:05.000Z</lastmod>
+    <loc>http://andyhui.top/2019/03/04/1stoftterm/</loc>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
     <data>
         <display>
-        <title>Go 指南练习</title>
-        <pubTime>2019-03-12T14:42:00.000Z</pubTime>
+        <title>新的开始</title>
+        <pubTime>2019-03-04T08:22:00.000Z</pubTime>
         
-        <tag>golang</tag>
-         
          
            
              
-              <breadCrumb title="Go" url="http://andyhui.top/categories/Go/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://andyhui.top/2019/03/11/%E5%89%91%E6%8C%87Offer-12%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/</loc>
-    <lastmod>2019-03-11T14:27:03.000Z</lastmod>
-    <data>
-        <display>
-        <title>剑指Offer 12矩阵中的路径</title>
-        <pubTime>2019-03-11T14:03:23.000Z</pubTime>
-        
-        <tag>algorithms</tag>
-         
-         
-           
-             
-              <breadCrumb title="剑指Offer" url="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://andyhui.top/2019/03/10/%E5%89%91%E6%8C%87Offer-7%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/</loc>
-    <lastmod>2019-03-10T16:03:41.000Z</lastmod>
-    <data>
-        <display>
-        <title>剑指Offer 7重建二叉树</title>
-        <pubTime>2019-03-10T15:43:46.000Z</pubTime>
-        
-        <tag>algorithms</tag>
-         
-         
-           
-             
-              <breadCrumb title="剑指Offer" url="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://andyhui.top/2019/03/09/%E5%89%91%E6%8C%87Offer15-%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0/</loc>
-    <lastmod>2019-03-09T16:24:38.000Z</lastmod>
-    <data>
-        <display>
-        <title>剑指Offer15 二进制中1的个数</title>
-        <pubTime>2019-03-09T15:46:00.000Z</pubTime>
-        
-        <tag>algorithms</tag>
-         
-         
-           
-             
-              <breadCrumb title="剑指Offer" url="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://andyhui.top/2019/03/07/%E5%89%91%E6%8C%87Offer03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/</loc>
-    <lastmod>2019-03-07T16:40:40.000Z</lastmod>
-    <data>
-        <display>
-        <title>剑指Offer03 数组中重复的数字</title>
-        <pubTime>2019-03-07T15:55:00.000Z</pubTime>
-        
-        <tag>algorithms</tag>
-         
-         
-           
-             
-              <breadCrumb title="剑指Offer" url="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://andyhui.top/2019/03/06/Python-%E7%BB%83%E4%B9%A0%E5%86%8C%EF%BC%8C%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F/</loc>
-    <lastmod>2019-03-06T16:02:09.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python 练习册，每天一个小程序</title>
-        <pubTime>2019-03-06T15:23:00.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-         
-           
-             
-              <breadCrumb title="python" url="http://andyhui.top/categories/python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://andyhui.top/2019/03/05/LeetCode%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</loc>
-    <lastmod>2019-03-06T14:29:59.000Z</lastmod>
-    <data>
-        <display>
-        <title>LeetCode 两数之和系列</title>
-        <pubTime>2019-03-05T14:10:00.000Z</pubTime>
-        
-        <tag>algorithms</tag>
-         
-         
-           
-             
-              <breadCrumb title="leetcode" url="http://andyhui.top/categories/leetcode/"/>
+              <breadCrumb title="个人" url="http://andyhui.top/categories/%E4%B8%AA%E4%BA%BA/"/>
           
         </display>
     </data>
@@ -145,7 +23,7 @@
     
   <url>
     <loc>http://andyhui.top/2019/03/04/Continuous_Integration/</loc>
-    <lastmod>2019-03-04T16:07:44.000Z</lastmod>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
     <data>
         <display>
         <title>CI 持续集成</title>
@@ -166,26 +44,8 @@
 
     
   <url>
-    <loc>http://andyhui.top/2019/03/04/1stoftterm/</loc>
-    <lastmod>2019-03-04T11:41:26.000Z</lastmod>
-    <data>
-        <display>
-        <title>新的开始</title>
-        <pubTime>2019-03-04T08:22:00.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="个人" url="http://andyhui.top/categories/%E4%B8%AA%E4%BA%BA/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://andyhui.top/2017/12/09/LaradockInstall/</loc>
-    <lastmod>2019-03-04T11:00:54.000Z</lastmod>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
     <data>
         <display>
         <title>15分钟用Docker部署PHP开发环境</title>
@@ -210,84 +70,8 @@
 
     
   <url>
-    <loc>http://andyhui.top/2017/08/29/ojrankscan/</loc>
-    <lastmod>2019-03-04T09:12:55.000Z</lastmod>
-    <data>
-        <display>
-        <title>oj信息爬取</title>
-        <pubTime>2017-08-29T07:04:51.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-        <tag>爬虫</tag>
-         
-        <tag>requests</tag>
-         
-        <tag>oj</tag>
-         
-         
-           
-             
-              <breadCrumb title="python" url="http://andyhui.top/categories/python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://andyhui.top/2017/09/20/gitfirstuse/</loc>
-    <lastmod>2019-03-04T09:12:53.000Z</lastmod>
-    <data>
-        <display>
-        <title>Git及GitHub使用</title>
-        <pubTime>2017-09-20T11:35:10.000Z</pubTime>
-        
-        <tag>git</tag>
-         
-        <tag>github</tag>
-         
-         
-           
-             
-              <breadCrumb title="git" url="http://andyhui.top/categories/git/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://andyhui.top/2017/09/02/qsbkspider/</loc>
-    <lastmod>2019-03-04T09:08:02.000Z</lastmod>
-    <data>
-        <display>
-        <title>糗事百科爬虫</title>
-        <pubTime>2017-09-02T05:57:19.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-        <tag>爬虫</tag>
-         
-        <tag>linux</tag>
-         
-        <tag>requests</tag>
-         
-        <tag>BeautifulSoup</tag>
-         
-         
-           
-             
-              <breadCrumb title="python" url="http://andyhui.top/categories/python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://andyhui.top/2017/11/04/learnpath/</loc>
-    <lastmod>2019-03-04T09:07:59.000Z</lastmod>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
     <data>
         <display>
         <title>后端学习路径</title>
@@ -308,8 +92,68 @@
 
     
   <url>
+    <loc>http://andyhui.top/2019/03/05/LeetCode%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</loc>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode 两数之和系列</title>
+        <pubTime>2019-03-05T14:10:00.000Z</pubTime>
+        
+        <tag>algorithms</tag>
+         
+         
+           
+             
+              <breadCrumb title="leetcode" url="http://andyhui.top/categories/leetcode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://andyhui.top/2019/03/06/Python-%E7%BB%83%E4%B9%A0%E5%86%8C%EF%BC%8C%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F/</loc>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
+    <data>
+        <display>
+        <title>Python 练习册，每天一个小程序</title>
+        <pubTime>2019-03-06T15:23:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://andyhui.top/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://andyhui.top/2019/03/12/go-tour/</loc>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
+    <data>
+        <display>
+        <title>Go 指南练习</title>
+        <pubTime>2019-03-12T14:42:00.000Z</pubTime>
+        
+        <tag>golang</tag>
+         
+         
+           
+             
+              <breadCrumb title="Go" url="http://andyhui.top/categories/Go/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://andyhui.top/2017/08/24/hello-world/</loc>
-    <lastmod>2019-03-04T09:07:57.000Z</lastmod>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
     <data>
         <display>
         <title>Hello World</title>
@@ -327,31 +171,225 @@
     </url>
 
     
-    
-    
-    
-    
   <url>
-    <loc>http://andyhui.top/2017/08/25/Markdown_%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</loc>
-    <lastmod>2017-08-27T09:00:00.000Z</lastmod>
+    <loc>http://andyhui.top/2017/08/29/ojrankscan/</loc>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
     <data>
         <display>
-        <title>Markdown 基本语法</title>
-        <pubTime>2017-08-25T00:19:08.000Z</pubTime>
+        <title>oj信息爬取</title>
+        <pubTime>2017-08-29T07:04:51.000Z</pubTime>
         
-        <tag>Hexo</tag>
+        <tag>python</tag>
          
-        <tag>Markdown</tag>
+        <tag>爬虫</tag>
+         
+        <tag>oj</tag>
+         
+        <tag>requests</tag>
          
          
            
              
-              <breadCrumb title="Markdown" url="http://andyhui.top/categories/Markdown/"/>
+              <breadCrumb title="python" url="http://andyhui.top/categories/python/"/>
           
         </display>
     </data>
     </url>
 
+    
+  <url>
+    <loc>http://andyhui.top/2017/09/02/qsbkspider/</loc>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
+    <data>
+        <display>
+        <title>糗事百科爬虫</title>
+        <pubTime>2017-09-02T05:57:19.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>爬虫</tag>
+         
+        <tag>requests</tag>
+         
+        <tag>linux</tag>
+         
+        <tag>BeautifulSoup</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://andyhui.top/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://andyhui.top/2019/03/11/%E5%89%91%E6%8C%87Offer-12%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/</loc>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
+    <data>
+        <display>
+        <title>剑指Offer 12矩阵中的路径</title>
+        <pubTime>2019-03-11T14:03:23.000Z</pubTime>
+        
+        <tag>algorithms</tag>
+         
+         
+           
+             
+              <breadCrumb title="剑指Offer" url="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://andyhui.top/2019/03/13/%E5%89%91%E6%8C%87Offer-16%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/</loc>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
+    <data>
+        <display>
+        <title>剑指Offer 16数值的整数次方</title>
+        <pubTime>2019-03-13T14:50:00.000Z</pubTime>
+        
+        <tag>algorithms</tag>
+         
+         
+           
+             
+              <breadCrumb title="剑指Offer" url="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://andyhui.top/2019/03/13/%E5%89%91%E6%8C%87Offer-19%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/</loc>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
+    <data>
+        <display>
+        <title>剑指Offer 19正则表达式匹配</title>
+        <pubTime>2019-03-13T14:51:15.000Z</pubTime>
+        
+        <tag>algorithms</tag>
+         
+         
+           
+             
+              <breadCrumb title="剑指Offer" url="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://andyhui.top/2019/03/10/%E5%89%91%E6%8C%87Offer-7%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/</loc>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
+    <data>
+        <display>
+        <title>剑指Offer 7重建二叉树</title>
+        <pubTime>2019-03-10T15:43:46.000Z</pubTime>
+        
+        <tag>algorithms</tag>
+         
+         
+           
+             
+              <breadCrumb title="剑指Offer" url="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://andyhui.top/2019/03/07/%E5%89%91%E6%8C%87Offer03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/</loc>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
+    <data>
+        <display>
+        <title>剑指Offer03 数组中重复的数字</title>
+        <pubTime>2019-03-07T15:55:00.000Z</pubTime>
+        
+        <tag>algorithms</tag>
+         
+         
+           
+             
+              <breadCrumb title="剑指Offer" url="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://andyhui.top/2019/03/09/%E5%89%91%E6%8C%87Offer15-%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0/</loc>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
+    <data>
+        <display>
+        <title>剑指Offer15 二进制中1的个数</title>
+        <pubTime>2019-03-09T15:46:00.000Z</pubTime>
+        
+        <tag>algorithms</tag>
+         
+         
+           
+             
+              <breadCrumb title="剑指Offer" url="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://andyhui.top/2019/03/14/%E5%89%91%E6%8C%87Offer39-%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97/</loc>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
+    <data>
+        <display>
+        <title>剑指Offer39 数组中出现次数超过一半的数字</title>
+        <pubTime>2019-03-14T15:22:00.000Z</pubTime>
+        
+        <tag>algorithms</tag>
+         
+         
+           
+             
+              <breadCrumb title="剑指Offer" url="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://andyhui.top/2017/09/20/gitfirstuse/</loc>
+    <lastmod>2019-03-17T16:12:27.208Z</lastmod>
+    <data>
+        <display>
+        <title>Git及GitHub使用</title>
+        <pubTime>2017-09-20T11:35:10.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+        <tag>github</tag>
+         
+         
+           
+             
+              <breadCrumb title="git" url="http://andyhui.top/categories/git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+    
     
   <url>
     <loc>http://andyhui.top/2017/08/23/Welcome/</loc>
@@ -369,6 +407,28 @@
            
              
               <breadCrumb title="C++" url="http://andyhui.top/categories/C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://andyhui.top/2017/08/25/Markdown_%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</loc>
+    <lastmod>2017-08-27T09:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Markdown 基本语法</title>
+        <pubTime>2017-08-25T00:19:08.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+        <tag>Markdown</tag>
+         
+         
+           
+             
+              <breadCrumb title="Markdown" url="http://andyhui.top/categories/Markdown/"/>
           
         </display>
     </data>

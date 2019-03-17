@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://andyhui.top/"/>
-  <updated>2019-03-12T15:41:05.000Z</updated>
+  <updated>2019-03-17T16:12:27.208Z</updated>
   <id>http://andyhui.top/</id>
   
   <author>
@@ -16,11 +16,139 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>剑指Offer39 数组中出现次数超过一半的数字</title>
+    <link href="http://andyhui.top/2019/03/14/%E5%89%91%E6%8C%87Offer39-%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97/"/>
+    <id>http://andyhui.top/2019/03/14/剑指Offer39-数组中出现次数超过一半的数字/</id>
+    <published>2019-03-14T15:22:00.000Z</published>
+    <updated>2019-03-17T16:12:27.208Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="数组中出现次数超过一半的数字"><a href="#数组中出现次数超过一半的数字" class="headerlink" title="数组中出现次数超过一半的数字"></a><a href="https://www.nowcoder.com/practice/e8a1b01a2df14cb2b228b30ee6a92163?tpId=13&amp;tqId=11181&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="external">数组中出现次数超过一半的数字</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="思路与代码"><a href="#思路与代码" class="headerlink" title="思路与代码"></a>思路与代码</h3><blockquote>
+<p>最基本思路可以用<code>哈希表</code>或者<code>dict</code>，数组中的数作为<code>key</code>, 值做为<code>value</code>，时间复杂度与空间复杂度均为<script type="math/tex">O(n)</script></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">MoreThanHalfNum_Solution</span><span class="params">(self, numbers)</span>:</span></div><div class="line">        dic = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> numbers:</div><div class="line">            dic[i] = dic.get(i,<span class="number">0</span>) + <span class="number">1</span></div><div class="line">        major = max(dic,key=dic.get)</div><div class="line">        <span class="keyword">return</span> major <span class="keyword">if</span> numbers.count(major) &gt; len(numbers)//<span class="number">2</span> <span class="keyword">else</span> <span class="number">0</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> collections</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">MoreThanHalfNum_Solution</span><span class="params">(self, numbers)</span>:</span></div><div class="line">        counts = collections.Counter(numbers)</div><div class="line">        major = max(counts.keys(), key=counts.get) </div><div class="line">        <span class="keyword">return</span> major <span class="keyword">if</span> numbers.count(major) &gt; len(numbers)//<span class="number">2</span> <span class="keyword">else</span> <span class="number">0</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>稍作思考可得，数组排序，若存在最多的数字，其位置必然在中间，此算法时间复杂度<script type="math/tex">O(nlog(n))</script>，空间复杂度<script type="math/tex">O(1)</script></p>
+</blockquote>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">MoreThanHalfNum_Solution</span><span class="params">(self, numbers)</span>:</span></div><div class="line">    major = sorted(numbers)[len(numbers)/<span class="number">2</span>]</div><div class="line">    <span class="keyword">return</span> major <span class="keyword">if</span> numbers.count(major) &gt; len(numbers)//<span class="number">2</span> <span class="keyword">else</span> <span class="number">0</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>位运算解决，对于32二进制数的每一位，所有数字若该位置1的数目大于一半，则取1，否则取0，时间复杂度<script type="math/tex">O(n)</script>，空间复杂度<script type="math/tex">O(1)​</script></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">MoreThanHalfNum_Solution</span><span class="params">(self, numbers)</span>:</span></div><div class="line">    major = <span class="number">0</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">31</span>,<span class="number">-1</span>,<span class="number">-1</span>):</div><div class="line">        pos = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> numbers:</div><div class="line">            pos += (n&gt;&gt;i) &amp; <span class="number">1</span></div><div class="line">        pos = <span class="number">1</span> <span class="keyword">if</span> pos &gt; len(numbers) // <span class="number">2</span> <span class="keyword">else</span> <span class="number">0</span></div><div class="line">        major |= pos &lt;&lt; i</div><div class="line">    <span class="keyword">return</span> major <span class="keyword">if</span> numbers.count(major) &gt; len(numbers)//<span class="number">2</span> <span class="keyword">else</span> <span class="number">0</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>多数投票问题(Boyer-Moore Majority Vote)</p>
+<p>比较直观的解释：在数组中找到两个不相同的元素并删除它们，不断重复此过程，直到数组中元素都相同，那么剩下的元素就是主要元素。</p>
+<p>这里不用删除元素，用一个计数器cnt统计一个元素出现次数，若遍历到元素与cnt对应元素相同，cnt += 1， 否则 cnt -=1 ，若cnt为0，则下一个元素为计数器统计元素，cnt重新置1。</p>
+<p>最后要加一个判断，数组是否存在主要元素。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">MoreThanHalfNum_Solution2</span><span class="params">(self, numbers)</span>:</span></div><div class="line">    major, cnt= <span class="number">0</span>, <span class="number">0</span></div><div class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> numbers:</div><div class="line">        <span class="keyword">if</span> cnt == <span class="number">0</span>:</div><div class="line">            major = num</div><div class="line">        cnt += (<span class="number">1</span> <span class="keyword">if</span> num == major <span class="keyword">else</span> <span class="number">-1</span>)</div><div class="line">    <span class="keyword">return</span> major <span class="keyword">if</span> numbers.count(major) &gt; len(numbers)//<span class="number">2</span> <span class="keyword">else</span> <span class="number">0</span></div></pre></td></tr></table></figure>
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><h3 id="LeetCode-229-求众数-II"><a href="#LeetCode-229-求众数-II" class="headerlink" title="LeetCode 229. 求众数 II"></a><a href="https://leetcode-cn.com/problems/majority-element-ii/" target="_blank" rel="external">LeetCode 229. 求众数 II</a></h3><blockquote>
+<p>给定一个大小为 <em>n</em> 的数组，找出其中所有出现超过 <code>⌊ n/3 ⌋</code> 次的元素。</p>
+<p><strong>说明:</strong> 要求算法的时间复杂度为 O(n)，空间复杂度为 O(1)。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">输入: [1,1,1,3,3,2,2,2]</div><div class="line">输出: [1,2]</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="思路及代码"><a href="#思路及代码" class="headerlink" title="思路及代码"></a>思路及代码</h3><blockquote>
+<p>对于这样的数字，可能存在个数有0，1，2，这里依然可以使用<code>多数投票算法</code>，只是多一计数器。</p>
+<p>时间复杂度<script type="math/tex">O(n)</script>，空间复杂度<script type="math/tex">O(1)</script></p>
+</blockquote>
+<p>​<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">majorityElement</span><span class="params">(self, nums)</span>:</span></div><div class="line">        m1, cnt1, m2, cnt2 = <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</div><div class="line">            <span class="keyword">if</span> num == m1:</div><div class="line">                cnt1 += <span class="number">1</span></div><div class="line">            <span class="keyword">elif</span> num == m2:</div><div class="line">                cnt2 += <span class="number">1</span></div><div class="line">            <span class="keyword">elif</span> cnt1 == <span class="number">0</span>:</div><div class="line">                m1, cnt1 = num, <span class="number">1</span></div><div class="line">            <span class="keyword">elif</span> cnt2 == <span class="number">0</span>:</div><div class="line">                m2, cnt2 = num, <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                cnt1, cnt2 = cnt1 - <span class="number">1</span>, cnt2 - <span class="number">1</span></div><div class="line">        major = [n <span class="keyword">for</span> n <span class="keyword">in</span> set([m1, m2]) <span class="keyword">if</span> nums.count(n) &gt; len(nums)/<span class="number">3</span>]</div><div class="line">        <span class="keyword">return</span> major</div><div class="line"></div><div class="line">s = Solution()</div><div class="line">print(s.majorityElement([<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>]))</div></pre></td></tr></table></figure></p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://cyc2018.github.io/CS-Notes/#/notes/%E5%89%91%E6%8C%87%20Offer%20%E9%A2%98%E8%A7%A3%20-%2030~39?id=_39-%e6%95%b0%e7%bb%84%e4%b8%ad%e5%87%ba%e7%8e%b0%e6%ac%a1%e6%95%b0%e8%b6%85%e8%bf%87%e4%b8%80%e5%8d%8a%e7%9a%84%e6%95%b0%e5%ad%97" target="_blank" rel="external">cycNote</a></p>
+<p><a href="https://www.jianshu.com/p/dfd676b71ef0" target="_blank" rel="external">Boyer-Moore Majority Vote</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;数组中出现次数超过一半的数字&quot;&gt;&lt;a href=&quot;#数组中出现次数超过一半的数字&quot; class=&quot;headerlink&quot; title=&quot;数组中出现次数超过一半的数字&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.nowcoder.com/practice/e8a1b01a2df14cb2b228b30ee6a92163?tpId=13&amp;amp;tqId=11181&amp;amp;tPage=1&amp;amp;rp=1&amp;amp;ru=/ta/coding-interviews&amp;amp;qru=/ta/coding-interviews/question-ranking&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;数组中出现次数超过一半的数字&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="剑指Offer" scheme="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+    
+    
+      <category term="algorithms" scheme="http://andyhui.top/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指Offer 19正则表达式匹配</title>
+    <link href="http://andyhui.top/2019/03/13/%E5%89%91%E6%8C%87Offer-19%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/"/>
+    <id>http://andyhui.top/2019/03/13/剑指Offer-19正则表达式匹配/</id>
+    <published>2019-03-13T14:51:15.000Z</published>
+    <updated>2019-03-17T16:12:27.208Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="正则表达式匹配"><a href="#正则表达式匹配" class="headerlink" title="正则表达式匹配"></a><a href="https://www.nowcoder.com/practice/45327ae22b7b413ea21df13ee7d6429c?tpId=13&amp;tqId=11205&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="external">正则表达式匹配</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>请实现一个函数用来匹配包括’.’和’<em>‘的正则表达式。模式中的字符’.’表示任意一个字符，而’</em>‘表示它前面的字符可以出现任意次（包含0次）。 在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串”aaa”与模式”a.a”和”ab<em>ac</em>a”匹配，但是与”aa.a”和”ab*a”均不匹配</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>待补</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="comment"># s, pattern都是字符串</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">match2</span><span class="params">(self, s, pattern)</span>:</span></div><div class="line">        <span class="comment"># write code here</span></div><div class="line">        m, n = len(s), len(pattern)</div><div class="line">        dp = [[<span class="keyword">False</span>]*(n + <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(m + <span class="number">1</span>)]</div><div class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">True</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n + <span class="number">1</span>):</div><div class="line">            <span class="keyword">if</span> pattern[i - <span class="number">1</span>] == <span class="string">'*'</span>:</div><div class="line">                dp[<span class="number">0</span>][i] = dp[<span class="number">0</span>][i - <span class="number">2</span>]</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, m + <span class="number">1</span>):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, n + <span class="number">1</span>):</div><div class="line">                <span class="keyword">if</span> s[i - <span class="number">1</span>] == pattern[j - <span class="number">1</span>] <span class="keyword">or</span> pattern[j - <span class="number">1</span>] == <span class="string">'.'</span>:</div><div class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>]</div><div class="line">                <span class="keyword">elif</span> pattern[j - <span class="number">1</span>] == <span class="string">'*'</span>:</div><div class="line">                    <span class="keyword">if</span> pattern[j - <span class="number">2</span>] == s[i - <span class="number">1</span>] <span class="keyword">or</span> pattern[j - <span class="number">2</span>] == <span class="string">'.'</span>:</div><div class="line">                        dp[i][j] |= dp[i][j - <span class="number">1</span>]</div><div class="line">                        dp[i][j] |= dp[i - <span class="number">1</span>][j]</div><div class="line">                        dp[i][j] |= dp[i][j - <span class="number">2</span>]</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        dp[i][j] = dp[i][j - <span class="number">2</span>]</div><div class="line">        <span class="keyword">return</span> dp[m][n]</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">match</span><span class="params">(self, s, pattern)</span>:</span></div><div class="line">        <span class="comment"># write code here</span></div><div class="line">        <span class="keyword">if</span> (len(s) == <span class="number">0</span> <span class="keyword">and</span> len(pattern) == <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        <span class="keyword">if</span> (len(s) &gt; <span class="number">0</span> <span class="keyword">and</span> len(pattern) == <span class="number">0</span>):</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        <span class="keyword">if</span> (len(pattern) &gt; <span class="number">1</span> <span class="keyword">and</span> pattern[<span class="number">1</span>] == <span class="string">'*'</span>):</div><div class="line">            <span class="keyword">if</span> (len(s) &gt; <span class="number">0</span> <span class="keyword">and</span> (s[<span class="number">0</span>] == pattern[<span class="number">0</span>] <span class="keyword">or</span> pattern[<span class="number">0</span>] == <span class="string">'.'</span>)):</div><div class="line">                <span class="keyword">return</span> (self.match(s, pattern[<span class="number">2</span>:]) <span class="keyword">or</span> self.match(s[<span class="number">1</span>:], pattern[<span class="number">2</span>:]) <span class="keyword">or</span> self.match(s[<span class="number">1</span>:], pattern))</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">return</span> self.match(s, pattern[<span class="number">2</span>:])</div><div class="line">        <span class="keyword">if</span> (len(s) &gt; <span class="number">0</span> <span class="keyword">and</span> (pattern[<span class="number">0</span>] == <span class="string">'.'</span> <span class="keyword">or</span> pattern[<span class="number">0</span>] == s[<span class="number">0</span>])):</div><div class="line">            <span class="keyword">return</span> self.match(s[<span class="number">1</span>:], pattern[<span class="number">1</span>:])</div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">s = Solution()</div><div class="line">print(s.match(<span class="string">'aaa'</span>,<span class="string">'a*a'</span>))</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;正则表达式匹配&quot;&gt;&lt;a href=&quot;#正则表达式匹配&quot; class=&quot;headerlink&quot; title=&quot;正则表达式匹配&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.nowcoder.com/practice/45327ae22b7b413ea21df13ee7d6429c?tpId=13&amp;amp;tqId=11205&amp;amp;tPage=1&amp;amp;rp=1&amp;amp;ru=/ta/coding-interviews&amp;amp;qru=/ta/coding-interviews/question-ranking&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;正则表达式匹配&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;请实现一个函数用来匹配包括’.’和’&lt;em&gt;‘的正则表达式。模式中的字符’.’表示任意一个字符，而’&lt;/em&gt;‘表示它前面的字符可以出现任意次（包含0次）。 在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串”aaa”与模式”a.a”和”ab&lt;em&gt;ac&lt;/em&gt;a”匹配，但是与”aa.a”和”ab*a”均不匹配&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="剑指Offer" scheme="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+    
+    
+      <category term="algorithms" scheme="http://andyhui.top/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指Offer 16数值的整数次方</title>
+    <link href="http://andyhui.top/2019/03/13/%E5%89%91%E6%8C%87Offer-16%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/"/>
+    <id>http://andyhui.top/2019/03/13/剑指Offer-16数值的整数次方/</id>
+    <published>2019-03-13T14:50:00.000Z</published>
+    <updated>2019-03-17T16:12:27.208Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="数值的整数次方"><a href="#数值的整数次方" class="headerlink" title="数值的整数次方"></a><a href="https://www.nowcoder.com/practice/1a834e5e3e1a4b7ba251417554e07c00?tpId=13&amp;tqId=11165&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="external">数值的整数次方</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>给定一个 double 类型的浮点数 base 和 int 类型的整数 exponent，求 base 的 exponent 次方。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>快速幂，</p>
+<p>n=0：1</p>
+<p>n&gt;0：<script type="math/tex">x^{n}=x^{n/2}*x^{n/2}*x^{n\%2}</script> </p>
+<p>n&lt;0：<script type="math/tex">\frac{1}{x^{n}}</script></p>
+<p>递归 / 非递归</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Power</span><span class="params">(self, base, exponent)</span>:</span></div><div class="line">        <span class="comment"># 递归版</span></div><div class="line">        <span class="keyword">if</span> exponent == <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> exponent == <span class="number">1</span>:</div><div class="line">            <span class="keyword">return</span> base</div><div class="line">        is_neg = <span class="keyword">False</span></div><div class="line">        <span class="keyword">if</span> exponent &lt; <span class="number">0</span>:</div><div class="line">            exponent = - exponent</div><div class="line">            is_neg = <span class="keyword">True</span></div><div class="line">        res = self.Power(base * base, exponent // <span class="number">2</span>)</div><div class="line">        <span class="keyword">if</span> exponent % <span class="number">2</span> :</div><div class="line">            res *= base</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>/res <span class="keyword">if</span> is_neg <span class="keyword">else</span> res</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Power1</span><span class="params">(self, base, exponent)</span>:</span></div><div class="line">        <span class="comment"># 非递归</span></div><div class="line">        <span class="keyword">if</span> exponent == <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span></div><div class="line">        is_neg = <span class="keyword">False</span></div><div class="line">        <span class="keyword">if</span> exponent &lt; <span class="number">0</span>:</div><div class="line">            exponent = - exponent</div><div class="line">            is_neg = <span class="keyword">True</span>       </div><div class="line">        res = <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> exponent:</div><div class="line">            <span class="keyword">if</span> exponent &amp; <span class="number">1</span>:</div><div class="line">                res *= base</div><div class="line">            exponent &gt;&gt;= <span class="number">1</span></div><div class="line">            base *= base</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>/res <span class="keyword">if</span> is_neg <span class="keyword">else</span> res</div><div class="line"></div><div class="line">s = Solution()</div><div class="line">print(s.Power1(<span class="number">2</span>,<span class="number">-3</span>))</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;数值的整数次方&quot;&gt;&lt;a href=&quot;#数值的整数次方&quot; class=&quot;headerlink&quot; title=&quot;数值的整数次方&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.nowcoder.com/practice/1a834e5e3e1a4b7ba251417554e07c00?tpId=13&amp;amp;tqId=11165&amp;amp;tPage=1&amp;amp;rp=1&amp;amp;ru=/ta/coding-interviews&amp;amp;qru=/ta/coding-interviews/question-ranking&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;数值的整数次方&lt;/a&gt;&lt;/h2&gt;&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一个 double 类型的浮点数 base 和 int 类型的整数 exponent，求 base 的 exponent 次方。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="剑指Offer" scheme="http://andyhui.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+    
+    
+      <category term="algorithms" scheme="http://andyhui.top/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Go 指南练习</title>
     <link href="http://andyhui.top/2019/03/12/go-tour/"/>
     <id>http://andyhui.top/2019/03/12/go-tour/</id>
     <published>2019-03-12T14:42:00.000Z</published>
-    <updated>2019-03-12T15:41:05.000Z</updated>
+    <updated>2019-03-17T16:12:27.208Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Go-指南"><a href="#Go-指南" class="headerlink" title="Go 指南"></a><a href="https://tour.go-zh.org/list" target="_blank" rel="external">Go 指南</a></h2><blockquote>
 <p>Go语言官方给出了一份教程，基本涵盖了涵盖了该语言的大部分重要特性</p>
@@ -50,20 +178,26 @@
 <h4 id="go-Team-solution-1"><a href="#go-Team-solution-1" class="headerlink" title="go Team solution"></a>go Team solution</h4><p>slices.go</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"golang.org/x/tour/pic"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Pic</span><span class="params">(dx, dy <span class="keyword">int</span>)</span> [][]<span class="title">uint8</span></span> &#123;</div><div class="line">	p := <span class="built_in">make</span>([][]<span class="keyword">uint8</span>, dy)</div><div class="line">	<span class="keyword">for</span> i := <span class="keyword">range</span> p &#123;</div><div class="line">		p[i] = <span class="built_in">make</span>([]<span class="keyword">uint8</span>, dx)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">for</span> y, row := <span class="keyword">range</span> p &#123;</div><div class="line">		<span class="keyword">for</span> x := <span class="keyword">range</span> row &#123;</div><div class="line">			row[x] = <span class="keyword">uint8</span>(x * y)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> p</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	pic.Show(Pic)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><img src="http://githubblog.andyhui.top/image/go/slice2.png" alt="结果"></p>
-<h3 id="练习：map"><a href="#练习：map" class="headerlink" title="练习：map"></a><a href>练习：map</a></h3><blockquote>
+<h3 id="练习：map"><a href="#练习：map" class="headerlink" title="练习：map"></a><a href="https://tour.go-zh.org/moretypes/23" target="_blank" rel="external">练习：map</a></h3><blockquote>
 <p>实现 <code>WordCount</code>。它应当返回一个含有 <code>s</code>中每个 “词” 个数的 map。函数 <code>wc.Test</code>针对这个函数执行一个测试用例，并输出成功还是失败。</p>
 <p>你会发现 <a href="http://golang.org/pkg/strings/#Fields" target="_blank" rel="external">strings.Fields</a> 很有帮助。</p>
 </blockquote>
 <h4 id="my-solution-go-Team-solution"><a href="#my-solution-go-Team-solution" class="headerlink" title="my solution == go Team solution"></a>my solution == go Team solution</h4><p>maps.go</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"strings"</span></div><div class="line">	<span class="string">"golang.org/x/tour/wc"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">WordCount</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">map</span>[<span class="title">string</span>]<span class="title">int</span></span> &#123;</div><div class="line">	count := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>)</div><div class="line">	<span class="keyword">for</span> _, word := <span class="keyword">range</span> strings.Fields(s) &#123;</div><div class="line">		count[word]++</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> count</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	wc.Test(WordCount)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="https://tour.go-zh.org/moretypes/26" target="_blank" rel="external">练习：斐波纳契闭包</a></p>
-<blockquote>
+<h3 id="练习：斐波纳契闭包"><a href="#练习：斐波纳契闭包" class="headerlink" title="练习：斐波纳契闭包"></a><a href="https://tour.go-zh.org/moretypes/26" target="_blank" rel="external">练习：斐波纳契闭包</a></h3><blockquote>
 <p>现在来通过函数做些有趣的事情。</p>
 <p>实现一个<code>fibonacci</code> 函数，返回一个函数（一个闭包）可以返回连续的<a href="https://zh.wikipedia.org/wiki/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97" target="_blank" rel="external">斐波纳契数列</a> <code>(0, 1, 1, 2, 3, 5, ...)</code>。</p>
 </blockquote>
 <h4 id="my-solution-2"><a href="#my-solution-2" class="headerlink" title="my solution"></a>my solution</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"></div><div class="line"><span class="comment">// fibonacci is a function that returns</span></div><div class="line"><span class="comment">// a function that returns an int.</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">fibonacci</span><span class="params">()</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	dp := []<span class="keyword">int</span>&#123;<span class="number">0</span>, <span class="number">1</span>&#125;</div><div class="line">	<span class="keyword">for</span> i := <span class="number">2</span>; i &lt; <span class="number">100</span>; i++ &#123;</div><div class="line">		dp = <span class="built_in">append</span>(dp, dp[i<span class="number">-1</span>] + dp[i<span class="number">-2</span>])</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">(x <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">		<span class="keyword">return</span> dp[x]</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	f := fibonacci()</div><div class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</div><div class="line">		fmt.Println(f(i))</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="go-Team-solution-2"><a href="#go-Team-solution-2" class="headerlink" title="go Team solution"></a>go Team solution</h4><p>fib.go</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"></div><div class="line"><span class="comment">// fibonacci is a function that returns</span></div><div class="line"><span class="comment">// a function that returns an int.</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">fibonacci</span><span class="params">()</span> <span class="title">func</span><span class="params">()</span> <span class="title">int</span></span> &#123;</div><div class="line">	f, g := <span class="number">1</span>, <span class="number">0</span></div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">()</span> <span class="title">int</span></span> &#123;</div><div class="line">		f, g = g, f+g</div><div class="line">		<span class="keyword">return</span> f</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	f := fibonacci()</div><div class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</div><div class="line">		fmt.Println(f())</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="练习：Stringer"><a href="#练习：Stringer" class="headerlink" title="练习：Stringer"></a><a href="https://tour.go-zh.org/methods/18" target="_blank" rel="external">练习：Stringer</a></h3><blockquote>
+<p>通过让 <code>IPAddr</code> 类型实现 <code>fmt.Stringer</code> 来打印点号分隔的地址。</p>
+<p>例如，<code>IPAddr{1, 2, 3, 4}</code>应当打印为 <code>&quot;1.2.3.4&quot;</code>。</p>
+</blockquote>
+<h4 id="my-solution-go-Team-solution-1"><a href="#my-solution-go-Team-solution-1" class="headerlink" title="my solution == go Team solution"></a>my solution == go Team solution</h4><p>stringers.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"></div><div class="line"><span class="keyword">type</span> IPAddr [<span class="number">4</span>]<span class="keyword">byte</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(ip IPAddr)</span> <span class="title">String</span><span class="params">()</span> <span class="title">string</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> fmt.Sprintf(<span class="string">"%d.%d.%d.%d"</span>, ip[<span class="number">0</span>],ip[<span class="number">1</span>],ip[<span class="number">2</span>],ip[<span class="number">3</span>])&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	hosts := <span class="keyword">map</span>[<span class="keyword">string</span>]IPAddr&#123;</div><div class="line">		<span class="string">"loopback"</span>:  &#123;<span class="number">127</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>&#125;,</div><div class="line">		<span class="string">"googleDNS"</span>: &#123;<span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>&#125;,</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> name, ip := <span class="keyword">range</span> hosts &#123;</div><div class="line">		fmt.Printf(<span class="string">"%v: %v\n"</span>, name, ip)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="result"><a href="#result" class="headerlink" title="result"></a>result</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">loopback: 127.0.0.1</div><div class="line">googleDNS: 8.8.8.8</div></pre></td></tr></table></figure>
 <h3 id="To-be-continue…"><a href="#To-be-continue…" class="headerlink" title="To be continue…"></a>To be continue…</h3>]]></content>
     
     <summary type="html">
@@ -88,7 +222,7 @@
     <link href="http://andyhui.top/2019/03/11/%E5%89%91%E6%8C%87Offer-12%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/"/>
     <id>http://andyhui.top/2019/03/11/剑指Offer-12矩阵中的路径/</id>
     <published>2019-03-11T14:03:23.000Z</published>
-    <updated>2019-03-11T14:27:03.000Z</updated>
+    <updated>2019-03-17T16:12:27.208Z</updated>
     
     <content type="html"><![CDATA[<h2 id="矩阵中的路径"><a href="#矩阵中的路径" class="headerlink" title="矩阵中的路径"></a><a href="https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&amp;tqId=11218&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="external">矩阵中的路径</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
 <p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则之后不能再次进入这个格子。 例如 a b c e s f c s a d e e 这样的3 X 4 矩阵中包含一条字符串”bcced”的路径，但是矩阵中不包含”abcb”路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。</p>
@@ -120,7 +254,7 @@
     <link href="http://andyhui.top/2019/03/10/%E5%89%91%E6%8C%87Offer-7%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
     <id>http://andyhui.top/2019/03/10/剑指Offer-7重建二叉树/</id>
     <published>2019-03-10T15:43:46.000Z</published>
-    <updated>2019-03-10T16:03:41.000Z</updated>
+    <updated>2019-03-17T16:12:27.208Z</updated>
     
     <content type="html"><![CDATA[<h2 id="重建二叉树"><a href="#重建二叉树" class="headerlink" title="重建二叉树"></a><a href="https://www.nowcoder.com/practice/8a19cbe657394eeaac2f6ea9b0f6fcf6?tpId=13&amp;tqId=11157&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="external">重建二叉树</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
 <p>输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</p>
@@ -160,7 +294,7 @@
     <link href="http://andyhui.top/2019/03/09/%E5%89%91%E6%8C%87Offer15-%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0/"/>
     <id>http://andyhui.top/2019/03/09/剑指Offer15-二进制中1的个数/</id>
     <published>2019-03-09T15:46:00.000Z</published>
-    <updated>2019-03-09T16:24:38.000Z</updated>
+    <updated>2019-03-17T16:12:27.208Z</updated>
     
     <content type="html"><![CDATA[<h2 id="二进制中1的个数"><a href="#二进制中1的个数" class="headerlink" title="二进制中1的个数"></a><a href="https://www.nowcoder.com/practice/8ee967e43c2c4ec193b040ea7fbb10b8?tpId=13&amp;tqId=11164&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&amp;tPage=1" target="_blank" rel="external">二进制中1的个数</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
 <p>输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。</p>
@@ -182,6 +316,10 @@
 <p>由于Python 的动态类型，导致数字不会像<code>C++</code>那样溢出<code>int</code>范围变为0，因此要先做一步处理，若为负数则加上 2*32次方，转为补码，再进行统计</p>
 </blockquote>
 <h3 id="代码3"><a href="#代码3" class="headerlink" title="代码3"></a>代码3</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">NumberOf12</span><span class="params">(self, n)</span>:</span></div><div class="line">    <span class="comment"># not run if n&lt;0</span></div><div class="line">    <span class="keyword">if</span> n&lt;<span class="number">0</span>:</div><div class="line">        n += <span class="number">2</span>**<span class="number">32</span></div><div class="line">    count = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span> n != <span class="number">0</span>:</div><div class="line">        count += <span class="number">1</span></div><div class="line">        n = n &amp; (n<span class="number">-1</span>)</div><div class="line">    <span class="keyword">return</span> count</div></pre></td></tr></table></figure>
+<h3 id="思路4"><a href="#思路4" class="headerlink" title="思路4"></a>思路4</h3><blockquote>
+<p>转为二进制，直接统计1的个数</p>
+</blockquote>
+<h3 id="代码4"><a href="#代码4" class="headerlink" title="代码4"></a>代码4</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">NumberOf14</span><span class="params">(self, n)</span>:</span></div><div class="line">    <span class="comment"># bitcount</span></div><div class="line">    <span class="keyword">if</span> n&lt;<span class="number">0</span>:</div><div class="line">        n += <span class="number">2</span>**<span class="number">32</span></div><div class="line">    count = bin(n).count(<span class="string">'1'</span>)</div><div class="line">    <span class="keyword">return</span> count</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
@@ -204,7 +342,7 @@
     <link href="http://andyhui.top/2019/03/07/%E5%89%91%E6%8C%87Offer03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/"/>
     <id>http://andyhui.top/2019/03/07/剑指Offer03-数组中重复的数字/</id>
     <published>2019-03-07T15:55:00.000Z</published>
-    <updated>2019-03-07T16:40:40.000Z</updated>
+    <updated>2019-03-17T16:12:27.208Z</updated>
     
     <content type="html"><![CDATA[<h2 id="数组中重复的数字"><a href="#数组中重复的数字" class="headerlink" title="数组中重复的数字"></a><a href="https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=0&amp;tqId=0&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="external">数组中重复的数字</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
 <p>在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。</p>
@@ -246,7 +384,7 @@
     <link href="http://andyhui.top/2019/03/06/Python-%E7%BB%83%E4%B9%A0%E5%86%8C%EF%BC%8C%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     <id>http://andyhui.top/2019/03/06/Python-练习册，每天一个小程序/</id>
     <published>2019-03-06T15:23:00.000Z</published>
-    <updated>2019-03-06T16:02:09.000Z</updated>
+    <updated>2019-03-17T16:12:27.208Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>Talk is cheap. Show me the code.—Linus Torvalds</p>
@@ -286,7 +424,7 @@
     <link href="http://andyhui.top/2019/03/05/LeetCode%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
     <id>http://andyhui.top/2019/03/05/LeetCode 两数之和/</id>
     <published>2019-03-05T14:10:00.000Z</published>
-    <updated>2019-03-06T14:29:59.000Z</updated>
+    <updated>2019-03-17T16:12:27.208Z</updated>
     
     <content type="html"><![CDATA[<h2 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="[1] 两数之和"></a>[1] <a href="https://leetcode-cn.com/problems/two-sum/description/" target="_blank" rel="external">两数之和</a></h2><h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><blockquote>
 <p> 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
@@ -362,7 +500,7 @@
     <link href="http://andyhui.top/2019/03/04/Continuous_Integration/"/>
     <id>http://andyhui.top/2019/03/04/Continuous_Integration/</id>
     <published>2019-03-04T11:45:00.000Z</published>
-    <updated>2019-03-04T16:07:44.000Z</updated>
+    <updated>2019-03-17T16:12:27.208Z</updated>
     
     <content type="html"><![CDATA[<p>之前废弃Hexo时，觉得hexo比较麻烦，每次都要执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo deploy</div><div class="line">hexo generate</div></pre></td></tr></table></figure></p>
 <p>，才能推到线上，虽然有人把命令简化了一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo clean &amp;&amp; hexo d -g</div></pre></td></tr></table></figure></p>
@@ -428,7 +566,7 @@
     <link href="http://andyhui.top/2019/03/04/1stoftterm/"/>
     <id>http://andyhui.top/2019/03/04/1stoftterm/</id>
     <published>2019-03-04T08:22:00.000Z</published>
-    <updated>2019-03-04T11:41:26.000Z</updated>
+    <updated>2019-03-17T16:12:27.208Z</updated>
     
     <content type="html"><![CDATA[<p>2019年3月4日，大三下新学期开始的第一天</p>
 <p>又重新把远古的hexo博客重新在黑苹果上，记得上次折腾博客还是在大一下的那个暑假，那时还在搞算法，正值暑期培训，开学就面临着学习算法还是开发的抉择。<br><a id="more"></a></p>
@@ -459,7 +597,7 @@
     <link href="http://andyhui.top/2017/12/09/LaradockInstall/"/>
     <id>http://andyhui.top/2017/12/09/LaradockInstall/</id>
     <published>2017-12-08T18:41:17.000Z</published>
-    <updated>2019-03-04T11:00:54.000Z</updated>
+    <updated>2019-03-17T16:12:27.208Z</updated>
     
     <content type="html"><![CDATA[<h2 id="为什么使用laradock"><a href="#为什么使用laradock" class="headerlink" title="为什么使用laradock"></a>为什么使用laradock</h2><blockquote>
 <p> 搭建环境对于上手框架的新人是一件头疼的事,多人协作开发,线上线下环境的一致也是一个很麻烦的问题,而<code>laradock</code>的使用,完美解决了这个问题,相比<code>homestead</code>与<code>vagrant</code>,<code>laradock</code>更加轻量级,只需要数秒就可以完成启动,既可以作为开发环境也可以作为生产环境,支持<code>PHP</code>、<code>MySQL</code>、 <code>Nginx</code>等一系列软件,且安装较为简便。</p>
@@ -585,7 +723,7 @@
     <link href="http://andyhui.top/2017/11/04/learnpath/"/>
     <id>http://andyhui.top/2017/11/04/learnpath/</id>
     <published>2017-11-04T03:30:01.000Z</published>
-    <updated>2019-03-04T09:07:59.000Z</updated>
+    <updated>2019-03-17T16:12:27.208Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>大一刷了一年算法 到省赛结束也算是圆满退役了，从暑假开始零零散散的学习web开发，到现到现在大二上过半了依旧很迷茫，还好接下来的时间不太忙碌，足够去弥补。前段时间在思考写博客的意义是什么，一方面，作为一个博客，是要记录自己的学习历程，另一方面，是留给后来者，能给别人以启迪，算是实现了写博客的意义吧。之前写的几篇，都是偏向教程向，写起来很累，基本是从0开始考虑的，后续我觉得还是以记录为主，但教程还是要继续写的，现在网络这么普及，网上教程五花八门，中间会有各种坑,而且连贯性很差，我希望留下点东西能给后来者。<br>接下是学长给的后端开发学习路线，顺便就拿过来了，接下来我会在学长的基础上完善这个教程，留作俱乐部的学习资料。</p>
@@ -640,7 +778,7 @@
     <link href="http://andyhui.top/2017/09/20/gitfirstuse/"/>
     <id>http://andyhui.top/2017/09/20/gitfirstuse/</id>
     <published>2017-09-20T11:35:10.000Z</published>
-    <updated>2019-03-04T09:12:53.000Z</updated>
+    <updated>2019-03-17T16:12:27.208Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="什么是-Git"><a href="#什么是-Git" class="headerlink" title="什么是 Git"></a>什么是 Git</h3><blockquote>
 <p><strong>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</strong> 项目加上Git后能能更好的追踪代码修改，进行版本回溯等操作。当今时代，多人协作开发是公司合作的基本模式，在多人协作的开发过程中Git变得必不可少，接下来大致介绍下Git的基本命令以及GitHub的基本使用。</p>
@@ -845,7 +983,7 @@
     <link href="http://andyhui.top/2017/09/02/qsbkspider/"/>
     <id>http://andyhui.top/2017/09/02/qsbkspider/</id>
     <published>2017-09-02T05:57:19.000Z</published>
-    <updated>2019-03-04T09:08:02.000Z</updated>
+    <updated>2019-03-17T16:12:27.208Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>一周前买了阿里云服务器，简单部署了一个JudgeService，感觉闲着也是闲着，决定在上面部署一个爬虫，打算每隔一段时间爬取糗事百科前几页的文本段子并以邮件的形式发送到qq邮箱中。</p>
@@ -894,9 +1032,9 @@
     
       <category term="爬虫" scheme="http://andyhui.top/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="linux" scheme="http://andyhui.top/tags/linux/"/>
-    
       <category term="requests" scheme="http://andyhui.top/tags/requests/"/>
+    
+      <category term="linux" scheme="http://andyhui.top/tags/linux/"/>
     
       <category term="BeautifulSoup" scheme="http://andyhui.top/tags/BeautifulSoup/"/>
     
@@ -907,7 +1045,7 @@
     <link href="http://andyhui.top/2017/08/29/ojrankscan/"/>
     <id>http://andyhui.top/2017/08/29/ojrankscan/</id>
     <published>2017-08-29T07:04:51.000Z</published>
-    <updated>2019-03-04T09:12:55.000Z</updated>
+    <updated>2019-03-17T16:12:27.208Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>假期俱乐部举办了编程训练营，每个人负责管理15人的营，每天作业会在oj的一个总榜上<br>关于各营营长每天统计很麻烦，所以我写了一个简单的爬虫来节省一部分工作<br><strong> 代码改变世界，使人更高效的完成自己的工作</strong></p>
@@ -978,9 +1116,9 @@
     
       <category term="爬虫" scheme="http://andyhui.top/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="requests" scheme="http://andyhui.top/tags/requests/"/>
-    
       <category term="oj" scheme="http://andyhui.top/tags/oj/"/>
+    
+      <category term="requests" scheme="http://andyhui.top/tags/requests/"/>
     
   </entry>
   
@@ -1063,7 +1201,7 @@ int main()
     <link href="http://andyhui.top/2017/08/24/hello-world/"/>
     <id>http://andyhui.top/2017/08/24/hello-world/</id>
     <published>2017-08-24T04:52:25.000Z</published>
-    <updated>2019-03-04T09:07:57.000Z</updated>
+    <updated>2019-03-17T16:12:27.208Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>

@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="andyhui&#39;s blog">
 <meta property="og:description" content="二进制中1的个数题目描述 输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-09T16:24:38.000Z">
+<meta property="og:updated_time" content="2019-03-17T16:12:27.208Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="剑指Offer15 二进制中1的个数">
 <meta name="twitter:description" content="二进制中1的个数题目描述 输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。">
@@ -441,6 +441,10 @@
 <p>由于Python 的动态类型，导致数字不会像<code>C++</code>那样溢出<code>int</code>范围变为0，因此要先做一步处理，若为负数则加上 2*32次方，转为补码，再进行统计</p>
 </blockquote>
 <h3 id="代码3"><a href="#代码3" class="headerlink" title="代码3"></a>代码3</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">NumberOf12</span><span class="params">(self, n)</span>:</span></div><div class="line">    <span class="comment"># not run if n&lt;0</span></div><div class="line">    <span class="keyword">if</span> n&lt;<span class="number">0</span>:</div><div class="line">        n += <span class="number">2</span>**<span class="number">32</span></div><div class="line">    count = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span> n != <span class="number">0</span>:</div><div class="line">        count += <span class="number">1</span></div><div class="line">        n = n &amp; (n<span class="number">-1</span>)</div><div class="line">    <span class="keyword">return</span> count</div></pre></td></tr></table></figure>
+<h3 id="思路4"><a href="#思路4" class="headerlink" title="思路4"></a>思路4</h3><blockquote>
+<p>转为二进制，直接统计1的个数</p>
+</blockquote>
+<h3 id="代码4"><a href="#代码4" class="headerlink" title="代码4"></a>代码4</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">NumberOf14</span><span class="params">(self, n)</span>:</span></div><div class="line">    <span class="comment"># bitcount</span></div><div class="line">    <span class="keyword">if</span> n&lt;<span class="number">0</span>:</div><div class="line">        n += <span class="number">2</span>**<span class="number">32</span></div><div class="line">    count = bin(n).count(<span class="string">'1'</span>)</div><div class="line">    <span class="keyword">return</span> count</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -569,7 +573,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -661,7 +665,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制中1的个数"><span class="nav-number">1.</span> <span class="nav-text">二进制中1的个数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路1"><span class="nav-number">1.2.</span> <span class="nav-text">思路1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码1"><span class="nav-number">1.3.</span> <span class="nav-text">代码1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路2"><span class="nav-number">1.4.</span> <span class="nav-text">思路2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码2"><span class="nav-number">1.5.</span> <span class="nav-text">代码2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路3"><span class="nav-number">1.6.</span> <span class="nav-text">思路3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码3"><span class="nav-number">1.7.</span> <span class="nav-text">代码3</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制中1的个数"><span class="nav-number">1.</span> <span class="nav-text">二进制中1的个数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路1"><span class="nav-number">1.2.</span> <span class="nav-text">思路1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码1"><span class="nav-number">1.3.</span> <span class="nav-text">代码1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路2"><span class="nav-number">1.4.</span> <span class="nav-text">思路2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码2"><span class="nav-number">1.5.</span> <span class="nav-text">代码2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路3"><span class="nav-number">1.6.</span> <span class="nav-text">思路3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码3"><span class="nav-number">1.7.</span> <span class="nav-text">代码3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路4"><span class="nav-number">1.8.</span> <span class="nav-text">思路4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码4"><span class="nav-number">1.9.</span> <span class="nav-text">代码4</span></a></li></ol></li></ol></div>
             
 
           </div>
